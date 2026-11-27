@@ -1,0 +1,2 @@
+Public build: the personal fonts are not included in this repository.
+The app falls back to the system fonts.
