@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="docs/banner.gif" alt="Raabt" width="100%">
+</p>
+
 # Raabt
 
 **A portable, fully offline bookmark vault for Windows.** Nested folders, subjects with statuses, tags and notes, browser import, scoped export to HTML / Excel / Word / PDF, scheduled backups, and instant search — in one ~10 MB executable with no installer and no account.
