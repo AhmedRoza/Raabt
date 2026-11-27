@@ -1,155 +1,129 @@
-<div align="center">
-  <img src="docs/banner.gif" alt="راابط — خزنة الروابط" width="100%">
-</div>
+# Raabt
 
-<div align="center">
+**A portable, fully offline bookmark vault for Windows.** Nested folders, subjects with statuses, tags and notes, browser import, scoped export to HTML / Excel / Word / PDF, scheduled backups, and instant search — in one ~10 MB executable with no installer and no account.
 
-![Windows](https://img.shields.io/badge/Windows-10%20%7C%2011-0078D6?style=for-the-badge&logo=windows11&logoColor=white)
-![Offline](https://img.shields.io/badge/Offline-100%25-00e0ff?style=for-the-badge)
-![Go](https://img.shields.io/badge/Go-WebView2-00ADD8?style=for-the-badge&logo=go&logoColor=white)
-![Rust](https://img.shields.io/badge/Rust-WASM-000000?style=for-the-badge&logo=rust&logoColor=white)
-![Size](https://img.shields.io/badge/Size-10%20MB-7c5cff?style=for-the-badge)
-![Version](https://img.shields.io/badge/Version-v1.0.0-ff4d6d?style=for-the-badge)
-
-</div>
-
-<div dir="rtl">
-
-# راابط
-
-> لكل رابط فتحته وقلت لنفسك: هرجعله بعدين.
-> ولكل تاب سيبته مفتوح لحد ما الجهاز تعب.
-> ولكل فكرة بدأت من سطر صغير في شريط العنوان وضاعت في الزحمة.
->
-> **راابط** بيعمل حاجة واحدة، وبيعملها صح:
-> بيحط روابطك في مكان واحد، مرتّب زي ما إنت عايز، بيفتح في لمحة، وشغّال من غير ما يشوف نت أصلًا.
->
-> مش حساب على سيرفر، ولا مفضلة بتتبعت لحد.
-> رفّ صغير، على جهازك، فيه كل اللي جمعته… ومحدش بيشوفه غيرك.
-
-راابط برنامج ويندوز خفيف (حوالي 10 ميجا) بتحطه في أي فولدر وتشغّله على طول، من غير تنصيب. كل حاجة فيه — الروابط، الصور، الخطوط، النسخ الاحتياطية — بتتخزن في فولدر `Raabt-data` جنب البرنامج، فتقدر تنقله على فلاشة وتشيله معاك، أو تنسخه كله في ثانية.
+[![Windows](https://img.shields.io/badge/Windows-10%20%7C%2011-0078D6?style=flat-square&logo=windows11&logoColor=white)](https://github.com/AhmedRoza/Raabt/releases)
+[![Offline](https://img.shields.io/badge/offline-100%25-00e0ff?style=flat-square)](#privacy)
+[![Go](https://img.shields.io/badge/Go-WebView2-00ADD8?style=flat-square&logo=go&logoColor=white)](#tech-stack)
+[![Rust](https://img.shields.io/badge/Rust-WASM-000000?style=flat-square&logo=rust&logoColor=white)](#tech-stack)
+[![Size](https://img.shields.io/badge/size-10%20MB-7c5cff?style=flat-square)](#tech-stack)
+[![Version](https://img.shields.io/badge/version-v1.1.0-ff4d6d?style=flat-square)](https://github.com/AhmedRoza/Raabt/releases/latest)
 
 ---
 
-## المميزات
+## Why
 
-**خزنة مرتّبة على مزاجك**
-- مجلدات جوه مجلدات، بأي عمق، بألوان وأشكال وعناوين زي ما تحب.
-- لكل رابط تاج وملاحظة قصيرة تظهر تحته.
-- 41 صورة جاهزة تختار منها صورة أي مجلد، وتقدر تضيف صورك من الجهاز.
-- سحب وإفلات لترتيب كل حاجة.
-- ثيم أسود كامل وثيم فاتح، والخط تختاره من 14 خط مضمّن أو من خطوط جهازك.
+Every link you saved to read later ends up in one of three places: a tab you never close, a bookmarks bar you never open, or a note you never find again. Raabt puts them in one shelf that opens instantly, is arranged the way you think, and works with the network switched off.
 
-**قسم المواد**
-- كل مادة (كورس، ترم، مشروع) بتبقى قسم لوحده جواه مجلدات وروابط.
-- حالات للمواد: «لسه هسجلهم ان شاء الله» و«مسجلهم» و«مخلصهم»، وتقدر تعدّل الحالات نفسها وتضيف وتشيل.
-- أي مجلد أو رابط من الخزنة ينفع يتحط جوه مادة.
+No server, no account, no sync, no telemetry. One folder on your disk, and it is yours.
 
-**بحث سريع**
-- `Ctrl + K` أو `Ctrl + F` من أي مكان، وبحث في القسم الحالي أو في كل الأقسام.
-- فلتر بالمادة أو التاج، وتفتيح النتيجة على طول.
+## Features
 
-**استيراد من المتصفحات**
-- استيراد ملف المفضلة من Chrome وFirefox وBrave وEdge وغيرهم.
-- بيسألك: استيراد جديد ولا كتابة فوق استيراد قديم لنفس المتصفح؟ مع تأكيد قبل التنفيذ، وتراجع بعدها لو غيرت رأيك.
-- الكتابة فوق بتحافظ على تعديلاتك: الأسماء والصور والتاجات والملاحظات.
+### A vault arranged your way
+- Folders inside folders, at any depth, with custom colors and artwork.
+- Tags and a short note on every link, shown right under it.
+- 41 built-in folder images, or add your own from your machine.
+- Drag and drop to reorder anything.
+- Full dark theme and a light theme, plus custom accent colors that are kept for both.
+- Pick from the bundled fonts or use the ones already installed on your PC.
 
-**تصدير ونسخ احتياطي**
-- تصدير HTML يفتح في أي متصفح، وExcel وWord وPDF.
-- تختار مجلدات وروابط معيّنة بس، أو الخزنة كلها.
-- PDF بيتحفظ على طول من غير نافذة طباعة، بشجرة المجلدات وأسماء الروابط قابلة للضغط.
-- نسخة احتياطية تلقائية كل عدد ساعات تحدده، أو يومي وأسبوعي وشهري، وفي المكان اللي تختاره.
+### Your own sections
+- Create extra sections that behave exactly like the vault: folders, drag and drop, search, trash, their own statuses, and their own backup.
+- The built-in sections stay where they are; the ones you create sit next to them and can be renamed, reordered or removed.
 
-**حاجات صغيرة بتفرق**
-- فحص الروابط اللي مش بتفتح، لمجلد معيّن أو للخزنة كلها.
-- فتح كل روابط أي مجلد بضغطة.
-- تشغيل مع ويندوز، أيقونة جنب الساعة، واختصار عام (Ctrl+Alt+R افتراضيًا) — مش بيشتغلوا غير لما تفعّلهم بنفسك من الإعدادات.
-- قفل PIN لو حابب تخلي الخزنة لنفسك.
+### Subjects
+- Each subject (a course, a term, a project) is a section of its own with folders and links inside.
+- Statuses out of the box — *to enroll*, *enrolled*, *finished* — and you can rename them, add new ones, or delete them.
+- Any folder or link from the vault can be dropped into a subject.
 
----
+### Instant search
+- `Ctrl + K` or `Ctrl + F` from anywhere, searching the current section or every section.
+- Filter by subject or tag, and open a result straight away.
 
-## لقطات
+### Import from browsers
+- Import the bookmarks file from Chrome, Firefox, Brave, Edge and others.
+- Raabt asks whether this is a new import or an overwrite of an earlier import from the same browser, confirms before running, and can undo it afterwards.
+- An overwrite keeps your edits: names, images, tags and notes.
+- A mobile-app import mode reads the same HTML bookmarks file.
 
-<div align="center">
+### Export and backup
+- Export to HTML that opens in any browser, plus Excel, Word and PDF.
+- Export the whole vault or only the folders and links you select.
+- PDF saves straight to disk without a print dialog, with a collapsible folder tree and clickable link names.
+- Every section has its own backup schedule — manual, on every launch, daily, weekly, monthly, a custom interval, or off — its own destination, and its own file.
+- Backups are browser-importable HTML bookmark files named after the section, date and time, and they can be restored from inside Raabt with full detail.
+- One encrypted backup per section, protected by a password you choose.
+- A single backup file that contains every section, restorable on its own.
+- A full-program backup that also carries your settings, plus a restore button next to it.
+- Nothing overwrites an older backup, and a backup is only written when something actually changed.
 
-| الخزنة | البحث |
+### Small things that matter
+- Check for links that no longer open, for one folder or the whole vault.
+- Open every link in a folder in one click.
+- Start with Windows, tray icon, and a global hotkey (`Ctrl + Alt + R` by default) — all off until you enable them yourself in Settings.
+- A PIN lock if you want the vault to yourself.
+- A statistics strip on the home screen: links, folders and sections, with a per-section breakdown.
+- Reduce-motion support, and a switch in Settings to turn the animated wordmark off.
+
+## Screenshots
+
+| The vault | Search |
 |---|---|
-| ![الخزنة](docs/screenshots/01-vault.png) | ![البحث](docs/screenshots/02-search.png) |
+| ![The vault](docs/screenshots/01-vault.png) | ![Search](docs/screenshots/02-search.png) |
 
-| المواد والحالات | استيراد من المتصفح |
+| Subjects and statuses | Import from a browser |
 |---|---|
-| ![المواد](docs/screenshots/03-subjects.png) | ![الاستيراد](docs/screenshots/04-import.png) |
+| ![Subjects](docs/screenshots/03-subjects.png) | ![Import](docs/screenshots/04-import.png) |
 
-| مكتبة الصور | النسخ الاحتياطي |
+| Folder images | Backups |
 |---|---|
-| ![الصور](docs/screenshots/05-images.png) | ![النسخ](docs/screenshots/06-backup.png) |
+| ![Images](docs/screenshots/05-images.png) | ![Backups](docs/screenshots/06-backup.png) |
 
-![تعديل الحالات](docs/screenshots/07-statuses.png)
+![Editing subject statuses](docs/screenshots/07-statuses.png)
 
-</div>
+## Run it
 
----
+1. Download `Raabt.zip` from the [Releases](https://github.com/AhmedRoza/Raabt/releases) page and unzip it anywhere.
+2. Run `raabt.exe`. There is no installer.
+3. Raabt needs the **Microsoft Edge WebView2 Runtime**. It is already present on current Windows 10 and 11; if it is missing, the installer is available from Microsoft free of charge.
 
-## التشغيل
+**Updating:** close the app, copy the `Raabt-data` folder somewhere safe, and replace `raabt.exe`. Do not delete `Raabt-data` — that is where everything lives.
 
-1. نزّل `Raabt.zip` من صفحة **Releases** وفك الضغط في أي مكان تحبه.
-2. شغّل `raabt.exe`. مفيش تنصيب.
-3. البرنامج محتاج **Microsoft Edge WebView2 Runtime** (موجود أصلًا في ويندوز 10 و11 الحديثين؛ لو مش موجود GitHub بيوفره مجانًا).
+**Moving it:** the whole program is one folder. Copy it to a USB stick and it keeps working; your data travels with it.
 
-للتحديث: اقفل البرنامج، انسخ فولدر `Raabt-data` في مكان آمن، وبدّل `raabt.exe` بس. **متمسحش `Raabt-data`** — ده اللي فيه كل حاجة.
+## Tech stack
 
----
-
-## التقنية
-
-| الجزء | إيه هو |
+| Part | What it is |
 |---|---|
-| الواجهة | HTML/CSS/JS في ملف واحد، من غير أي مكتبة خارجية |
-| المحرّك | Rust بيتحوّل لـ WebAssembly (`src/`) — الموديل، النسخ الاحتياطي، استيراد Netscape، التصدير |
-| الغلاف | Go + WebView2 (`shell/`) — النافذة، الملفات، الاختصار العام، التشغيل مع ويندوز، الصينية |
-| الصور والخطوط | مدمجة جوه الـexe، فالبرنامج ملف واحد بيتنقل زي ما هو |
+| Interface | HTML / CSS / JS in a single file, no external libraries |
+| Engine | Rust compiled to WebAssembly (`src/`) — model, backups, Netscape import, export |
+| Shell | Go + WebView2 (`shell/`) — window, files, global hotkey, start with Windows, tray |
+| Images and fonts | Embedded in the executable, so the program stays a single portable file |
 
-### بناء من المصدر
+### Build from source
 
 ```bash
-# 1) المحرّك (Rust → WASM) — محتاج rustup + target
+# 1) Engine (Rust -> WASM). Requires rustup and the wasm target.
 rustup target add wasm32-unknown-unknown
 cargo build --release --target wasm32-unknown-unknown
 cp target/wasm32-unknown-unknown/release/raabt.wasm shell/raabt.wasm
 
-# 2) الغلاف (Go → exe) — محتاج Go 1.22+
+# 2) Shell (Go -> exe). Requires Go 1.22+.
 bash package.sh
 ```
 
-الـ`raabt.wasm` المبني موجود في الريبو، فلو مش هتلمس الـRust تحتاج Go بس.
+The built `raabt.wasm` is committed, so if you are not changing the Rust engine you only need Go.
 
----
+## Privacy
 
-## الخصوصية
+- **Fully offline.** No server, no account, no analytics, no tracking. The app runs with the network disabled.
+- All data lives in a single `Raabt-data` folder next to the executable, under your control.
+- The link checker is the only feature that touches the network, and only when you press it.
 
-- **أوفلاين بالكامل.** مفيش سيرفر، مفيش حساب، مفيش تحليلات ولا تتبّع. البرنامج بيشتغل والنت مقفول.
-- كل بياناتك في فولدر واحد جنب البرنامج، وإنت اللي بتتحكم فيه.
-- فحص الروابط هو الحاجة الوحيدة اللي بتلمس النت، وبيشتغل بس لما تدوس عليه.
+## Fonts
 
-## الخطوط
+Raabt bundles open-licensed fonts — Cairo, Tajawal, Almarai, Amiri, IBM Plex Sans Arabic, Readex Pro, El Messiri, Playpen Sans Arabic, Inter, Poppins, Space Grotesk, JetBrains Mono, Playfair Display — with their licenses in [`LICENSES/`](LICENSES/).
 
-البرنامج بيجي بخطوط مفتوحة (Cairo، Tajawal، Almarai، Amiri، IBM Plex، Readex Pro، El Messiri، Playpen، Inter، Poppins، Space Grotesk، JetBrains Mono، Playfair Display) وتراخيصها في `LICENSES/`. وفي خطوط شخصية مضافة بطلب من صاحب البرنامج لنسخته هو، وموجودة في `shell/fonts-personal/` — **مش للاستخدام أو التوزيع**.
+## License
 
-## الرخصة
-
-جميع الحقوق محفوظة. الكود منشور للقراءة والاطلاع، ومفيش ترخيص للاستخدام أو إعادة النشر من غير إذن. تفاصيل أكتر في [LICENSE](LICENSE).
-
-</div>
-
----
-
-<details>
-<summary><b>English</b></summary>
-
-**Raabt** (راابط) is a portable, fully offline bookmark vault for Windows: nested folders with custom colors and artwork, subjects with statuses, per-link notes and tags, browser import (Chrome/Firefox/Brave/Edge) with overwrite-and-undo, scoped export to HTML/Excel/Word/PDF, scheduled automatic backups, and instant search (`Ctrl+K`).
-
-No installer, no account, no network calls. All data lives in `Raabt-data` next to the executable. Built as a Go + WebView2 shell around a Rust/WebAssembly engine; ~10 MB, single exe.
-
-Requires Windows 10/11 with Microsoft Edge WebView2 Runtime. See [Releases](../../releases) to download.
-
-</details>
+All rights reserved. The source is published for reading and review; no license is granted for reuse or redistribution without permission. See [LICENSE](LICENSE) for details.
