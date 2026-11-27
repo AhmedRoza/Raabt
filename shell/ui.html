@@ -9,7 +9,7 @@ button,input,select{font-family:inherit;color:inherit}
 header{display:flex;align-items:center;gap:14px;padding:12px 18px;background:var(--bg2);border-bottom:1px solid var(--bd)}
 header img{width:46px;height:46px;object-fit:contain;filter:drop-shadow(0 3px 8px #0008)}
 header h1{margin:0;font-size:20px;background:linear-gradient(90deg,var(--ac),var(--ac2));-webkit-background-clip:text;color:transparent}
-nav{display:flex;gap:6px;margin-inline-start:18px}
+nav{display:flex;gap:6px;margin-inline-start:18px;flex-wrap:nowrap;min-width:0;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;-ms-overflow-style:none}nav::-webkit-scrollbar{display:none}
 nav button{background:none;border:0;padding:9px 18px;border-radius:12px;color:var(--mu);cursor:pointer;font-size:15px;transition:.25s}
 nav button.on{background:var(--card2);color:var(--tx);box-shadow:0 0 0 1px var(--ac) inset}
 nav button:hover{color:var(--tx)}
@@ -18,6 +18,17 @@ nav button:hover{color:var(--tx)}
 #search:focus{border-color:var(--ac);width:320px}
 main{flex:1;overflow:auto;padding:18px 22px}
 .bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:14px}
+.secsbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:12px;padding:9px 11px;border:1px solid var(--bd);border-radius:12px;background:var(--card)}
+.secsbar .sbl{font-size:13px;opacity:.7;margin-inline-end:2px}
+.secchip{display:inline-flex;align-items:center;gap:7px;padding:6px 9px;border:1px solid var(--bd);border-radius:10px;background:transparent;color:inherit;font:inherit;font-size:13px;cursor:pointer;line-height:1.2}
+.secchip:hover{border-color:var(--ac)}
+.secchip.cur{border-color:var(--ac);background:color-mix(in srgb,var(--ac) 14%,transparent)}
+.secchip b{font-weight:600;opacity:.55;font-size:12px}
+.secchip.dropt{border-color:var(--ac);background:color-mix(in srgb,var(--ac) 20%,transparent)}
+.chipm{font-style:normal;opacity:.45;padding:0 3px;border-radius:6px;font-size:14px}
+.chipm:hover{opacity:1;background:rgba(128,128,128,.2)}
+.sn.snsub{margin-inline-start:16px}
+
 .btn{background:var(--card2);border:1px solid var(--bd);border-radius:11px;padding:7px 13px;cursor:pointer;font-size:13.5px;transition:.2s}
 .btn:hover{border-color:var(--ac);transform:translateY(-1px)}
 .btn.pri{background:var(--ac);border-color:var(--ac);color:#fff}
@@ -84,12 +95,14 @@ main{flex:1;overflow:auto;padding:18px 22px}
 .card.fol .nm{font-size:18px}
 .tree .card.fol{min-height:58px;padding:8px 14px}.tree .fsvg{width:46px;height:42px}.tree .card.fol .nm{font-size:16px}
 
-header{display:grid;grid-template-columns:auto minmax(0,1fr) 1px}.hl{display:flex;align-items:center;gap:14px;min-width:0}.hr{min-width:0}
-header{position:relative}header .swm{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:clamp(300px,calc(100vw - 880px),480px);max-width:none;margin:0;flex-basis:auto}
-@media(max-width:1240px){header{grid-template-columns:1fr;row-gap:8px}header .swm{position:static;transform:none;width:100%;max-width:520px;justify-self:center}header .swm{flex-basis:auto}}
+header{display:grid;grid-template-columns:minmax(0,1fr) minmax(190px,480px) 1px}.hl{display:flex;align-items:center;gap:14px;min-width:0;flex-wrap:wrap;justify-self:end}.hr{min-width:0}
+header{position:relative}header .swm{position:static;transform:none;justify-self:center;width:100%;max-width:min(480px,100%);min-width:0;margin:0;flex-basis:auto;overflow:hidden}
+@media(max-width:1240px){header{grid-template-columns:1fr;row-gap:8px}header .swm{position:static;transform:none;width:100%;max-width:min(520px,100%);justify-self:center}header .swm{flex-basis:auto}}
+body.hdrCmp .swm .w{display:none}body.hdrCmp header .swm .cap{min-width:64px}
 .swm{display:flex;align-items:center;direction:ltr;gap:4px;font:800 38px/1 "Century Gothic","Futura","Trebuchet MS","Segoe UI",sans-serif;letter-spacing:-1px;color:var(--tx);margin-inline-start:6px;flex:0 1 460px;min-width:0}
 .swm .w{flex:none;position:relative;top:-3px}.swm .cap{flex:1 1 auto;width:auto;min-width:110px;height:32px;border-width:5px;padding:0 10px;margin-top:6px}
 .swm .cap input#search{font:500 13px var(--font,sans-serif)}.swm .cap svg{width:16px;height:16px}
+.swm{pointer-events:none}.swm .cap{pointer-events:auto}
 .nowm .swm .w{display:none}.nowm .swm{flex-basis:340px}.nowm .swm .cap{height:40px;border-width:2.5px}
 @media(max-width:1000px){.swm{font-size:28px;flex-basis:360px}}@media(max-width:760px){.swm .w{display:none}}
 .sbar{display:flex;align-items:center;gap:8px;direction:ltr;width:min(340px,34vw);min-width:180px;height:40px;padding:0 16px;border:2.5px solid var(--tx);border-radius:999px;color:var(--tx);background:transparent;transition:border-color .2s,box-shadow .2s}
@@ -171,6 +184,10 @@ nav .gear{padding:6px 10px;display:inline-flex;align-items:center}#pop div:focus
 :root{--bg:#000;--bg2:#09090c;--card:#121217;--card2:#1c1c24;--tx:#f2f2f7;--mu:#9a9aa8;--bd:#2a2a34;--sep:#ffffff1a;--on:#fff}
 @font-face{font-family:"RaabtWM";font-weight:800;src:url(data:font/woff2;base64,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) format("woff2")}
 .swm{font-family:"RaabtWM","Century Gothic","Futura","Trebuchet MS","Segoe UI",sans-serif}
+h1.hwm{display:flex;align-items:center;margin:0;line-height:0;color:#fff}
+h1.hwm .wmhw{height:26px;margin:1px 0}
+#splash .swm2 .wmhw{height:78px}
+.wmhw.wms{height:15px;vertical-align:-2px;opacity:.9}
 .btn.pri,.ib.pri,.ib.pri:hover{color:var(--on)}
 .xt-mac.sel,.card.xt-mac.sel{color:var(--on)}
 .card{-webkit-user-select:none;user-select:none}
@@ -296,10 +313,120 @@ header h1{background:var(--ac);-webkit-background-clip:border-box;background-cli
 .swm .w{top:2px!important}
 .libp{margin-top:8px;max-height:260px;overflow:auto;background:#000;border:1px solid var(--bd);border-radius:12px;padding:8px}.libp .lh{display:flex;align-items:center;justify-content:space-between;margin:4px 0 6px}.lg{display:grid;grid-template-columns:repeat(auto-fill,minmax(64px,1fr));gap:6px}.lt{aspect-ratio:1;border:1px solid var(--bd);border-radius:10px;background:#000 center/contain no-repeat;cursor:pointer;padding:0}.lt:hover,.lt:focus-visible{border-color:var(--ac);outline:none}
 .lk .th.cimg{background-size:contain!important;background-repeat:no-repeat!important;background-position:center!important;background-color:#000}
+/* ===== الوضع الفاتح ===== */
+body.light{--bg:#f2f4f9;--bg2:#fff;--card:#fff;--card2:#eceef6;--tx:#14151b;--mu:#5a5f6f;--bd:#d8dce7;--sep:#00000014;--on:#000;--dn:#d92b47;color-scheme:light}
+body.light #veil{background:#0a0f1f1f}
+body.light #pop{box-shadow:0 14px 40px #0a0f1f26}
+body.light #ftree{background:#fff;box-shadow:0 12px 40px #0a0f1f26}
+body.light .libp{background:#fff}
+body.light .lk .th.cimg{background-color:#f1f2f8}
+body.light .themes div.on,body.light .sw i.on,body.light .sh b.on{border-color:#14151b}
+body.light .stick{filter:none;opacity:1}
+body.light .imt small{background:#000000a6}
+body.light .card{box-shadow:0 1px 3px #0a0f1f12}
+body.light .card:hover{box-shadow:0 8px 24px -10px var(--ac)}
+body.light .xt-hex .nm{text-shadow:0 1px 3px #00000059}
+body.light header img{filter:drop-shadow(0 3px 8px #0002)}
+body.light .fsvg{filter:drop-shadow(0 6px 10px #0002)}
+body.light .dropzone{background:#fff}
+body.light .dash .sec{background:var(--card)}
+body.light .es{opacity:.85}
+body.light .pin{filter:none}
+body.light .themes div{background:#e9ebf3!important;color:#14151b!important}
+body.light .sw i,body.light .sh b{box-shadow:0 0 0 1px #00000014}
+body.light .bri{box-shadow:0 2px 6px #0002}
+body.light .rn input{background:#fff}
+/* الإحصائيات */
+.stbar{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:10px 0 14px}
+.stt{background:var(--card2);border:1px solid var(--bd);border-radius:13px;padding:10px 12px;display:flex;flex-direction:column;gap:2px}
+.stt b{font-size:22px;line-height:1.15;background:linear-gradient(90deg,var(--ac),var(--ac2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.stt span{color:var(--mu);font-size:12px}
+.srow{display:grid;grid-template-columns:minmax(0,1fr) 52px 120px;align-items:center;gap:10px;padding:7px 4px;border-bottom:1px solid var(--sep);cursor:pointer}
+.srow:last-child{border-bottom:0}
+.srow:hover .snm{text-decoration:underline}
+.snm{display:flex;align-items:center;gap:6px;font-weight:600;font-size:14px;color:var(--tx);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.srow b{color:var(--ac2);font-size:13.5px;text-align:end}
+.srow .dbar{width:120px;background:var(--card2)}
+@media(max-width:560px){.stbar{grid-template-columns:1fr}.srow{grid-template-columns:minmax(0,1fr) 46px 80px}.srow .dbar{width:80px}}
+/* أيقونة الإحصائيات: لهب مفرّغ بيرفرف */
+.fireb{position:relative}
+.fireico{transform-origin:50% 88%;animation:flick 2.2s ease-in-out infinite}
+.fireico path{transform-origin:50% 100%}
+.fireico path:first-child{animation:flameA 1.6s ease-in-out infinite}
+.fireico path:last-child{animation:flameB 1.1s ease-in-out infinite}
+@keyframes flick{0%,100%{opacity:.95}45%{opacity:.75}70%{opacity:1}}
+@keyframes flameA{0%,100%{transform:scaleY(1) translateY(0)}50%{transform:scaleY(1.06) translateY(-.4px)}}
+@keyframes flameB{0%,100%{transform:scale(1) translateY(0)}35%{transform:scale(.94,1.05) translateY(-.5px)}65%{transform:scale(1.05,.96) translateY(.3px)}}
+.rm .fireico,.rm .fireico path{animation:none}
+@media(prefers-reduced-motion:reduce){.fireico,.fireico path{animation:none}}
+body.light .fireb{color:#14151b}
+/* رسمة الشهور */
+.chart{display:flex;align-items:flex-end;gap:10px;height:132px;margin-top:12px;direction:rtl}
+.cbar{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:4px;height:100%}
+.cbar i{display:block;width:100%;max-width:54px;background:linear-gradient(180deg,var(--ac2),var(--ac));border-radius:8px 8px 3px 3px;min-height:2px}
+.cbar span{color:var(--mu);font-size:11.5px}
+.cbar b{color:var(--tx);font-size:12px}
+#splash{position:fixed;inset:0;z-index:9000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;background:var(--bg);color:var(--tx);transition:opacity .3s ease,visibility .3s ease}
+#splash .sstage{position:relative;width:360px;height:250px;display:flex;align-items:center;justify-content:center}
+#splash .slogo{position:relative;z-index:1;width:236px;height:236px;display:flex;align-items:center;justify-content:center}
+#splash .sring{position:absolute;inset:0;border-radius:50%;border:2px solid var(--ac);opacity:0;animation:sring 1s cubic-bezier(.2,.8,.3,1) .12s both}
+#splash .sring.two{border-color:var(--ac2);animation-delay:.26s}
+#splash img{position:relative;width:176px;height:176px;object-fit:contain;filter:drop-shadow(0 14px 40px rgba(124,92,255,.45));animation:spop .78s cubic-bezier(.2,1.3,.36,1) both,spulse 1.6s ease-in-out .78s infinite alternate}
+#splash .swm2{font-family:"Playfair Display",Georgia,serif;font-weight:700;font-size:46px;letter-spacing:1px;animation:sfade .6s cubic-bezier(.2,.8,.3,1) .22s both}
+#splash .sbar{width:190px;height:5px;border-radius:99px;background:var(--card2);overflow:hidden;animation:sfade .5s .34s both}
+#splash .sbar i{display:block;height:100%;width:38%;border-radius:99px;background:linear-gradient(90deg,var(--ac),var(--ac2));animation:sload 1s ease-in-out infinite}
+#splash.gone{opacity:0;visibility:hidden}
+@keyframes spop{0%{opacity:0;transform:scale(.55) rotate(-8deg)}55%{opacity:1;transform:scale(1.08) rotate(2deg)}78%{transform:scale(.98) rotate(-1deg)}100%{opacity:1;transform:scale(1) rotate(0)}}
+@keyframes spulse{from{filter:drop-shadow(0 12px 34px rgba(124,92,255,.32))}to{filter:drop-shadow(0 18px 52px rgba(124,92,255,.62))}}
+@keyframes sring{0%{opacity:0;transform:scale(.62)}35%{opacity:.55}100%{opacity:0;transform:scale(1.18)}}
+@keyframes sfade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes sload{0%{transform:translateX(-120%)}100%{transform:translateX(320%)}}
+body.rm #splash img,body.rm #splash .swm2,body.rm #splash .sbar,body.rm #splash .sring{animation:none}
+body.rm #splash .sbar i{animation:none;width:100%}
+body.rm #splash img{width:176px;height:176px}
+@media(prefers-reduced-motion:reduce){#splash img,#splash .swm2,#splash .sbar,#splash .sring{animation:none}#splash .sbar i{animation:none;width:100%}}
+:root{--ease:cubic-bezier(.2,.8,.3,1)}
+button,.btn,.ib,.secchip,.chipm,.tag{transition:transform .14s var(--ease),background-color .16s var(--ease),border-color .16s var(--ease),color .16s var(--ease),box-shadow .16s var(--ease)}
+button:active,.btn:active,.ib:active{transform:scale(.965)}
+.card{animation:cardin .26s var(--ease) both;transition:transform .18s var(--ease),border-color .18s var(--ease),box-shadow .18s var(--ease)}
+@keyframes cardin{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
+.card:hover{transform:translateY(-2px)}
+#dlg{animation:dlgin .22s var(--ease) both;transform-origin:top center}
+@keyframes dlgin{from{opacity:0;transform:translateY(10px) scale(.975)}to{opacity:1;transform:none}}
+#dlg.closing{animation:dlgout .16s ease both}
+@keyframes dlgout{from{opacity:1;transform:none}to{opacity:0;transform:translateY(8px) scale(.98)}}
+#pop{animation:popin .14s var(--ease) both;transform-origin:top center}
+@keyframes popin{from{opacity:0;transform:translateY(-6px) scale(.97)}to{opacity:1;transform:none}}
+.sn,.srow,.bar{transition:background-color .15s var(--ease)}
+.sn:hover,.srow:hover{background:color-mix(in srgb,var(--ac) 7%,transparent)}
+.srow i,.srow .sb i,.stt i{transition:width .45s var(--ease)}
+[data-drop].dropt,.dropt{box-shadow:0 0 0 3px color-mix(in srgb,var(--ac) 30%,transparent);transition:box-shadow .16s var(--ease)}
+body.rm *,body.rm *::before,body.rm *::after{animation:none!important;transition:none!important}
+.wmhw{position:relative;display:inline-block;height:26px;aspect-ratio:136/74;vertical-align:middle;overflow:visible;color:currentColor}
+.wmhw i{position:absolute;display:block;background-color:currentColor;-webkit-mask-position:0 0;-webkit-mask-size:100% 100%;-webkit-mask-repeat:no-repeat;mask-position:0 0;mask-size:100% 100%;mask-repeat:no-repeat;clip-path:inset(0 0 0 100%);animation:wmr .44s cubic-bezier(.45,.55,.3,1) both}
+.wmhw .l1{left:89.706%;top:25.676%;width:10.294%;height:74.324%}
+.wmhw .l2{left:75.735%;top:0.0%;width:14.706%;height:79.73%}
+.wmhw .l3{left:58.824%;top:0.0%;width:14.706%;height:81.081%}
+.wmhw .l4{left:41.176%;top:32.432%;width:13.235%;height:48.649%}
+.wmhw .l5{left:0.0%;top:0.0%;width:43.382%;height:91.892%}
+.wmhw .ld{left:47.059%;top:83.784%;width:6.618%;height:9.459%}
+.wmhw .l1{-webkit-mask-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAA3CAYAAAA8PXu0AAABiElEQVR4nNWWu0pDQRCGv3MIwUuVNp0QwVQWQjoFH8DewkewsNZeO1sbBSux8w1sBSurNIJiYRtBhHiLY5GLmz2zZ2cPiDiwsDNnv+z8s7vZzUQEz76ADOgDc/7HseWevzOCAGaBrhVc8/y2FVxWxmgxEBG3dUQ3fxyZUpxCgB/dwVRDthpLFRH5UFK98sdp4LZFp6bRpNOqEWA9phEReVZSvbSk2gB6ZemGQIjoLNP4pMTmLeCuEjucTF2Sah1482IDoBYDoURnbB3PQx9iMy4Ad1VmvFdipxYQijo7VvDI89sQ1xiaNUs5HVNmBQdVwQPPb1o1NoFHx1+xgjBdoNeqoKRU9d3pJy3HseukpNoCbquA4Oj89Z3zD8HJZs+BmwRwci3kwCKwZQQ/x53UdewDM1XAv9sADylg3emfha5yre0713qj6j+A+SBvOv2L4c/EU2x5r4+aiESruodz6oETRrunTGOX4kNXfXVsMCzAuLnQC/7T09ESsmtNu+v0PKAnIkuhon0DNO7cg9ThyrUAAAAASUVORK5CYII=);mask-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAA3CAYAAAA8PXu0AAABiElEQVR4nNWWu0pDQRCGv3MIwUuVNp0QwVQWQjoFH8DewkewsNZeO1sbBSux8w1sBSurNIJiYRtBhHiLY5GLmz2zZ2cPiDiwsDNnv+z8s7vZzUQEz76ADOgDc/7HseWevzOCAGaBrhVc8/y2FVxWxmgxEBG3dUQ3fxyZUpxCgB/dwVRDthpLFRH5UFK98sdp4LZFp6bRpNOqEWA9phEReVZSvbSk2gB6ZemGQIjoLNP4pMTmLeCuEjucTF2Sah1482IDoBYDoURnbB3PQx9iMy4Ad1VmvFdipxYQijo7VvDI89sQ1xiaNUs5HVNmBQdVwQPPb1o1NoFHx1+xgjBdoNeqoKRU9d3pJy3HseukpNoCbquA4Oj89Z3zD8HJZs+BmwRwci3kwCKwZQQ/x53UdewDM1XAv9sADylg3emfha5yre0713qj6j+A+SBvOv2L4c/EU2x5r4+aiESruodz6oETRrunTGOX4kNXfXVsMCzAuLnQC/7T09ESsmtNu+v0PKAnIkuhon0DNO7cg9ThyrUAAAAASUVORK5CYII=)}
+.wmhw .l2{-webkit-mask-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAA7CAYAAAB7c6ruAAABxUlEQVR4nLWYMS8EQRTHf3sJgkIkqgul5FQKiU5U9EKv1fsAigsfQaNRUOnVIpEoT0VCi4RGCBIiT3Hnbu/t3O7MvPGSLd7s7G/mP/Nm5s0iIpPSs4aIYHkyEXkHxuhZhsEyERFdZgHWHGV7FqCrh/fAdEogGGS7JJusBrylBj6nBl45ypcswHNH+Vpq4HIsMBORGvCjyj/pX45BQIBksfgvcQjwkRp4mxp46Hg3E0Xs7LSjUrSj2B27y1ZtfQEjoR0sA0JE6OTD5jH04yrgZQqgHlRtW6GTUrVSVkM7mJ8UKE7MNzAcAtQ9vFD+UAjMBdwNBWjTkqEoew648QX6bF/rvjBf4EII0CW5AVzrehYgFMfRG+h7BNStQH0KHvgCB63JDce6Dt5gC20p32scQ47RRStQp3mbPsAyyfNAS9e3ACFiHENTkeo0ryIMtlXovFrCptum8ktlx2RfDSvwWPlnZZV9JEOA7NiEc8oKPFX+06CKvpLBU7Ylxz5xN+uftzR99sjQDFVb0wpcqeplzJ+PDwXcyb8PmeW+oVf+LHAHYWGTtzrtfxP5BmoQHzYPtG8IfzewDHixAKF97RgH9jv+BND6BZz+r2GJIMmqAAAAAElFTkSuQmCC);mask-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAA7CAYAAAB7c6ruAAABxUlEQVR4nLWYMS8EQRTHf3sJgkIkqgul5FQKiU5U9EKv1fsAigsfQaNRUOnVIpEoT0VCi4RGCBIiT3Hnbu/t3O7MvPGSLd7s7G/mP/Nm5s0iIpPSs4aIYHkyEXkHxuhZhsEyERFdZgHWHGV7FqCrh/fAdEogGGS7JJusBrylBj6nBl45ypcswHNH+Vpq4HIsMBORGvCjyj/pX45BQIBksfgvcQjwkRp4mxp46Hg3E0Xs7LSjUrSj2B27y1ZtfQEjoR0sA0JE6OTD5jH04yrgZQqgHlRtW6GTUrVSVkM7mJ8UKE7MNzAcAtQ9vFD+UAjMBdwNBWjTkqEoew648QX6bF/rvjBf4EII0CW5AVzrehYgFMfRG+h7BNStQH0KHvgCB63JDce6Dt5gC20p32scQ47RRStQp3mbPsAyyfNAS9e3ACFiHENTkeo0ryIMtlXovFrCptum8ktlx2RfDSvwWPlnZZV9JEOA7NiEc8oKPFX+06CKvpLBU7Ylxz5xN+uftzR99sjQDFVb0wpcqeplzJ+PDwXcyb8PmeW+oVf+LHAHYWGTtzrtfxP5BmoQHzYPtG8IfzewDHixAKF97RgH9jv+BND6BZz+r2GJIMmqAAAAAElFTkSuQmCC)}
+.wmhw .l3{-webkit-mask-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAA8CAYAAABmdppWAAAByElEQVR4nLWXPS9EQRSGn7uEimIbiU5FgpKQTUh0ChKdUqLBL5AoFH6A3j9QKTSUkqWkkVCIRqEUH/ERy1HYG+vc2Xtn5tx9k032nHvmuWdmznxcRGRZ/rQgIlh+iYgI/5VgUMXS2Be4ZgG6unwPDJYJBMM4dmQM38sGPjj8PRbghcM/awEeOvzzFuCxwz8dC0yaVaNL5wXoKxMIkbXYsbV8XjbwtmzgqeNZ1AaRAo8cz9ZjgEnLZlPKNpYHhIjSaS2bu9DGRUDXxIRLHYNa26HHaNFKmQtNsHVSIDsxQuDy1MEH+oUhMMhmOAJcWaA6w2tHzKQF6NKGFdhQ9pQVWFP2cAhQT0qq6Cueb40NWYHfyt63AleVPeELbDeGEDmOIet0yQp8VbZXt/O6XAG+dHwRMC/DXp+MQoBvDt9KIbFgS99SR8Kzz5dU4TuVnTuOMbevUStwT9m5x61Pl/uBR92uXbBPhk8O34AFCNmL/U27QJ8up9KBNeCsTOAlMK6DQspmU9lj/E6Yem3YZUjrJPSypLWo7BlrhojIh8pyJ3Qtu6QbVWl+JscCu4FP5Usg/tOsQXb5NSzAVAmw2/zfBdRju+xSHaj+ALlCrzCPOIjWAAAAAElFTkSuQmCC);mask-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAA8CAYAAABmdppWAAAByElEQVR4nLWXPS9EQRSGn7uEimIbiU5FgpKQTUh0ChKdUqLBL5AoFH6A3j9QKTSUkqWkkVCIRqEUH/ERy1HYG+vc2Xtn5tx9k032nHvmuWdmznxcRGRZ/rQgIlh+iYgI/5VgUMXS2Be4ZgG6unwPDJYJBMM4dmQM38sGPjj8PRbghcM/awEeOvzzFuCxwz8dC0yaVaNL5wXoKxMIkbXYsbV8XjbwtmzgqeNZ1AaRAo8cz9ZjgEnLZlPKNpYHhIjSaS2bu9DGRUDXxIRLHYNa26HHaNFKmQtNsHVSIDsxQuDy1MEH+oUhMMhmOAJcWaA6w2tHzKQF6NKGFdhQ9pQVWFP2cAhQT0qq6Cueb40NWYHfyt63AleVPeELbDeGEDmOIet0yQp8VbZXt/O6XAG+dHwRMC/DXp+MQoBvDt9KIbFgS99SR8Kzz5dU4TuVnTuOMbevUStwT9m5x61Pl/uBR92uXbBPhk8O34AFCNmL/U27QJ8up9KBNeCsTOAlMK6DQspmU9lj/E6Yem3YZUjrJPSypLWo7BlrhojIh8pyJ3Qtu6QbVWl+JscCu4FP5Usg/tOsQXb5NSzAVAmw2/zfBdRju+xSHaj+ALlCrzCPOIjWAAAAAElFTkSuQmCC)}
+.wmhw .l4{-webkit-mask-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAkCAYAAACE7WrnAAABU0lEQVR4nK2VLU4EQRCFv1lw/FjUCgghOA6wmQMg9g5IPAKJ4QYkKARXQGPYBE1wYCAEBYLwswTDZh9mG5qZ6qVrmJdMMl01/aXqdU83ksh8+vqtyzifC0HSieoqm4DuDNBNyHfI14cRWwkvHtBhIr4BuFrrGq1J0rEkCkmOorA+fgcWPK0BvBqxefB5BHCRSnhBB4n4qtcjsH3abwt01QFOvSRDa0z2Qt+xn46szRRALw7QugUq9GNS4Wil5lO8/Nf/MSmuCPKrmlqRR49/gQaZoNoOr7YmA25pGbidBoKGPjX1qKYqyP3jpUBvbYEaqy2zn5tWVFbGZ00ruge60biHcSLsZBwlteMISVuV4NAJegggJG1WkoMEYNuqJgYhaWx8tCtpUdKcpD0jfx7mx7fILPDpWLkxMBMG8fKPgF4m5InJVf2thBelpJHRylDSkjXnC3sk3UTG9T3uAAAAAElFTkSuQmCC);mask-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAkCAYAAACE7WrnAAABU0lEQVR4nK2VLU4EQRCFv1lw/FjUCgghOA6wmQMg9g5IPAKJ4QYkKARXQGPYBE1wYCAEBYLwswTDZh9mG5qZ6qVrmJdMMl01/aXqdU83ksh8+vqtyzifC0HSieoqm4DuDNBNyHfI14cRWwkvHtBhIr4BuFrrGq1J0rEkCkmOorA+fgcWPK0BvBqxefB5BHCRSnhBB4n4qtcjsH3abwt01QFOvSRDa0z2Qt+xn46szRRALw7QugUq9GNS4Wil5lO8/Nf/MSmuCPKrmlqRR49/gQaZoNoOr7YmA25pGbidBoKGPjX1qKYqyP3jpUBvbYEaqy2zn5tWVFbGZ00ruge60biHcSLsZBwlteMISVuV4NAJegggJG1WkoMEYNuqJgYhaWx8tCtpUdKcpD0jfx7mx7fILPDpWLkxMBMG8fKPgF4m5InJVf2thBelpJHRylDSkjXnC3sk3UTG9T3uAAAAAElFTkSuQmCC)}
+.wmhw .l5{-webkit-mask-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADsAAABECAYAAAA/UU2nAAAEl0lEQVR4nN2bW6hVRRjHf3t5OlApph26mRBUJEQlBQe640MFkkFgUOBD0QUDCyJQ0NeoqIcCoZCEDISEwh7KCiKisKhAiTA6khQZUaCcUOuItzM9zFk6+9vfrOvMrH3ODwb2zOw18/9mvrnutXvGGACD5QBwLXOUDFjnxK8BRjrSEp2eMWYCuM5JmwIu7EhPVHrGmGmgJ9O7EBObrGsBKcmAo12LSEUG/N21iFRkwFtK+k2phaQgA35U0u9MLSQFGbBbSb8/tZAUZMBxJf3G1EJS0BPbxRzDHFyWfAbN6U3FkU5VJCI39udOVSQiN/ZWJW88pZAUFE1CK5KpSESRsWuSqUhEvvQAzPmjnnsr8SHwQIQ6bgbuAZYDS4H5wDZgP/A5cDJCnTrGmDxcbwahYdhujDmslFfELmPMohZ1lgbXjWFwJzUf+K9G2z0I7GzbAcCrwDvATwHKOoewXrK0RsttqtmTVZg0xlzRtCdlkD07BZzvxKeBeRXa7Az+md0ALwMfAd+IvHGsJywpKf8fYHEFHcUI639QWresxQ56euWVBq0/WdLTp9r0rOyNrTXbajt2hnX5F7tkrW/Q9otnnn3Dkz+C9ZRGNynSjUeBE+I7C9Ev5S5l8P7qV+DqJkI8fAnc5cn7E7iyTmGyZ7U172nPs3+J+O+ENRTgbvwbmyXYXh6rWpg2qZwR8aeU74wpIq6qWmkDesC3nrxDwPOVSlEG8oYKk5RkTZuJo0ZYUTB5bSl7Xo5ZsEvPlNKyfW3kfD4NnDfzOcMuV7HR9vEAm4FnfQ9pbqxdwLl8JuLLhYgUZOhzyTMUubSnyyVjBXkjiVxYC6s8Lq2u8b5CtomH93iM3dmhoXlY6zH4Rfldbcye7XQR7ynp80jnukUsQ79HuwXYm0fq3g0vE/FhMBRgAnhESd/jRuoYOwo810ZRZHYArynp5ybUgrEgD/Nbjd2Iu3Q5Vn0To7ZPWFU2ZqF/fB4DFjjx48AFLXoiJtKoI8BFZW7s7pUXiLx9rSXFQ244FkL5mP2qIE/uoYeN90V8osyNx4HvPHl7sVP7MNNnXFnPfl+Qd3F7LdE55kaqLD1feNIvaa8lOn1n3TI3BrgN+NqTNxt+MThrYBVj+x4QzCpji9x41Pl8IJ6WdBQZ666xvtdyZ9UrRHX2xtomYtiXnj7qGKv9wvdoIB2x2OBGqk5QOQcZvBQf1klq4C6t7nn2cU+hw8gOmVDXWHnZBvB6IylxeRdl2NV1Y7D/I/hFltNQVAzWAm9qGT5jH8aeASeA35R83/1Ul/gOLY8Bb4PfjU8AH2N/qDJOOApsUb7/aVulDXkCq9WgG3oZ9v2NlVDsxpuAF8LrS8ZD9J9pp6uM2d3A7dEkhWcfcIOSPlJlNr4Dez+8OaiksHyAddkeuqEAp5vMxmDHwb3A5Y2kNecQ8AdwH3C47sNNjc3Zxczgd1gJfNKm0Fi0NRb0s+4wLEUDhHg1/kklbZ2S1jkhehbsWjcq0l4CNoYoPBShjF0NvKek+9606YRQxoI1drVWR6gK2hLSWIBJYJGsI2QFbQhtLAy+3DE0xv4PYsQt83W5zdUAAAAASUVORK5CYII=);mask-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADsAAABECAYAAAA/UU2nAAAEl0lEQVR4nN2bW6hVRRjHf3t5OlApph26mRBUJEQlBQe640MFkkFgUOBD0QUDCyJQ0NeoqIcCoZCEDISEwh7KCiKisKhAiTA6khQZUaCcUOuItzM9zFk6+9vfrOvMrH3ODwb2zOw18/9mvrnutXvGGACD5QBwLXOUDFjnxK8BRjrSEp2eMWYCuM5JmwIu7EhPVHrGmGmgJ9O7EBObrGsBKcmAo12LSEUG/N21iFRkwFtK+k2phaQgA35U0u9MLSQFGbBbSb8/tZAUZMBxJf3G1EJS0BPbxRzDHFyWfAbN6U3FkU5VJCI39udOVSQiN/ZWJW88pZAUFE1CK5KpSESRsWuSqUhEvvQAzPmjnnsr8SHwQIQ6bgbuAZYDS4H5wDZgP/A5cDJCnTrGmDxcbwahYdhujDmslFfELmPMohZ1lgbXjWFwJzUf+K9G2z0I7GzbAcCrwDvATwHKOoewXrK0RsttqtmTVZg0xlzRtCdlkD07BZzvxKeBeRXa7Az+md0ALwMfAd+IvHGsJywpKf8fYHEFHcUI639QWresxQ56euWVBq0/WdLTp9r0rOyNrTXbajt2hnX5F7tkrW/Q9otnnn3Dkz+C9ZRGNynSjUeBE+I7C9Ev5S5l8P7qV+DqJkI8fAnc5cn7E7iyTmGyZ7U172nPs3+J+O+ENRTgbvwbmyXYXh6rWpg2qZwR8aeU74wpIq6qWmkDesC3nrxDwPOVSlEG8oYKk5RkTZuJo0ZYUTB5bSl7Xo5ZsEvPlNKyfW3kfD4NnDfzOcMuV7HR9vEAm4FnfQ9pbqxdwLl8JuLLhYgUZOhzyTMUubSnyyVjBXkjiVxYC6s8Lq2u8b5CtomH93iM3dmhoXlY6zH4Rfldbcye7XQR7ynp80jnukUsQ79HuwXYm0fq3g0vE/FhMBRgAnhESd/jRuoYOwo810ZRZHYArynp5ybUgrEgD/Nbjd2Iu3Q5Vn0To7ZPWFU2ZqF/fB4DFjjx48AFLXoiJtKoI8BFZW7s7pUXiLx9rSXFQ244FkL5mP2qIE/uoYeN90V8osyNx4HvPHl7sVP7MNNnXFnPfl+Qd3F7LdE55kaqLD1feNIvaa8lOn1n3TI3BrgN+NqTNxt+MThrYBVj+x4QzCpji9x41Pl8IJ6WdBQZ666xvtdyZ9UrRHX2xtomYtiXnj7qGKv9wvdoIB2x2OBGqk5QOQcZvBQf1klq4C6t7nn2cU+hw8gOmVDXWHnZBvB6IylxeRdl2NV1Y7D/I/hFltNQVAzWAm9qGT5jH8aeASeA35R83/1Ul/gOLY8Bb4PfjU8AH2N/qDJOOApsUb7/aVulDXkCq9WgG3oZ9v2NlVDsxpuAF8LrS8ZD9J9pp6uM2d3A7dEkhWcfcIOSPlJlNr4Dez+8OaiksHyAddkeuqEAp5vMxmDHwb3A5Y2kNecQ8AdwH3C47sNNjc3Zxczgd1gJfNKm0Fi0NRb0s+4wLEUDhHg1/kklbZ2S1jkhehbsWjcq0l4CNoYoPBShjF0NvKek+9606YRQxoI1drVWR6gK2hLSWIBJYJGsI2QFbQhtLAy+3DE0xv4PYsQt83W5zdUAAAAASUVORK5CYII=)}
+.wmhw .ld{-webkit-mask-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAHCAYAAADam2dgAAAAT0lEQVR4nIWNwQmAMAADr8UpuoIPt3Eop/BR6FRdw+/5sSKF1kDII0cSVP4UnyyAnetLqcmxDpUIbJOnvS0tk6VTBRX1GkDrF0LNHVBbdwMirYxyVEqL6QAAAABJRU5ErkJggg==);mask-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAHCAYAAADam2dgAAAAT0lEQVR4nIWNwQmAMAADr8UpuoIPt3Eop/BR6FRdw+/5sSKF1kDII0cSVP4UnyyAnetLqcmxDpUIbJOnvS0tk6VTBRX1GkDrF0LNHVBbdwMirYxyVEqL6QAAAABJRU5ErkJggg==)}
+.wmhw .l2{animation-delay:.13s}.wmhw .l3{animation-delay:.26s}.wmhw .l4{animation-delay:.39s}.wmhw .l5{animation-delay:.54s;animation-duration:.58s}
+.wmhw .ld{clip-path:none;opacity:0;animation:dotin .22s ease-out .8s both}
+@keyframes wmr{from{clip-path:inset(0 0 0 100%)}to{clip-path:inset(0 0 0 0)}}
+@keyframes dotin{from{opacity:0;transform:scale(.4)}to{opacity:1;transform:scale(1)}}
+body.rm .wmhw i{animation:none;clip-path:none;opacity:1}
 </style></head><body>
+<div id="splash" aria-hidden="true"><div class="sstage"><div class="slogo"><span class="sring"></span><span class="sring two"></span><img id="slogo" alt=""></div></div><div class="swm2"><span class="wmhw" role="img" aria-label="راابط"><i class="l1"></i><i class="l2"></i><i class="l3"></i><i class="l4"></i><i class="l5"></i><i class="ld"></i></span></div><div class="sbar"><i></i></div></div>
 <div id="app">
-<header><div class="hl"><img id="logo" alt=""><h1>راابط</h1>
-<nav><button data-tab="vault">الخزنة</button><button data-tab="subjects">المواد</button><button data-tab="imports">الاستيراد</button><button data-tab="images">الصور</button><button data-tab="settings" class="gear" title="الإعدادات" aria-label="الإعدادات"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M12 8.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7zM19.4 13a7.6 7.6 0 000-2l2-1.5-2-3.4-2.3.9a7.6 7.6 0 00-1.7-1L15 3.5h-4l-.4 2.5a7.6 7.6 0 00-1.7 1l-2.3-.9-2 3.4 2 1.5a7.6 7.6 0 000 2l-2 1.5 2 3.4 2.3-.9c.5.4 1.1.7 1.7 1l.4 2.5h4l.4-2.5c.6-.3 1.2-.6 1.7-1l2.3.9 2-3.4z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></button></nav></div>
+<header><div class="hl"><img id="logo" alt=""><h1 class="hwm"><span class="wmhw" role="img" aria-label="راابط"><i class="l1"></i><i class="l2"></i><i class="l3"></i><i class="l4"></i><i class="l5"></i><i class="ld"></i></span></h1>
+<nav id="nav"><span id="sectabs"></span><button data-tab="images">الصور</button><button data-tab="stats" class="gear fireb" title="الإحصائيات" aria-label="الإحصائيات"><svg class="fireico" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M12 2.6c1.7 3 4.4 4.6 4.4 8.1a4.4 4.4 0 0 1-8.8 0c0-1.3.5-2.3 1.3-3.2.2 1.1.8 1.8 1.6 2.1-.7-2.4.1-5 1.5-7z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M12 21.4c-2.1 0-3.6-1.4-3.6-3.4 0-1.7 1-2.7 1.8-3.8.3 1 .8 1.5 1.4 1.8.7-1.6 1.9-2.3 2.6-3.3.9 1.2 1.4 3.2 1.4 5.3 0 2-1.5 3.4-3.6 3.4z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></button>
+<button data-tab="backup" class="gear" title="النسخ الاحتياطي" aria-label="النسخ الاحتياطي"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3.5 4.5h17v3.6h-17zM5 8.1h14v9.4a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M12 17.2v-4.6M9.6 14.9 12 12.5l2.4 2.4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button data-tab="settings" class="gear" title="الإعدادات" aria-label="الإعدادات"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M12 8.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7zM19.4 13a7.6 7.6 0 000-2l2-1.5-2-3.4-2.3.9a7.6 7.6 0 00-1.7-1L15 3.5h-4l-.4 2.5a7.6 7.6 0 00-1.7 1l-2.3-.9-2 3.4 2 1.5a7.6 7.6 0 000 2l-2 1.5 2 3.4 2.3-.9c.5.4 1.1.7 1.7 1l.4 2.5h4l.4-2.5c.6-.3 1.2-.6 1.7-1l2.3.9 2-3.4z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></button></nav></div>
 <div class="swm" id="swm"><span class="w" aria-hidden="true"><i style="--i:0">s</i><i style="--i:1">e</i></span><label class="sbar cap" for="search"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="10" cy="10" r="6.2" fill="none" stroke="currentColor" stroke-width="2.6"/><path d="M15 15l5.5 5.5" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/></svg><input id="search" placeholder="بحث"></label><span class="w" aria-hidden="true"><i style="--i:0">r</i><i style="--i:1">c</i><i style="--i:2">h</i></span></div><div class="hr"></div></header>
 <div id="row"><aside id="side" hidden></aside><main id="main"></main></div></div><div id="sidev"></div>
 <div id="veil"><div id="dlg"></div></div><div id="pop" style="display:none"></div>
@@ -326,8 +453,8 @@ const B={
 const COLORS=['#7c5cff','#00e0ff','#ff4d6d','#ffb703','#2ecc71','#ff7a00','#e056fd','#4d79ff','#00d1b2','#f5f5f5','#ff9ff3','#a3e635'];
 const THEMES=[['AMOLED','#7c5cff','#00e0ff'],['نيون','#ff2bd6','#00f0ff'],['بحر','#00b4d8','#90e0ef'],['غابة','#2ecc71','#b6f542'],['غروب','#ff6b35','#ffd23f'],['ليلي','#6c8cff','#9b7bff'],['ذهبي','#ffc300','#ff9f1c'],['وردي','#ff4d9d','#ff9ecb'],['رمادي','#9aa0a6','#e8eaed'],['فاتح','#5b3df5','#0096c7'],['ورقي','#b5651d','#2a9d8f'],['نعناع','#12b886','#0ca678'],['سماوي','#1c7ed6','#15aabf'],['لافندر','#7048e8','#be4bdb'],['أحمر ناري','#ff1e1e','#ff8a00']];
 const FONTS=[['Segoe UI','"Segoe UI",Tahoma,sans-serif'],['Tahoma','Tahoma,sans-serif'],['Arial','Arial,sans-serif'],['Cairo','Cairo,"Segoe UI",sans-serif'],['Tajawal','Tajawal,"Segoe UI",sans-serif'],['Courier New','"Courier New",monospace'],['Georgia','Georgia,serif'],['Consolas','Consolas,monospace']];
-let S={vault:[],subjects:[],imports:[],trash:[],counters:{},settings:{theme:0,font:0,customFont:'',view:'grid',sort:'manual',backup:'launch',pin:'',autostart:false,hotkey:false,lastBackup:0,browser:'',fontSel:'',userFonts:[],bkScope:'both',bkHours:6,bkDir:'',hkMods:3,hkVk:82,hkLabel:'Ctrl+Alt+R',sideOpen:false,sideSec:{},reduceMotion:false},images:[],statuses:[],seq:1};
-let UI={tab:'vault',path:[],ipath:[],spath:[],sel:new Set(),q:'',qAll:false,qSub:'',tags:null,undo:[],redo:[],h:{vault:{s:[[]],i:0},imports:{s:[[]],i:0},subjects:{s:[[]],i:0}},recent:[],sOpen:new Set(),drag:null,trashOpen:false,sq:''};
+let S={vault:[],subjects:[],imports:[],trash:[],counters:{},secs:[],st:{},bk:{},settings:{theme:0,font:0,light:false,acCustom:'',ac2Custom:'',customFont:'',view:'grid',sort:'manual',backup:'launch',pin:'',autostart:false,hotkey:false,lastBackup:0,browser:'',fontSel:'',userFonts:[],bkScope:'both',bkHours:6,bkDir:'',fullDir:'',fullLast:0,hkMods:3,hkVk:82,hkLabel:'Ctrl+Alt+R',sideOpen:false,sideSec:{},reduceMotion:false,splash:true},images:[],statuses:[],seq:1};
+let UI={tab:'vault',paths:{},sel:new Set(),q:'',qAll:false,qSub:'',tags:null,undo:[],redo:[],h:{vault:{s:[[]],i:0},imports:{s:[[]],i:0},subjects:{s:[[]],i:0}},recent:[],sOpen:new Set(),drag:null,trashOpen:false,sq:''};
 const uid=()=>'n'+(S.seq++).toString(36)+Math.random().toString(36).slice(2,5);
 const now=()=>Date.now();
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -345,12 +472,23 @@ function folderSvg(c,s){const g='f'+Math.random().toString(36).slice(2,7);
 const clip=(s,n)=>String(s||'').slice(0,n);
 function walk(a,f,p=null){for(const n of a){f(n,p);if(n.kind==='folder')walk(n.children,f,n)}}
 function prep(a){walk(a,n=>{n.id=n.id||uid();n.tags=n.tags||[];n.hist=n.hist||[];n.opens=n.opens||0;n.added=n.added||now();if(n.kind==='folder'){n.children=n.children||[];n.shape=n.shape??0;n.color=n.color||COLORS[0]}})}
-const ctxRoot=c=>c==='imports'?S.imports:c==='subjects'?S.subjects:S.vault;
-function find(id,roots=[S.vault,S.imports,S.subjects]){let r=null;for(const root of roots)walk(root,(n,p)=>{if(n.id===id)r={n,p,arr:p?p.children:root}});return r}
-function cur(ctx){const root=ctxRoot(ctx),path=ctx==='imports'?UI.ipath:ctx==='subjects'?UI.spath:UI.path;let arr=root,fol=null;for(const id of path){const f=arr.find(x=>x.id===id);if(!f)break;fol=f;arr=f.children}return{arr,fol}}
-function snap(){UI.undo.push(JSON.stringify({v:S.vault,i:S.imports,s:S.subjects,t:S.trash}));if(UI.undo.length>60)UI.undo.shift();UI.redo=[]}
-function undo(){if(!UI.undo.length)return;UI.redo.push(JSON.stringify({v:S.vault,i:S.imports,s:S.subjects,t:S.trash}));const o=JSON.parse(UI.undo.pop());S.vault=o.v;S.imports=o.i;S.subjects=o.s||S.subjects;S.trash=o.t;persist();render()}
-function redo(){if(!UI.redo.length)return;UI.undo.push(JSON.stringify({v:S.vault,i:S.imports,s:S.subjects,t:S.trash}));const o=JSON.parse(UI.redo.pop());S.vault=o.v;S.imports=o.i;S.subjects=o.s||S.subjects;S.trash=o.t;persist();render()}
+const BUILT=['vault','subjects','imports'];
+const KHAZ='khazna';
+function ensureKhazna(){S.secs=Array.isArray(S.secs)?S.secs:[];const k=S.secs.find(x=>x.id===KHAZ);if(!k){S.secs.unshift({id:KHAZ,title:'خزانة',icon:'folder',tree:[],st:DEF_STATUS.map(x=>({...x})),stDef:DEF_STATUS[0].id,bk:{mode:'manual',dir:'',last:0,hash:''},builtin:true});return true}k.builtin=true;k.tree=Array.isArray(k.tree)?k.tree:[];return false}
+function sideOrder(){const m=allSecs().filter(x=>BUILT.includes(x.id)),c=allSecs().filter(x=>!BUILT.includes(x.id)),o=[];for(const x of m){o.push([x,0]);if(x.id==='vault')for(const y of c)o.push([y,1])}return o}
+function allSecs(){const o=[{id:'vault',title:'الخزنة',tree:S.vault},{id:'subjects',title:'المواد',tree:S.subjects},{id:'imports',title:'الاستيراد',tree:S.imports}];for(const x of(S.secs||[]))o.push({id:x.id,title:x.title,tree:x.tree,icon:x.icon,sec:x});return o}
+const secOf=id=>(S.secs||[]).find(x=>x.id===id);
+const allTrees=()=>allSecs().map(x=>x.tree);
+const isSec=id=>allSecs().some(x=>x.id===id);
+const secTitle=id=>{const a=allSecs().find(x=>x.id===id);return a?a.title:'الخزنة'};
+const ctxRoot=c=>{const a=allSecs().find(x=>x.id===c);return a?a.tree:S.vault};
+function find(id,roots=allTrees()){let r=null;for(const root of roots)walk(root,(n,p)=>{if(n.id===id)r={n,p,arr:p?p.children:root}});return r}
+function cur(ctx){const root=ctxRoot(ctx),path=pathOf(ctx);let arr=root,fol=null;for(const id of path){const f=arr.find(x=>x.id===id);if(!f)break;fol=f;arr=f.children}return{arr,fol}}
+const snapState=()=>JSON.stringify({v:S.vault,i:S.imports,s:S.subjects,c:(S.secs||[]).map(x=>x.tree),t:S.trash});
+function applySnap(o){S.vault=o.v;S.imports=o.i;S.subjects=o.s||S.subjects;if(Array.isArray(o.c))(S.secs||[]).forEach((x,k)=>{if(o.c[k])x.tree=o.c[k]});S.trash=o.t}
+function snap(){UI.undo.push(snapState());if(UI.undo.length>60)UI.undo.shift();UI.redo=[]}
+function undo(){if(!UI.undo.length)return;UI.redo.push(snapState());applySnap(JSON.parse(UI.undo.pop()));persist();render()}
+function redo(){if(!UI.redo.length)return;UI.undo.push(snapState());applySnap(JSON.parse(UI.redo.pop()));persist();render()}
 let saveT;function persist(){clearTimeout(saveT);saveT=setTimeout(()=>B.save('vault.json',JSON.stringify(S)),150)}
 function toast(t){const d=document.createElement('div');d.className='toast';d.textContent=t;document.body.appendChild(d);setTimeout(()=>d.remove(),2600)}
 // ---------- theming ----------
@@ -373,14 +511,16 @@ function pasteHere(destId,ctxIn){if(!UI.clip||!UI.clip.length)return toast('مف
 async function copyToVault(ids){const dest=await folderPicker('نسخ إلى');if(dest===undefined)return;copyNodes(ids);pasteHere(dest||'', 'vault')}
 function moveRel(id,mode){const f=find(id);if(!f)return;const a=f.arr,i=a.indexOf(f.n);let j=mode==='up'?i-1:mode==='down'?i+1:mode==='top'?0:a.length-1;if(j<0||j>=a.length||j===i)return;snap();a.splice(i,1);a.splice(j,0,f.n);S.settings.sort='manual';persist();render()}
 function reorderNode(id,tid,after){const f=find(id),t=find(tid);if(!f||!t||id===tid)return;let bad=false;if(f.n.kind==='folder')walk(f.n.children,x=>{if(x.id===tid)bad=true});if(bad)return;snap();f.arr.splice(f.arr.indexOf(f.n),1);const ti=t.arr.indexOf(t.n);t.arr.splice(ti+(after?1:0),0,f.n);S.settings.sort='manual';persist();render()}
+function secChips(){const cs=S.secs||[];
+ return `<div class="secsbar"><span class="sbl">أقسامك</span>${cs.map(x=>`<button class="secchip ${UI.tab===x.id&&!pathOf(x.id).length?'cur':''}" data-act="gosec" data-id="${x.id}" data-drop="${x.id}" data-ctx="${x.id}" title="${esc(x.title)}"><span>${x.icon?secIcon(x.icon,14):''} ${esc(x.title)}</span><b>${allLinks(ctxRoot(x.id)).length}</b><i class="chipm" data-act="secchipmenu" data-id="${x.id}" role="button" tabindex="0" title="خيارات القسم" aria-label="خيارات ${esc(x.title)}">⋯</i></button>`).join('')}</div>`}
 function viewToggle(){const v=S.settings.view;return[['grid','شبكة'],['list','قائمة'],['tree','شجرة'],['album','ألبوم'],['dense','مدمج']].map(([k,l])=>`<button class="btn ${v===k?'on':''}" data-act="view" data-v="${k}">${l}</button>`).join('')}
-function browser(ctx){const{arr,fol}=cur(ctx),path=pathOf(ctx),root=ctxRoot(ctx);const arr2=ctx==='subjects'&&!path.length&&(UI.subjF&&UI.subjF!=='all')?arr.filter(x=>subjStatus(x)===UI.subjF):arr;
+function browser(ctx){const{arr,fol}=cur(ctx),path=pathOf(ctx),root=ctxRoot(ctx);const arr2=(ctx==='subjects'||secOf(ctx))&&!path.length&&(UI.subjF&&UI.subjF!=='all')?arr.filter(x=>subjStatus(x,ctx)===UI.subjF):arr;
  let h='';
- if(ctx==='imports')h+=`<div class="sec"><b>استيراد علامات من متصفح</b><div class="hint">صدّر العلامات من Firefox أو Brave أو Vivaldi أو أي متصفح كملف HTML ثم اخترها هنا. كل ملف يتسمى باسم المتصفح ورقم.</div><div class="bar" style="margin-top:10px"><select id="brsel" class="btn">${['Firefox','Brave','Vivaldi','Floorp','LibreWolf','Chrome','Edge','متصفح'].map(x=>`<option>${x}</option>`).join('')}</select><button class="btn pri" data-act="pickfile">اختيار ملف علامات</button><input type="file" id="file" accept=".html,.htm" hidden></div></div>`;
- else if(ctx==='subjects')h+=subjectsBar(path);
- else h+=dashboard();
- const crumbs=[`<a data-act="go" data-i="-1">${ctx==='imports'?'المستوردات':ctx==='subjects'?'المواد':'الخزنة'}</a>`];let a2=root;path.forEach((id,i)=>{const f=a2.find(x=>x.id===id);if(f){crumbs.push(`<a data-act="go" data-i="${i}">${esc(f.title)}</a>`);a2=f.children}});
- h+=`<div class="bar"><div class="navg"><button class="ib" data-act="back" ${UI.h[ctx].i>0?'':'disabled'} title="رجوع (Alt+←)" aria-label="رجوع"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">${IC2.back}</svg></button><button class="ib" data-act="fwd" ${UI.h[ctx].i<UI.h[ctx].s.length-1?'':'disabled'} title="للأمام (Alt+→)" aria-label="للأمام"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">${IC2.fwd}</svg></button><button class="ib" data-act="up" ${path.length?'':'disabled'} title="لفوق (Alt+↑)" aria-label="لفوق"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">${IC2.up}</svg></button></div><div class="crumbs">${crumbs.join(' ‹ ')}</div><span class="sp"></span>
+ if(ctx==='imports')h+=`<div class="sec"><b>استيراد علامات من متصفح</b><div class="hint">صدّر العلامات من Firefox أو Brave أو Vivaldi أو أي متصفح كملف HTML ثم اخترها هنا. كل ملف يتسمى باسم المتصفح ورقم. آخر اختيار "تطبيق الموبايل (Beta)" لسه بيتجرب: بيقرا نفس ملف HTML بتاع المتصفحات، وبيتسمى باسمه هو، لحد ما يبقى لتطبيق الموبايل ملفه الخاص.</div><div class="bar" style="margin-top:10px"><select id="brsel" class="btn">${['Firefox','Brave','Vivaldi','Floorp','LibreWolf','Chrome','Edge','متصفح'].map(x=>`<option>${x}</option>`).join('')}<option value="تطبيق الموبايل">تطبيق الموبايل (Beta)</option></select><button class="btn pri" data-act="pickfile">اختيار ملف علامات</button><input type="file" id="file" accept=".html,.htm" hidden></div></div>`;
+ else if(ctx==='subjects'||secOf(ctx))h+=secBar(ctx,path);
+ const crumbs=[`<a data-act="go" data-i="-1">${esc(secTitle(ctx))}</a>`];let a2=root;path.forEach((id,i)=>{const f=a2.find(x=>x.id===id);if(f){crumbs.push(`<a data-act="go" data-i="${i}">${esc(f.title)}</a>`);a2=f.children}});
+ if(ctx==='vault'&&!path.length&&(S.secs||[]).length)h+=secChips();
+ h+=`<div class="bar"><div class="navg"><button class="ib" data-act="back" ${hOf(ctx).i>0?'':'disabled'} title="رجوع (Alt+←)" aria-label="رجوع"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">${IC2.back}</svg></button><button class="ib" data-act="fwd" ${hOf(ctx).i<hOf(ctx).s.length-1?'':'disabled'} title="للأمام (Alt+→)" aria-label="للأمام"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">${IC2.fwd}</svg></button><button class="ib" data-act="up" ${path.length?'':'disabled'} title="لفوق (Alt+↑)" aria-label="لفوق"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">${IC2.up}</svg></button></div><div class="crumbs">${crumbs.join(' ‹ ')}</div><span class="sp"></span>
  ${ib('add','إضافة (رابط، مجلد، لصق من الحافظة)',IC.plus,'pri')}${ib('sortm','ترتيب العناصر',IC.sort)}${ib('viewm','طريقة العرض',IC.view)}${S.settings.view==='tree'?ib('expall','فتح كل المجلدات',IC.expand)+ib('colall','طيّ كل المجلدات',IC.collapse):''}${ib('ftree','كل المجلدات (شجرة)','<path d="M4 6h16M8 12h12M12 18h8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" fill="none"/>')}${ib('side','لوحة جانبية: التنقل والتثبيت والنسخ',IC2.side,S.settings.sideOpen?'on':'')}${ib('tools','أدوات: مكررات، فحص الروابط، تراجع وإعادة',IC.dots)}</div>`;
  if(UI.sel.size)h+=`<div class="bar"><span>${UI.sel.size} محدد</span><button class="btn" data-act="selmove">نقل</button><button class="btn" data-act="selexp">تصدير</button>${S.subjects.length?'<button class="btn" data-act="seltosubj">إضافة لمادة</button>':''}<button class="btn dn" data-act="seldel">حذف</button><button class="btn" data-act="selclear">إلغاء التحديد</button></div>`;
  const allT=[...new Set(allLinks(root).flatMap(l=>l.tags))];
@@ -402,25 +542,33 @@ function statusList(){if(!Array.isArray(S.statuses)||!S.statuses.length)S.status
 function statusDefault(){const l=statusList();return (S.settings.statusDefault&&l.some(x=>x.id===S.settings.statusDefault))?S.settings.statusDefault:l[0].id}
 const stLabelOf=v=>{const x=statusList().find(y=>y.id===v);return x?x.label:''};
 const stLabel=v=>stLabelOf(v)||'—';
-const subjStatus=s=>{const v=s&&s.status;return statusList().some(x=>x.id===v)?v:statusDefault()};
-function migrateStatuses(){const l=statusList();walk(S.subjects,n=>{if(!n.subj)return;if(n.status&&l.some(x=>x.id===n.status))return;const m=ST_MIG[n.status];n.status=(m&&l.some(x=>x.id===m))?m:statusDefault()});if(!l.some(x=>x.id===S.settings.statusDefault))S.settings.statusDefault=l[0].id}
-function subjectsBar(path){if(path.length)return '';const f=UI.subjF||'all',cnt=k=>k==='all'?S.subjects.length:S.subjects.filter(x=>subjStatus(x)===k).length;
- return `<div class="sec"><b>المواد</b><div class="hint">كل مادة ليها مجلداتها وروابطها. ضيف مادة من الزر هنا أو من زر + ، وجوّه المادة ضيف مجلدات وروابط عادي.</div><div class="bar" style="margin-top:10px"><button class="btn pri" data-act="addsubject">مادة +</button><button class="btn" data-act="statuses">تعديل الحالات</button><span class="sub">${S.subjects.length} مادة</span></div>
- <div class="bar">${[['all','الكل'],...statusList().map(x=>[x.id,x.label])].map(([k,l])=>`<span class="tag" style="cursor:pointer;${f===k?'background:var(--ac);color:#fff':''}" data-act="subjf" data-v="${k}">${esc(l)} (${cnt(k)})</span>`).join('')}</div></div>`}
-async function addSubject(){const r=await dialog(`<h3>مادة جديدة</h3><label>اسم المادة</label><input name="title" placeholder="مثال: رياضيات 2">${pickers(COLORS[0],0)}${imgCtl('')}<div class="acts"><button class="btn pri" data-ok="1">إضافة</button><button class="btn" data-x>إلغاء</button></div>`,()=>{mountPick();mountImg()});if(!r||!r.title.trim())return;snap();const f={kind:'folder',subj:true,status:statusDefault(),id:uid(),title:r.title.trim(),children:[],color:r.color||COLORS[0],shape:r.shape??0,tags:[],hist:[],added:now(),pinned:false};if(r.imgdata&&safeImg(r.imgdata))f.icon=r.imgdata;S.subjects.push(f);UI.subjF='all';persist();render();toast('اتضافت المادة')}
+const subjStatus=(s,ctx)=>{const l=stListOf(ctx||'subjects'),v=s&&s.status;return l.some(x=>x.id===v)?v:(ctx&&ctx!=='subjects'?stDefaultOf(ctx):statusDefault())};
+function stListOf(ctx){if(ctx==='subjects'||!secOf(ctx))return statusList();const sc=secOf(ctx);if(!Array.isArray(sc.st)||!sc.st.length)sc.st=DEF_STATUS.map(x=>({...x}));return sc.st}
+const stDefaultOf=ctx=>{const l=stListOf(ctx),d=secOf(ctx)&&secOf(ctx).stDef;return l.some(x=>x.id===d)?d:l[0].id};
+const stLabelIn=(v,ctx)=>{const x=stListOf(ctx).find(y=>y.id===v);return x?x.label:''};
+function migrateStatuses(){const l=statusList();walk(S.subjects,n=>{if(!n.subj)return;if(n.status&&l.some(x=>x.id===n.status))return;const m=ST_MIG[n.status];n.status=(m&&l.some(x=>x.id===m))?m:statusDefault()});if(!l.some(x=>x.id===S.settings.statusDefault))S.settings.statusDefault=l[0].id;
+ for(const sc of(S.secs||[])){const sl=stListOf(sc.id);walk(sc.tree,n=>{if(!n.subj)return;if(n.status&&sl.some(x=>x.id===n.status))return;const m=ST_MIG[n.status];n.status=(m&&sl.some(x=>x.id===m))?m:sl[0].id})}}
+function secBar(ctx,path){if(path.length)return '';const f=UI.subjF||'all',root=ctxRoot(ctx),cnt=k=>k==='all'?root.length:root.filter(x=>subjStatus(x,ctx)===k).length,nm=ctx==='subjects'?'المواد':secTitle(ctx);
+ const hint=ctx==='subjects'?'كل مادة ليها مجلداتها وروابطها. ضيف مادة من الزر هنا أو من زر + ، وجوّه المادة ضيف مجلدات وروابط عادي.':'كل عنصر هنا ليه مجلداته وروابطه، زي الخزنة. ضيف عنصر من الزر هنا أو من زر +.';
+ return `<div class="sec"><b>${esc(nm)}</b><div class="hint">${hint}</div><div class="bar" style="margin-top:10px"><button class="btn pri" data-act="addsubject">${ctx==='subjects'?'مادة':'عنصر'} +</button><button class="btn" data-act="statuses">تعديل الحالات</button><span class="sub">${root.length}</span></div>
+ <div class="bar">${[['all','الكل'],...stListOf(ctx).map(x=>[x.id,x.label])].map(([k,l])=>`<span class="tag" style="cursor:pointer;${f===k?'background:var(--ac);color:#fff':''}" data-act="subjf" data-v="${k}">${esc(l)} (${cnt(k)})</span>`).join('')}</div></div>`}
+const subjectsBar=p=>secBar('subjects',p);
+async function addSubject(ctx){ctx=ctx||navCtx();const isS=ctx==='subjects',root=ctxRoot(ctx);
+ const r=await dialog(`<h3>${isS?'مادة جديدة':'عنصر جديد'}</h3><label>${isS?'اسم المادة':'الاسم'}</label><input name="title" placeholder="${isS?'مثال: رياضيات 2':'مثال: مشروع'}">${pickers(COLORS[0],0)}${imgCtl('')}<div class="acts"><button class="btn pri" data-ok="1">إضافة</button><button class="btn" data-x>إلغاء</button></div>`,()=>{mountPick();mountImg()});
+ if(!r||!r.title.trim())return;snap();const f={kind:'folder',subj:true,status:isS?statusDefault():stDefaultOf(ctx),id:uid(),title:r.title.trim(),children:[],color:r.color||COLORS[0],shape:r.shape??0,tags:[],hist:[],added:now(),pinned:false};if(r.imgdata&&safeImg(r.imgdata))f.icon=r.imgdata;root.push(f);UI.subjF='all';persist();render();toast(isS?'اتضافت المادة':'اتضاف العنصر')}
 async function addToSubject(ids){ids=(ids||[]).filter(Boolean);if(!ids.length)return;if(!S.subjects.length){if(!await confirmD('مفيش مواد لسه. نعمل مادة جديدة الأول؟','مادة جديدة'))return;await addSubject();if(!S.subjects.length)return}
  const r=await dialog(`<h3>إضافة لمادة</h3><label>المادة</label><select name="sub">${S.subjects.map(s=>`<option value="${s.id}">${esc(s.title)}</option>`).join('')}</select><div class="hint">العناصر بتتنسخ جوّه المادة، والأصل بيفضل مكانه.</div><div class="acts"><button class="btn pri" data-ok="1">إضافة</button><button class="btn" data-x>إلغاء</button></div>`);if(!r)return;const s=S.subjects.find(x=>x.id===r.sub);if(!s)return;
  snap();let c=0;for(const id of ids){const f=find(id);if(!f)continue;s.children.push(cloneNode(f.n));c++}prep(s.children);s.open=true;persist();render();toast(`اتضاف ${c} عنصر لمادة "${s.title}"`)}
-async function subjectStatus(id){const n=find(id)?.n;if(!n||!n.subj)return;const r=await dialog(`<h3>حالة "${esc(n.title)}"</h3><label>الحالة</label><select name="st">${statusList().map(x=>`<option value="${x.id}" ${subjStatus(n)===x.id?'selected':''}>${esc(x.label)}</option>`).join('')}</select><div class="hint">تقدر تضيف أو تعدّل الحالات من زر "تعديل الحالات" فوق.</div><div class="acts"><button class="btn pri" data-ok="1">حفظ</button><button class="btn" data-x>إلغاء</button></div>`);if(!r)return;snap();n.status=r.st;persist();render()}
-async function manageStatuses(){const del=new Set();const rowHtml=x=>`<div class="bar" data-row="${x.id}"><input name="n_${x.id}" value="${esc(x.label)}" style="flex:1"><button type="button" class="btn dn" data-del="${x.id}">حذف</button></div>`;
- const r=await dialog(`<h3>حالات المواد</h3><div class="hint">غيّر الاسم، ضيف حالة، أو احذف. المواد اللي على حالة محذوفة بترجع للحالة الافتراضية (${esc(stLabel(statusDefault()))}).</div><div id="strows">${statusList().map(rowHtml).join('')}</div><label>حالة جديدة</label><input name="newst" placeholder="مثال: مراجعهم"><div class="acts"><button class="btn pri" data-ok="1">حفظ</button><button class="btn" data-x>إلغاء</button></div>`,
+async function subjectStatus(id,ctx){const n=find(id)?.n;if(!n)return;ctx=ctx||(locate(id)||{}).ctx||'subjects';const l=stListOf(ctx);const r=await dialog(`<h3>حالة "${esc(n.title)}"</h3><label>الحالة</label><select name="st">${l.map(x=>`<option value="${x.id}" ${subjStatus(n,ctx)===x.id?'selected':''}>${esc(x.label)}</option>`).join('')}</select><div class="hint">تقدر تضيف أو تعدّل الحالات من زر "تعديل الحالات" فوق.</div><div class="acts"><button class="btn pri" data-ok="1">حفظ</button><button class="btn" data-x>إلغاء</button></div>`);if(!r)return;snap();n.status=r.st;persist();render()}
+async function manageStatuses(ctx){ctx=ctx||navCtx();const isS=ctx==='subjects',list=stListOf(ctx);const del=new Set();const rowHtml=x=>`<div class="bar" data-row="${x.id}"><input name="n_${x.id}" value="${esc(x.label)}" style="flex:1"><button type="button" class="btn dn" data-del="${x.id}">حذف</button></div>`;
+ const r=await dialog(`<h3>حالات ${esc(isS?'المواد':secTitle(ctx))}</h3><div class="hint">غيّر الاسم، ضيف حالة، أو احذف. اللي على حالة محذوفة بترجع للحالة الافتراضية (${esc(stLabelIn(stDefaultOf(ctx),ctx))}).</div><div id="strows">${list.map(rowHtml).join('')}</div><label>حالة جديدة</label><input name="newst" placeholder="مثال: مراجعهم"><div class="acts"><button class="btn pri" data-ok="1">حفظ</button><button class="btn" data-x>إلغاء</button></div>`,
  ()=>{document.querySelectorAll('#strows [data-del]').forEach(b=>b.onclick=()=>{if(document.querySelectorAll('#strows [data-row]').length<=1)return toast('لازم تفضل حالة واحدة على الأقل');del.add(b.dataset.del);b.closest('[data-row]').remove()})});
- if(!r)return;snap();const out=[];statusList().forEach(x=>{if(del.has(x.id))return;const v=String(r['n_'+x.id]||'').trim();out.push({id:x.id,label:clip(v||x.label,40)})});
+ if(!r)return;snap();const out=[];list.forEach(x=>{if(del.has(x.id))return;const v=String(r['n_'+x.id]||'').trim();out.push({id:x.id,label:clip(v||x.label,40)})});
  const nv=String(r.newst||'').trim();if(nv)out.push({id:'s'+uid().slice(-6),label:clip(nv,40)});
  if(!out.length){toast('لازم تفضل حالة واحدة على الأقل');return}
- S.statuses=out;
- if(del.size)walk(S.subjects,n=>{if(n.subj&&del.has(n.status))n.status=statusDefault()});
- if(!out.some(x=>x.id===S.settings.statusDefault))S.settings.statusDefault=out[0].id;
+ if(isS){S.statuses=out;if(!out.some(x=>x.id===S.settings.statusDefault))S.settings.statusDefault=out[0].id}
+ else{const sc=secOf(ctx);sc.st=out;if(!out.some(x=>x.id===sc.stDef))sc.stDef=out[0].id}
+ if(del.size)walk(ctxRoot(ctx),n=>{if(n.subj&&del.has(n.status))n.status=out[0].id});
  if(UI.subjF&&UI.subjF!=='all'&&!out.some(x=>x.id===UI.subjF))UI.subjF='all';
  persist();render();toast('اتحفظت الحالات')}
 async function quickNote(id){const n=find(id)?.n;if(!n)return;const r=await dialog(`<h3>ملاحظة على "${esc(n.title)}"</h3><label>الملاحظة (اختياري، 200 حرف)</label><textarea name="note" rows="3" maxlength="200">${esc(n.note||'')}</textarea><div class="acts"><button class="btn pri" data-ok="1">حفظ</button><button class="btn" data-x>إلغاء</button></div>`);if(!r)return;snap();const v=clip(String(r.note||'').trim(),200);if(v)n.note=v;else delete n.note;persist();render()}
@@ -456,14 +604,14 @@ function collect(){const o={};$('#dlg').querySelectorAll('[name]').forEach(i=>{i
 const confirmD=(t,ok='تأكيد')=>dialog(`<h3>${t}</h3><div class="acts"><button class="btn pri" data-ok="1">${ok}</button><button class="btn" data-x>إلغاء</button></div>`).then(v=>!!v);
 function pickers(c,sh){return`<label>اللون</label><div class="sw">${COLORS.map(x=>`<i data-c="${x}" style="background:${x}" class="${x===c?'on':''}"></i>`).join('')}</div><label>الشكل</label><div class="sh">${[0,1,2,3,4,5].map(i=>`<b data-s="${i}" class="${i===sh?'on':''}">${folderSvg(c,i)}</b>`).join('')}</div>`}
 function mountPick(){document.querySelectorAll('#dlg .sw i').forEach(i=>i.onclick=()=>{document.querySelectorAll('#dlg .sw i').forEach(x=>x.classList.remove('on'));i.classList.add('on');document.querySelectorAll('#dlg .sh b').forEach((b,k)=>{b.innerHTML=folderSvg(i.dataset.c,k)})});document.querySelectorAll('#dlg .sh b').forEach(b=>b.onclick=()=>{document.querySelectorAll('#dlg .sh b').forEach(x=>x.classList.remove('on'));b.classList.add('on')})}
-async function folderPicker(title){const opts=[['','الخزنة (الجذر)']];[['الخزنة',S.vault],['المواد',S.subjects],['المستوردات',S.imports]].forEach(([nm,root])=>{walk(root,(n,p)=>{if(n.kind==='folder'){let d=0,x=p;while(x){d++;x=find(x.id)?.p}opts.push([n.id,nm+' / '+'— '.repeat(d)+n.title])}})});
+async function folderPicker(title){const opts=[['','الخزنة (الجذر)']];allSecs().map(x=>[x.title,x.tree]).forEach(([nm,root])=>{walk(root,(n,p)=>{if(n.kind==='folder'){let d=0,x=p;while(x){d++;x=find(x.id)?.p}opts.push([n.id,nm+' / '+'— '.repeat(d)+n.title])}})});
  const r=await dialog(`<h3>${title}</h3><select name="dest">${opts.map(([v,l])=>`<option value="${v}">${esc(l)}</option>`).join('')}</select><div class="acts"><button class="btn pri" data-ok="1">تم</button><button class="btn" data-x>إلغاء</button></div>`);return r?r.dest:undefined}
 // ---------- actions ----------
 function normUrl(u){u=clip(u,2048).trim();if(/^[a-z][a-z0-9+.-]*:/i.test(u)&&!/^https?:/i.test(u))return null;return/^https?:/i.test(u)?u:'https://'+u}
-function destOpts(ctx){const roots=ctxRoot(ctx),rootName=ctx==='imports'?'الاستيراد (الجذر)':ctx==='subjects'?'المواد (الجذر)':'الخزنة (الجذر)',o=[['',rootName]];(function w(a,path){a.forEach(n=>{if(n.kind==='folder'){const p=path+' / '+n.title;o.push([n.id,p]);w(n.children||[],p)}})})(roots,rootName.replace(' (الجذر)',''));return o}
+function destOpts(ctx){const roots=ctxRoot(ctx),rootName=secTitle(ctx)+' (الجذر)',o=[['',rootName]];(function w(a,path){a.forEach(n=>{if(n.kind==='folder'){const p=path+' / '+n.title;o.push([n.id,p]);w(n.children||[],p)}})})(roots,rootName.replace(' (الجذر)',''));return o}
 async function showHist(id){const n=find(id)?.n;if(!n)return;const hh=[...n.hist].reverse();const r=await dialog(`<h3>سجل التعديلات</h3>${hh.map((x,i)=>`<div class="bar"><span>${esc(x.title)}<br><span class="sub">${esc(x.url)} · ${new Date(x.t).toLocaleString('ar-EG')}</span></span><button class="btn" data-ok="1" data-i="${i}">رجوع لده</button></div>`).join('')||'<div class="sub">مفيش تعديلات</div>'}<div class="acts"><button class="btn" data-x>إغلاق</button></div>`,()=>{window._hi=null;document.querySelectorAll('#dlg [data-i]').forEach(b=>{const o=b.onclick;b.onclick=()=>{window._hi=+b.dataset.i;o()}})});
  if(r&&window._hi!=null){const x=hh[window._hi];snap();n.hist.push({t:now(),title:n.title,url:n.url});n.title=x.title;n.url=x.url;window._hi=null;persist();render()}}
-async function delNode(id){const f=find(id);if(!f)return;if(!await confirmD(`تحذف "${esc(f.n.title)}"؟ هتروح لسلة المحذوفات.`,'حذف'))return;snap();f.arr.splice(f.arr.indexOf(f.n),1);S.trash.push({n:f.n,at:now()});UI.sel.delete(id);persist();render()}
+async function delNode(id){const f=find(id);if(!f)return;if(!await confirmD(`تحذف "${esc(f.n.title)}"؟ هتروح لسلة المحذوفات.`,'حذف'))return;snap();f.arr.splice(f.arr.indexOf(f.n),1);S.trash.push({n:f.n,at:now(),ctx:locate(id)?.ctx||'vault'});UI.sel.delete(id);persist();render()}
 async function pinNode(id){const n=find(id)?.n;if(!n)return;if(!await confirmD(n.pinned?`تشيل التثبيت من "${esc(n.title)}"؟`:`تثبّت "${esc(n.title)}"؟`))return;snap();n.pinned=!n.pinned;if(n.pinned){const f=find(id);f.arr.splice(f.arr.indexOf(n),1);f.arr.unshift(n)}persist();render()}
 function openLink(id){const n=find(id)?.n;if(!n)return;if(!SAFE_SCHEMES.test(n.url||''))return toast('الرابط ده مش http/https فمش هيتفتح');n.opens=(n.opens||0)+1;n.last=now();persist();let br='';let f=find(id);while(f&&f.p&&!br){br=f.p.browser||'';f=find(f.p.id)}B.open(n.url,br||S.settings.browser)}
 async function openAll(id){const f=find(id)?.n;const ls=allLinks(f.children);if(!ls.length)return toast('المجلد فاضي');if(ls.length>8&&!await confirmD(`هتفتح ${ls.length} رابط مرة واحدة. متأكد؟`,'افتح الكل'))return;ls.forEach(l=>openLink(l.id))}
@@ -509,7 +657,7 @@ function zip(files){const parts=[],cd=[];let off=0;const u16=v=>[v&255,v>>8&255]
 const b64=u=>{let s='';for(let i=0;i<u.length;i+=0x8000)s+=String.fromCharCode.apply(null,u.subarray(i,i+0x8000));return btoa(s)};
 const X=s=>String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])).replace(/[\x00-\x08\x0b\x0c\x0e-\x1f]/g,'');
 // ---------- backup ----------
-let bkTimer=setInterval(()=>{if(S.settings.backup!=='manual'&&S.settings.backup!=='launch'&&dueBackup())doBackup(false)},300000);
+let bkTimer=setInterval(()=>{backupAllDue()},300000);
 function dueBackup(){const m=S.settings.backup,l=S.settings.lastBackup,d=864e5;return m==='launch'||(m==='hours'&&now()-l>Math.max(1,S.settings.bkHours||6)*36e5)||(m==='day'&&now()-l>d)||(m==='week'&&now()-l>7*d)||(m==='month'&&now()-l>30*d)}
 async function decryptBackup(o){const r=await dialog('<h3>نسخة مشفرة</h3><label>كلمة السر</label><input name="pw" type="password"><div class="acts"><button class="btn pri" data-ok="1">فك التشفير</button><button class="btn" data-x>إلغاء</button></div>');if(!r)return null;
  try{const u=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));const km=await crypto.subtle.importKey('raw',enc.encode(r.pw),'PBKDF2',false,['deriveKey']);const key=await crypto.subtle.deriveKey({name:'PBKDF2',salt:u(o.salt),iterations:200000,hash:'SHA-256'},km,{name:'AES-GCM',length:256},false,['decrypt']);return dec.decode(await crypto.subtle.decrypt({name:'AES-GCM',iv:u(o.iv)},key,u(o.data)))}catch{toast('كلمة السر غلط أو الملف تالف');return null}}
@@ -531,14 +679,16 @@ B.pfont=async n=>{if(window.rbPFont){const x=await window.rbPFont(n);return x?Ui
 B.font=async n=>{if(window.rbFont){const s=await window.rbFont(n);return s?Uint8Array.from(atob(s),c=>c.charCodeAt(0)):null}try{const r=await fetch('fonts/'+n);return r.ok?new Uint8Array(await r.arrayBuffer()):null}catch{return null}};
 B.mirror=async m=>window.rbMirror?await window.rbMirror(m):0;
 // ---- themes: accent palettes on a fixed black background ----
-function applyTheme(){const st=S.settings,bd=document.body;bd.classList.toggle('nowm',st.wordmark===false);bd.classList.toggle('rm',!!st.reduceMotion);
- const t=THEMES[st.theme]||THEMES[0],r=document.documentElement.style,a=fixC(t[1]),b=fixC(t[2]);
+function applyTheme(){const st=S.settings,bd=document.body;bd.classList.toggle('nowm',st.wordmark===false);bd.classList.toggle('rm',!!st.reduceMotion);bd.classList.toggle('light',!!st.light);
+ const t=THEMES[st.theme]||THEMES[0],r=document.documentElement.style;
+ const hexc=v=>/^#[0-9a-f]{6}$/i.test(String(v||''))?String(v):'';
+ const a=hexc(st.acCustom)||fixC(t[1]),b=hexc(st.ac2Custom)||fixC(t[2]);
  r.setProperty('--ac',a);r.setProperty('--ac2',b);r.setProperty('--on',LUM(a)>.4?'#000':'#fff');applyFont()}
 // ---- fonts ----
 const FB={cairo:['Cairo',1],tajawal:['Tajawal',1],almarai:['Almarai',1],'noto-naskh-arabic':['Noto Naskh Arabic',1],amiri:['Amiri',1],'ibm-plex-sans-arabic':['IBM Plex Sans Arabic',1],'readex-pro':['Readex Pro',1],'el-messiri':['El Messiri',1],'playpen-sans-arabic':['Playpen Sans Arabic',1,[500,700]],inter:['Inter',0],poppins:['Poppins',0],'space-grotesk':['Space Grotesk',0],'jetbrains-mono':['JetBrains Mono',0],'playfair-display':['Playfair Display',0]};
 const RANGE={arabic:'U+0600-06FF,U+0750-077F,U+0870-088E,U+0890-0891,U+0897-08E1,U+08E3-08FF,U+200C-200E,U+2010-2011,U+204F,U+2E41,U+FB50-FDFF,U+FE70-FE74,U+FE76-FEFC',latin:'U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD'};
 const fontDone={},ufDone={};
-const PF={'toyor-aljanah':['طيور الجنة','toyor-aljanah.ttf'],'haya-thin':['حياة (رفيع)','haya-thin.otf'],'ukij-moy-qelem-bold':['UKIJ Moy Qelem','ukij-moy-qelem-bold.ttf'],'digi-madasi-bold':['Digi Madasi','digi-madasi-bold.ttf'],'tharwat-emara-modern-bold':['ثروت عمارة مودرن','tharwat-emara-modern-bold.ttf'],'hala-jamil-fonts':['هالة جميل','hala-jamil-fonts.ttf'],'molhim-bold':['ملهم','molhim-bold.ttf']};const pfDone={};
+const PF={};const pfDone={};
 function loadPF(k){if(pfDone[k])return pfDone[k];pfDone[k]=(async()=>{try{const u8=await B.pfont(PF[k][1]);if(!u8)throw 0;const ff=new FontFace('PF-'+k,u8.buffer);await ff.load();document.fonts.add(ff);return true}catch{delete pfDone[k];return false}})();return pfDone[k]}
 function loadBundled(key){if(fontDone[key])return fontDone[key];const[f,ar,ws]=FB[key];fontDone[key]=(async()=>{try{const jobs=[];for(const w of ws||[400,700])for(const sub of ar?['arabic','latin']:['latin'])jobs.push((async()=>{const u8=await B.font(`${key}-${sub}-${w}.woff2`);if(!u8)throw 0;const ff=new FontFace(f,u8,{weight:String(w),unicodeRange:RANGE[sub]});await ff.load();document.fonts.add(ff)})());await Promise.all(jobs);return true}catch(e){delete fontDone[key];return false}})();return fontDone[key]}
 async function loadUserFont(f){if(ufDone[f.id])return ufDone[f.id];ufDone[f.id]=(async()=>{try{const u8=await BIN.read('fonts',f.file);if(!u8)throw 0;const ff=new FontFace('UF'+f.id,u8.buffer);await ff.load();document.fonts.add(ff);return true}catch{delete ufDone[f.id];toast('الخط '+f.name+' مش اتحمّل');return false}})();return ufDone[f.id]}
@@ -555,17 +705,18 @@ async function addFonts(files){const st=S.settings;st.userFonts=st.userFonts||[]
   st.userFonts.push({id,name:f.name.replace(/\.[^.]+$/,'').slice(0,60),file,size:u8.length});ok++}
  if(ok){persist();render();toast(`اتضاف ${ok} خط`)}}
 // ---- navigation history ----
-const pathOf=c=>c==='imports'?UI.ipath:c==='subjects'?UI.spath:UI.path;
-function setPath(ctx,p,rec=true){if(ctx==='imports')UI.ipath=p.slice();else if(ctx==='subjects')UI.spath=p.slice();else UI.path=p.slice();
- if(rec){const h=UI.h[ctx],last=h.s[h.i];if(JSON.stringify(last)!==JSON.stringify(p)){h.s=h.s.slice(0,h.i+1);h.s.push(p.slice());h.i=h.s.length-1;if(h.s.length>100){h.s.shift();h.i--}}
+const pathOf=c=>UI.paths[c]||(UI.paths[c]=[]);
+const hOf=c=>UI.h[c]||(UI.h[c]={s:[[]],i:0});
+function setPath(ctx,p,rec=true){UI.paths[ctx]=p.slice();const h=hOf(ctx);
+ if(rec){const last=h.s[h.i];if(JSON.stringify(last)!==JSON.stringify(p)){h.s=h.s.slice(0,h.i+1);h.s.push(p.slice());h.i=h.s.length-1;if(h.s.length>100){h.s.shift();h.i--}}
   const key=ctx+':'+p.join('/');UI.recent=[{ctx,p:p.slice(),key},...UI.recent.filter(x=>x.key!==key)].slice(0,8)}
  render()}
-function resetNav(){UI.path=[];UI.ipath=[];UI.spath=[];UI.h={vault:{s:[[]],i:0},imports:{s:[[]],i:0},subjects:{s:[[]],i:0}}}
-function navCtx(){return UI.tab==='imports'?'imports':UI.tab==='subjects'?'subjects':'vault'}
-function navBack(){const c=navCtx(),h=UI.h[c];if(h.i>0){h.i--;setPath(c,h.s[h.i],false)}}
-function navFwd(){const c=navCtx(),h=UI.h[c];if(h.i<h.s.length-1){h.i++;setPath(c,h.s[h.i],false)}}
+function resetNav(){UI.paths={};UI.h={}}
+function navCtx(){const t=UI.tab;return(t==='settings'||t==='images'||t==='backup'||t==='stats')?'vault':(isSec(t)?t:'vault')}
+function navBack(){const c=navCtx(),h=hOf(c);if(h.i>0){h.i--;setPath(c,h.s[h.i],false)}}
+function navFwd(){const c=navCtx(),h=hOf(c);if(h.i<h.s.length-1){h.i++;setPath(c,h.s[h.i],false)}}
 function navUp(){const c=navCtx(),p=pathOf(c);if(p.length)setPath(c,p.slice(0,-1))}
-function locate(id){for(const[ctx,root]of[['vault',S.vault],['imports',S.imports],['subjects',S.subjects]]){const f=find(id,[root]);if(f){const path=[];let p=f.p;while(p){path.unshift(p.id);p=find(p.id,[root]).p}return{ctx,path:f.n.kind==='folder'?[...path,id]:path,node:f.n}}}return null}
+function locate(id){for(const sc of allSecs()){const f=find(id,[sc.tree]);if(f){const path=[];let p=f.p;while(p){path.unshift(p.id);p=find(p.id,[sc.tree]).p}return{ctx:sc.id,path:f.n.kind==='folder'?[...path,id]:path,node:f.n}}}return null}
 function goFolder(id){const l=locate(id);if(!l)return;UI.tab=l.ctx;UI.q='';UI.tags=null;$('#search').value='';UI.sel.clear();setPath(l.ctx,l.path)}
 function enter(id){goFolder(id)}
 const pathTitles=id=>{const f=locate(id);if(!f)return[];const o=[];let a=ctxRoot(f.ctx);for(const pid of f.path){const x=a.find(y=>y.id===pid);if(!x)break;o.push(x.title);a=x.children}return o};
@@ -640,16 +791,26 @@ function startRename(id){const c=document.querySelector(`.card[data-id="${id}"]`
  let fin=false;const end=ok=>{if(fin)return;fin=true;const v=nm.textContent.trim().slice(0,300);if(ok&&v&&v!==old){n.title=v;persist()}render()};nm.onkeydown=e=>{e.stopPropagation();if(e.key==='Enter'){e.preventDefault();end(true)}if(e.key==='Escape'){e.preventDefault();end(false)}};nm.onblur=()=>end(true)}
 async function moveNodes(ids,dest,rootCtx){if(dest===undefined)return;const d=dest?find(dest)?.n:null;const tgt=d?d.children:ctxRoot(rootCtx||'vault');
  snap();let c=0;for(const id of ids){const f=find(id);if(!f)continue;if(d){let bad=false;if(f.n.kind==='folder')walk([f.n],x=>{if(x.id===d.id)bad=true});if(bad)continue}f.arr.splice(f.arr.indexOf(f.n),1);tgt.push(f.n);c++}UI.sel.clear();persist();render();if(c>1)toast(`اتنقل ${c} عنصر`)}
+function askChoice(title,body,opts){return new Promise(res=>{$('#dlg').innerHTML=`<h3>${title}</h3><div class="hint">${body}</div><div class="acts">${opts.map(([v,l,cls])=>`<button class="btn ${cls||''}" data-pick="${v}">${l}</button>`).join('')}<button class="btn" data-pick="">إلغاء</button></div>`;$('#veil').style.display='flex';
+ $('#dlg').querySelectorAll('[data-pick]').forEach(b=>b.onclick=()=>{$('#veil').style.display='none';res(b.dataset.pick||null)})})}
+function insertInto(id,destId,destCtx,copy){const src=find(id);if(!src)return 0;const d=destId?find(destId)?.n:null;if(d&&d.id===id)return 0;if(d){let bad=false;if(src.n.kind==='folder')walk([src.n],x=>{if(x.id===d.id)bad=true});if(bad)return 0}
+ const tgt=d?d.children:ctxRoot(destCtx||'vault');snap();const node=copy?cloneNode(src.n):src.n;if(!copy)src.arr.splice(src.arr.indexOf(src.n),1);tgt.push(node);persist();render();return 1}
+async function dropInto(id,destId,destCtx){const src=locate(id);if(!src)return;const to=destCtx||(destId?(locate(destId)||{}).ctx:'vault');const from=src.ctx;
+ if(from===to||!isSec(to)){moveNodes([id],destId,to);return}
+ const a=esc(secTitle(from)),b=esc(secTitle(to)),nm=esc(src.node.title||'');
+ const pick=await askChoice('نسخ ولا نقل؟',`"${nm}" من <b>${a}</b>. يتحرك لـ <b>${b}</b> ولا يتنسخ ويفضل في مكانه؟`,[['move','نقل','pri'],['copy','نسخ']]);
+ if(!pick)return;if(pick==='move')moveNodes([id],destId,to);else{insertInto(id,destId,to,true);toast(`اتنسخ لـ ${b}`)}}
 function bindMain(){const m=$('#main');
+ m.querySelectorAll('[data-act=acpick],[data-act=ac2pick]').forEach(i=>{i.oninput=()=>{const k=i.dataset.act==='acpick'?'acCustom':'ac2Custom';S.settings[k]=i.value;persist();applyTheme()};i.onchange=()=>render()});
  m.querySelectorAll('[data-bg]').forEach(e=>{const n=find(e.dataset.bg)?.n;if(n&&safeImg(n.img)){e.style.backgroundImage='url("'+n.img+'")';if(n.imgCustom)e.classList.add('cimg')}});
  m.querySelectorAll('[data-bgi]').forEach(e=>{const n=find(e.dataset.bgi)?.n;if(n&&safeImg(n.icon))e.style.backgroundImage='url("'+n.icon+'")'});
  m.querySelectorAll('.card[draggable]').forEach(c=>{c.ondragstart=e=>{UI.drag={id:c.dataset.id,kind:c.dataset.folder?'folder':'link',ctx:c.dataset.ctx};e.dataTransfer.setData('text/plain',c.dataset.id);e.dataTransfer.setData('x/ctx',c.dataset.ctx);e.dataTransfer.effectAllowed='move'};
   c.ondragend=()=>{UI.drag=null;document.querySelectorAll('.dropt').forEach(x=>x.classList.remove('dropt'))};
   c.ondragover=e=>{if(!UI.drag)return;e.preventDefault();e.stopPropagation();const z=dropZone(e,c);c.classList.toggle('dragover',z==='in');c.classList.toggle('merge',z==='merge');c.classList.toggle('ins-before',z==='before');c.classList.toggle('ins-after',z==='after')};c.ondragleave=()=>c.classList.remove('dragover','merge','ins-before','ins-after');
-  c.ondrop=e=>{e.preventDefault();e.stopPropagation();const z=dropZone(e,c);c.classList.remove('dragover','merge','ins-before','ins-after');const id=(UI.drag&&UI.drag.id)||e.dataTransfer.getData('text/plain');UI.drag=null;if(!id||id===c.dataset.id)return;if(z==='in')moveNodes([id],c.dataset.id);else if(z==='merge')mergeLinks(id,c.dataset.id);else reorderNode(id,c.dataset.id,z==='after')};
+  c.ondrop=e=>{e.preventDefault();e.stopPropagation();const z=dropZone(e,c);c.classList.remove('dragover','merge','ins-before','ins-after');const id=(UI.drag&&UI.drag.id)||e.dataTransfer.getData('text/plain');UI.drag=null;if(!id||id===c.dataset.id)return;if(z==='in')dropInto(id,c.dataset.id,c.dataset.ctx);else if(z==='merge')mergeLinks(id,c.dataset.id);else reorderNode(id,c.dataset.id,z==='after')};
   c.ondblclick=e=>{if(c.dataset.folder&&!e.target.closest('.menu-b,.rn'))enter(c.dataset.id)};
   c.onclick=e=>{if(e.ctrlKey||e.metaKey){e.preventDefault();const id=c.dataset.id;UI.sel.has(id)?UI.sel.delete(id):UI.sel.add(id);render()}}});
- m.querySelectorAll('[data-drop]').forEach(g=>{g.ondragover=e=>{if(UI.drag)e.preventDefault()};g.ondrop=e=>{const id=(UI.drag&&UI.drag.id)||e.dataTransfer.getData('text/plain');UI.drag=null;if(id)moveNodes([id],g.dataset.drop,g.dataset.ctx)}});
+ m.querySelectorAll('[data-drop]').forEach(g=>{g.ondragover=e=>{if(UI.drag)e.preventDefault()};g.ondrop=e=>{const id=(UI.drag&&UI.drag.id)||e.dataTransfer.getData('text/plain');UI.drag=null;if(id)dropInto(id,g.dataset.drop,g.dataset.ctx)}});
  const fi=$('#file');if(fi)fi.onchange=()=>fi.files[0]&&importFile(fi.files[0]);
  const cf=$('#cfont');if(cf)cf.onchange=()=>{S.settings.customFont=cf.value;persist();applyTheme()};
  const ff=$('#fontfile');if(ff)ff.onchange=()=>{const l=[...ff.files];ff.value='';addFonts(l)};
@@ -669,14 +830,36 @@ function cardHtml(n,ctx,path='',tree=false){const dense=S.settings.view==='dense
  const tags=n.tags.map(t=>`<span class="tag">#${esc(t)}</span>`).join('');
  const menu=`<button class="menu-b" data-act="menu" data-id="${n.id}" data-ctx="${ctx}">⋯</button>${pinBadge(n)}`;
  const cnt=n.kind==='folder'?`${n.children.length} عنصر`:'';const ps=path?`<div class="sub">${esc(path)}</div>`:'';
- if(n.kind==='folder')return`<div class="card fol ${sel} ${list?'row':''}" style="--c:${n.color}" draggable="true" data-id="${n.id}" data-ctx="${ctx}" data-folder="1">${fIcon(n,62)}<div style="min-width:0"><div class="nm" data-id="${n.id}">${esc(n.title)}</div><div class="sub">${n.subj?'مادة · ':''}${cnt}</div>${ps}${n.subj?`<span class="tag" data-act="sstat" data-id="${n.id}" style="cursor:pointer" title="تغيير الحالة">${esc(stLabel(n.status))}</span>`:''}</div>${menu}</div>`;
+ if(n.kind==='folder')return`<div class="card fol ${sel} ${list?'row':''}" style="--c:${n.color}" draggable="true" data-id="${n.id}" data-ctx="${ctx}" data-folder="1">${fIcon(n,62)}<div style="min-width:0"><div class="nm" data-id="${n.id}">${esc(n.title)}</div><div class="sub">${n.subj?(ctx==='subjects'?'مادة · ':'عنصر · '):''}${cnt}</div>${ps}${n.subj?`<span class="tag" data-act="sstat" data-id="${n.id}" style="cursor:pointer" title="تغيير الحالة">${esc(stLabelIn(n.status,ctx)||stLabel(n.status))}</span>`:''}</div>${menu}</div>`;
  return`<div class="card lnk ${sel} ${list?'row':''}" draggable="true" data-id="${n.id}" data-ctx="${ctx}"><div class="lk"><div class="th" ${thumb(n)}>${initial(n)}</div><div style="min-width:0"><div class="nm" data-act="open" data-id="${n.id}">${esc(n.title)}</div><div class="u"><bdi dir="ltr">${esc(n.url)}</bdi></div>${n.note?`<div class="sub">${esc(n.note)}</div>`:''}${dense?'':tags?`<div>${tags}</div>`:''}${ps}</div></div>${menu}</div>`}
 // ---- dashboard cards ----
 function relTime(t){const s=(now()-t)/1000;if(s<60)return'دلوقتي';const m=Math.floor(s/60);if(m<60)return m===1?'من دقيقة':m===2?'من دقيقتين':`من ${m} ${m<11?'دقايق':'دقيقة'}`;const h=Math.floor(m/60);if(h<24)return h===1?'من ساعة':h===2?'من ساعتين':`من ${h} ${h<11?'ساعات':'ساعة'}`;const d=Math.floor(h/24);if(d===1)return'امبارح';if(d<7)return`من ${d} ${d<11?'أيام':'يوم'}`;return new Date(t).toLocaleDateString('ar-EG')}
 function domainOf(u){try{return new URL(u).hostname.replace(/^www\./,'')}catch{return''}}
 function dashRow(x,side){const loc=locate(x.id);const pt=loc&&loc.path.length?pathTitles(x.id):[];const pid=loc&&loc.path.length?loc.path.at(-1):'';
  return`<div class="dr" data-act="open" data-id="${x.id}" tabindex="0"><div class="th" ${thumb(x)}>${initial(x)}</div><div style="min-width:0"><div class="dnm">${esc(x.title)}</div><div class="dsub"><bdi dir="ltr">${esc(domainOf(x.url))}</bdi>${pid?` · <a data-act="goto" data-id="${pid}">${esc(pt.join(' / '))}</a>`:''}</div></div><div class="dside">${side}</div><span class="dq"><button data-act="dcopy" data-id="${x.id}" title="نسخ الرابط">نسخ</button><button data-act="dpin" data-id="${x.id}" title="تثبيت">${x.pinned?'إلغاء التثبيت':'تثبيت'}</button></span></div>`}
-function dashboard(){const ls=allLinks(S.vault);const dd=a=>{const seen=new Set();return a.filter(x=>{const k=x.url.replace(/\/$/,'').replace(/^https?:\/\/(www\.)?/,'').toLowerCase();if(seen.has(k))return false;seen.add(k);return true})};
+function statsBody(){const rows=allSecs().map(sc=>{const root=sc.id==='vault'?S.vault:sc.id==='imports'?S.imports:sc.id==='subjects'?S.subjects:ctxRoot(sc.id);let f=0;walk(root,n=>{if(n.kind==='folder')f++});return{id:sc.id,title:sc.title,icon:sc.icon,links:allLinks(root).length,folders:f}});
+ const tot=rows.reduce((a,b)=>a+b.links,0),tf=rows.reduce((a,b)=>a+b.folders,0),mx=Math.max(1,...rows.map(r=>r.links));
+ return`<div class="stbar"><div class="stt"><b>${tot}</b><span>رابط في البرنامج كله</span></div><div class="stt"><b>${tf}</b><span>مجلد</span></div><div class="stt"><b>${rows.length}</b><span>قسم</span></div></div>${rows.map(r=>`<div class="srow" data-act="gosec" data-id="${r.id}"><span class="snm">${r.icon?secIcon(r.icon,14):''}${esc(r.title)}<span class="sub" style="font-weight:400"> · ${r.folders} مجلد</span></span><b>${r.links}</b><span class="dbar"><i style="width:${r.links?Math.max(6,Math.round(r.links/mx*100)):0}%"></i></span></div>`).join('')}`}
+function statsHtml(){const all=allSecs().map(sc=>{const root=sc.id==='vault'?S.vault:sc.id==='imports'?S.imports:sc.id==='subjects'?S.subjects:ctxRoot(sc.id);return{id:sc.id,title:sc.title,links:allLinks(root).length}});
+ const links=[];for(const sc of allSecs())walk(rootsOfSec(sc.id),n=>{if(n.kind==='link')links.push(n)});
+ const never=links.filter(l=>!l.opens).length,dup=(()=>{const m=new Map();for(const l of links){const k=String(l.url||'').replace(/\/$/,'').replace(/^https?:\/\/(www\.)?/,'').toLowerCase();m.set(k,(m.get(k)||0)+1)}return [...m.values()].filter(v=>v>1).length})();
+ const tags={};for(const l of links)for(const t of (l.tags||[]))tags[t]=(tags[t]||0)+1;
+ const tkeys=Object.keys(tags).sort((a,b)=>tags[b]-tags[a]),tmax=Math.max(1,...tkeys.map(k=>tags[k]));
+ const months=(()=>{const out=[],d=new Date();for(let i=5;i>=0;i--){const dt=new Date(d.getFullYear(),d.getMonth()-i,1);out.push({y:dt.getFullYear(),m:dt.getMonth(),n:0})}
+  for(const l of links){const t=l.added||0;if(!t)continue;const dt=new Date(t);const hit=out.find(x=>x.y===dt.getFullYear()&&x.m===dt.getMonth());if(hit)hit.n++}return out})();
+ const mmax=Math.max(1,...months.map(x=>x.n)),MN=['يناير','فبراير','مارس','أبريل','مايو','يونيو','يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر'];
+ const used=all.filter(x=>x.links>0),topSec=used.slice().sort((a,b)=>b.links-a.links)[0],lowSec=used.slice().sort((a,b)=>a.links-b.links)[0];
+ const noOpens=links.filter(l=>!l.opens).slice(0,5).map(l=>dashRow(l,'<span>0 مرة</span>')).join('');
+ return`<div class="sec"><h3>الإحصائيات</h3><div class="hint">كل الأرقام دي بتتحسب من بياناتك دلوقتي، وبتتحدّث لوحدها مع أي إضافة أو حذف. اضغط على أي قسم تروح له.</div>${statsBody()}</div>
+ ${dashCards()||'<div class="dash"><div class="sec"><div class="dhead"><h3>الأكثر فتحًا</h3></div><span class=sub>لسه مفتحتش روابط.</span></div></div>'}
+ <div class="dash"><div class="sec"><div class="dhead"><h3>أكتر وأقل قسم فيه روابط</h3></div>${topSec?`<div class="dr"><div class="th">${topSec.links}</div><div><div class="dnm">${esc(topSec.title)}</div><div class="dsub">أكبر قسم</div></div><div class="dside"><span class="dbar"><i style="width:100%"></i></span></div></div>`:'<span class=sub>—</span>'}${lowSec?`<div class="dr"><div class="th">${lowSec.links}</div><div><div class="dnm">${esc(lowSec.title)}</div><div class="dsub">أصغر قسم</div></div><div class="dside"><span class="dbar"><i style="width:${Math.max(6,Math.round(lowSec.links/Math.max(1,topSec?topSec.links:1)*100))}%"></i></span></div></div>`:''}</div>
+ <div class="sec"><div class="dhead"><h3>الروابط والتاجات</h3><small>${links.length} رابط</small></div>
+ <div class="stbar" style="grid-template-columns:repeat(3,1fr)"><div class="stt"><b>${never}</b><span>رابط لسه مفتحتهوش</span></div><div class="stt"><b>${dup}</b><span>رابط مكرر</span></div><div class="stt"><b>${tkeys.length}</b><span>تاج مختلف</span></div></div>
+ ${tkeys.length?`<div style="margin-top:4px">${tkeys.slice(0,6).map(k=>`<div class="srow" style="grid-template-columns:minmax(0,1fr) 52px 120px"><span class="snm">${esc(k)}</span><b>${tags[k]}</b><span class="dbar"><i style="width:${Math.max(6,Math.round(tags[k]/tmax*100))}%"></i></span></div>`).join('')}</div>`:'<div class="sub" style="margin-top:6px">مفيش تاجات لسه.</div>'}</div>
+ <div class="sec"><div class="dhead"><h3>الإضافة على مدار 6 شهور</h3><small>${months.reduce((a,b)=>a+b.n,0)} رابط</small></div>
+ <div class="chart">${months.map(x=>`<div class="cbar" title="${MN[x.m]} ${x.y}: ${x.n}"><i style="height:${x.n?Math.max(4,Math.round(x.n/mmax*100)):2}%"></i><span>${MN[x.m].slice(0,4)}</span><b>${x.n}</b></div>`).join('')}</div></div>
+ ${never?`<div class="sec"><div class="dhead"><h3>روابط مفتحتهاش ولا مرة</h3><small>${never}</small></div>${noOpens}</div>`:''}`}
+function dashCards(){const ls=allLinks(S.vault);const dd=a=>{const seen=new Set();return a.filter(x=>{const k=x.url.replace(/\/$/,'').replace(/^https?:\/\/(www\.)?/,'').toLowerCase();if(seen.has(k))return false;seen.add(k);return true})};
  const top=dd([...ls].sort((a,b)=>b.opens-a.opens).filter(x=>x.opens)).slice(0,5),rec=dd([...ls].filter(x=>x.last).sort((a,b)=>b.last-a.last)).slice(0,5);if(!top.length&&!rec.length)return'';
  const mx=Math.max(1,...top.map(x=>x.opens));
  const A=top.map(x=>dashRow(x,`<span>${x.opens} ${x.opens===1?'مرة':x.opens===2?'مرتين':x.opens<11?'مرات':'مرة'}</span><span class="dbar"><i style="width:${Math.max(6,Math.round(x.opens/mx*100))}%"></i></span>`)).join('');
@@ -692,10 +875,10 @@ async function refetchHere(){const ctx=navCtx();const{arr}=cur(ctx);const ls=arr
 function linkCount(n){let c=0;walk(n.children||[],x=>{if(x.kind==='link')c++});return c}
 function rows(roots){const out=[];const rec=(a,p)=>{for(const n of a){if(n.kind==='folder')rec(n.children,[...p,n.title]);else out.push([n.title,n.url,p.join(' / '),n.note||''])}};rec(roots,[]);return out}
 function locAnc(id,anc){const l=locate(id);return !!l&&l.path.includes(anc)&&id!==anc}
-function expRoots(sc){if(sc==='vault')return S.vault;if(sc==='subjects')return S.subjects;if(sc==='imports')return S.imports;if(sc==='both')return allRoots();if(sc==='sel'){const ids=[...UI.sel];return ids.map(i=>find(i)?.n).filter(Boolean).filter(n=>!ids.some(o=>o!==n.id&&locAnc(n.id,o)))}const id=sc.slice(sc.indexOf(':')+1);const x=find(id)?.n;return x?[x]:[]}
+function expRoots(sc){if(sc==='allsecs')return allSecs().map(x=>({kind:'folder',id:'sec_'+x.id,title:secTitle(x.id),children:rootsOfSec(x.id),open:false}));if(sc.indexOf('sec:')===0){const sid=sc.slice(4);return[{kind:'folder',id:'sec_'+sid,title:secTitle(sid),children:rootsOfSec(sid),open:false}]}if(sc==='vault')return S.vault;if(sc==='subjects')return S.subjects;if(sc==='imports')return S.imports;if(sc==='both')return allRoots();if(sc==='sel'){const ids=[...UI.sel];return ids.map(i=>find(i)?.n).filter(Boolean).filter(n=>!ids.some(o=>o!==n.id&&locAnc(n.id,o)))}const id=sc.slice(sc.indexOf(':')+1);const x=find(id)?.n;return x?[x]:[]}
 const esc2=s=>String(s).slice(0,30);
 async function exportDlg(fmt,preset){const o=[];if(preset)o.push([`node:${preset.id}`,(preset.kind==='folder'?'المجلد: ':'الرابط: ')+preset.title]);if(UI.sel.size)o.push(['sel',`المحدد (${UI.sel.size})`]);
- o.push(['vault','الخزنة كلها'],['subjects','المواد كلها'],['imports','كل المستوردات'],['both','الخزنة + المستوردات'],['pick','اختيار مجلدات وروابط…']);S.imports.forEach(r=>o.push([`imp:${r.id}`,'مستورد: '+r.title]));
+ o.push(['vault','الخزنة كلها'],['subjects','المواد كلها'],['imports','كل المستوردات'],['both','الخزنة + المستوردات']);allSecs().filter(x=>!BUILT.includes(x.id)).forEach(x=>o.push(['sec:'+x.id,'قسم: '+x.title]));o.push(['allsecs','كل الأقسام (كل قسم في مجلد)'],['pick','اختيار مجلدات وروابط…']);S.imports.forEach(r=>o.push([`imp:${r.id}`,'مستورد: '+r.title]));
  const fl=[];[['الخزنة',S.vault],['المواد',S.subjects],['المستوردات',S.imports]].forEach(([nm,root])=>{const rec=(a,p)=>a.forEach(n=>{if(n.kind==='folder'){const q=p+' / '+n.title;fl.push([n.id,q]);rec(n.children,q)}});rec(root,nm)});
  const r=await dialog(`<h3>إيه اللي تصدّره؟</h3><label>المحتوى</label><select name="scope" id="xsc">${o.map(([v,l])=>`<option value="${v}">${esc(l)}</option>`).join('')}${fl.length?'<option value="fol">مجلد معيّن…</option>':''}</select><div id="xfol" hidden><label>المجلد</label><select name="fol">${fl.map(([v,l])=>`<option value="${v}">${esc(l)}</option>`).join('')}</select></div>${fmt?'':`<label>الصيغة</label><select name="fmt">${[['html','HTML للمتصفح'],['xlsx','Excel'],['docx','Word'],['pdf','PDF']].map(([k,l])=>`<option value="${k}">${l}</option>`).join('')}</select>`}<div class="acts"><button class="btn pri" data-ok="1">تصدير</button><button class="btn" data-x>إلغاء</button></div>`,()=>{const s=$('#xsc');s.onchange=()=>{$('#xfol').hidden=s.value!=='fol'}});if(!r)return;
  let roots=r.scope==='pick'?(await pickTree('تصدير: اختار العناصر','تصدير'))||[]:r.scope==='fol'?expRoots('fol:'+r.fol):expRoots(r.scope);if(!roots.length)return toast('مفيش حاجة تتصدّر');const f=fmt||r.fmt;
@@ -758,6 +941,123 @@ async function exportPdfDirect(roots){await loadBundled('cairo');try{await docum
 function exportPdf(roots){document.getElementById('printroot')?.remove();const d=document.createElement('div');d.id='printroot';d.dir='rtl';d.innerHTML='<h2>راابط</h2>'+printHtml(roots);document.body.appendChild(d);const done=()=>{d.remove();window.removeEventListener('afterprint',done)};window.addEventListener('afterprint',done);toast('اختار "حفظ كـ PDF" من نافذة الطباعة');setTimeout(()=>window.print(),80)}
 // ---- backup by scope ----
 const SCOPES=[['vault','الخزنة'],['imports','المستوردات'],['both','الاتنين']];
+const BKMODES=[['manual','يدوي'],['launch','كل مرة أفتح التطبيق'],['day','كل يوم'],['week','كل أسبوع'],['month','كل شهر'],['custom','كل مدة مخصصة…'],['off','مقفول (متوقف)']];
+const BKUNITS=[['h','ساعة'],['d','يوم'],['m','شهر']];
+const BKDIRNAME='النسخ الاحتياطي';
+const appDir=()=>window.__appDir||'';
+function bkOf(id){S.bk=S.bk||{};const dflt='manual';const d=S.bk[id]||(S.bk[id]={mode:dflt,dir:'',last:0,hash:''});if(!d.mode)d.mode=dflt;
+ if(d.mode==='hours'){d.mode='custom';d.n=d.n||Math.max(1,S.settings.bkHours||6);d.u='h'}
+ if(d.mode==='custom'){d.n=Math.max(1,+d.n||6);d.u=d.u||'h'}return d}
+const bkDirOf=id=>{const d=bkOf(id);return d.dir||(appDir()?appDir()+'\\'+BKDIRNAME:'')};
+const bkModeLabel=m=>(BKMODES.find(x=>x[0]===m)||BKMODES[0])[1];
+function hashStr(t){let h=2166136261;for(let i=0;i<t.length;i++){h^=t.charCodeAt(i);h=Math.imul(h,16777619)}return(h>>>0).toString(36)}
+const cleanName=t=>String(t||'نسخة').replace(/[\\/:*?"<>|]+/g,'-').replace(/\s+/g,' ').trim().slice(0,60);
+function stampName(title){const d=new Date(),p=n=>String(n).padStart(2,'0');const h24=d.getHours(),ap=h24<12?'ص':'م';let h12=h24%12;if(h12===0)h12=12;
+ return `${cleanName(title)} ${d.getFullYear()}-${p(d.getMonth()+1)}-${p(d.getDate())} ${p(h12)}-${p(d.getMinutes())} ${ap}`}
+function secState(id){const st={};
+ if(id==='vault'){st.vault=S.vault;st.trash=S.trash.filter(t=>(t.ctx||'vault')==='vault')}
+ else if(id==='imports')st.imports=S.imports;
+ else if(id==='subjects')st.subjects=S.subjects;
+ else{const sc=secOf(id);st.sec={id,title:sc?sc.title:secTitle(id),tree:sc?sc.tree:[],st:sc?sc.st:null,stDef:sc?sc.stDef:''}}
+ return st}
+const secPayload=id=>JSON.stringify({format:'raabt-backup',version:5,scope:id,title:secTitle(id),saved_at:now(),state:secState(id)});
+const BK_TAG='raabt-backup';
+function bkEmbed(html,json){const tag='<!--'+BK_TAG+':'+b64(enc.encode(json))+'-->';return html.includes('</body>')?html.replace('</body>',tag+'</body>'):html+tag}
+function bkUnembed(txt){const m=String(txt||'').match(new RegExp('<!--'+BK_TAG+':([A-Za-z0-9+/=]+)-->'));if(!m)return null;try{return JSON.parse(dec.decode(Uint8Array.from(atob(m[1]),c=>c.charCodeAt(0))))}catch{return null}}
+function rootsOfSec(id){return id==='vault'?S.vault:id==='imports'?S.imports:id==='subjects'?S.subjects:ctxRoot(id)}
+function secHtmlBackup(id){const html=core?wcall('rb_write_html',JSON.stringify(plainTree(rootsOfSec(id)))):'';return html?bkEmbed(html,secPayload(id)):null}
+async function encSecBackup(id){const r=await dialog(`<h3>نسخة مشفرة: ${esc(secTitle(id))}</h3><label>كلمة السر (مش هتتحفظ في أي مكان)</label><input name="pw" type="password"><div class="hint">الملف هيتحفظ HTML زي باقي النسخ، بس محتواه مقفول بكلمة السر. ترجعه من نفس القسم بزر "استرجاع".</div><div class="acts"><button class="btn pri" data-ok="1">إنشاء</button><button class="btn" data-x>إلغاء</button></div>`);
+ if(!r||!r.pw)return;if(!(window.crypto&&crypto.subtle))return toast('التشفير مش متاح في النافذة دي');
+ const salt=crypto.getRandomValues(new Uint8Array(16)),iv=crypto.getRandomValues(new Uint8Array(12));
+ const km=await crypto.subtle.importKey('raw',enc.encode(r.pw),'PBKDF2',false,['deriveKey']);
+ const key=await crypto.subtle.deriveKey({name:'PBKDF2',salt,iterations:200000,hash:'SHA-256'},km,{name:'AES-GCM',length:256},false,['encrypt']);
+ const ct=new Uint8Array(await crypto.subtle.encrypt({name:'AES-GCM',iv},key,enc.encode(secPayload(id))));
+ const box=JSON.stringify({format:'raabt-encrypted',version:1,scope:id,salt:b64(salt),iv:b64(iv),data:b64(ct)});
+ const t=esc(secTitle(id));
+ const html='<!doctype html><html dir="rtl" lang="ar"><meta charset="utf-8"><title>'+t+' - نسخة مشفرة</title><body style="font-family:Tahoma,Arial;background:#000;color:#eee;padding:28px;line-height:1.9"><h2 style="margin:0 0 10px">نسخة مشفرة من راابط</h2><p>القسم: '+t+'</p><p style="color:#9aa">الملف ده مقفول بكلمة سر. ترجعه من جوّه راابط: النسخ الاحتياطي ← استرجاع (جنب القسم)، وهيسألك كلمة السر.</p><!--raabt-enc:'+btoa(box)+'--></body></html>';
+ const name=stampName(t)+'.html',ok=await B.saveTo(name,html,bkDirOf(id));
+ if(ok===false)return toast('مقدرتش أحفظ النسخة في المكان ده');toast('اتعملت نسخة مشفرة لـ '+t)}
+function parseBookmarks(txt){try{const a=JSON.parse(wcall('rb_parse_html',txt));return Array.isArray(a)?a:[]}catch{return[]}}
+async function doSecBackup(id,manual,silent){const bk=bkOf(id),st=secState(id),h=hashStr(JSON.stringify(st));
+ if(h===bk.hash){if(!manual||silent)return 'skip';
+  const pick=await askChoice('مفيش تغيير',`مفيش حاجة اتغيرت في <b>${esc(secTitle(id))}</b> من آخر نسخة. تعمل نسخة برضه؟`,[['yes','اعمل','pri']]);if(!pick)return 'skip'}
+ const html=secHtmlBackup(id);if(!html)return toast('محرك التصدير مش شغال، مقدرتش أعمل النسخة');
+ let base=stampName(secTitle(id)),name=base+'.html';const used=bk.names||[];let k=2;while(used.includes(name)){name=base+' ('+(k++)+').html'}
+ const ok=await B.saveTo(name,html,bkDirOf(id));
+ if(ok===false){toast('مقدرتش أحفظ النسخة في المكان ده');return 'fail'}
+ bk.last=now();bk.hash=h;bk.names=[...(bk.names||[]),name].slice(-80);persist();return 'ok'}
+const bkIntervalMs=bk=>{const u=bk.u||'h',n=Math.max(1,+bk.n||1);return n*(u==='h'?36e5:u==='d'?864e5:30*864e5)};
+function dueBk(bk){const m=bk.mode,l=bk.last||0,d=864e5;if(m==='off'||m==='manual')return false;return m==='launch'||(m==='custom'&&now()-l>bkIntervalMs(bk))||(m==='day'&&now()-l>d)||(m==='week'&&now()-l>7*d)||(m==='month'&&now()-l>30*d)}
+async function backupSectionNow(id){const r=await doSecBackup(id,true);if(r==='ok')toast(`اتعملت نسخة لـ ${secTitle(id)}`)}
+async function backupAllNow(){let n=0,sk=0;for(const sc of allSecs()){const r=await doSecBackup(sc.id,true,true);if(r==='ok')n++;else if(r==='skip')sk++}
+ render();toast(n?`اتعملت نسخة لـ ${n} قسم${sk?' (فيه '+sk+' من غير تغيير)':''}`:'مفيش تغيير في أي قسم من آخر نسخة')}
+const ALLBK='__all';
+const allSecState=()=>({vault:S.vault,imports:S.imports,subjects:S.subjects,secs:(S.secs||[]).map(x=>({id:x.id,title:x.title,icon:x.icon,tree:x.tree,st:x.st,stDef:x.stDef})),trash:S.trash.filter(t=>(t.ctx||'vault')==='vault')});
+const allSecPayload=()=>JSON.stringify({format:'raabt-backup',version:6,scope:ALLBK,title:'كل الأقسام',saved_at:now(),state:allSecState()});
+async function doAllBackup(manual,silent){const bk=bkOf(ALLBK),h=hashStr(JSON.stringify(allSecState()));
+ if(h===bk.hash){if(!manual||silent)return 'skip';
+  const pick=await askChoice('مفيش تغيير','مفيش حاجة اتغيرت في أي قسم من آخر نسخة. تعمل نسخة برضه؟',[['yes','اعمل','pri']]);if(!pick)return 'skip'}
+ const roots=allSecs().map(sc=>({kind:'folder',title:secTitle(sc.id),children:plainTree(rootsOfSec(sc.id)),toolbar:false}));
+ const html=core?wcall('rb_write_html',JSON.stringify(plainTree(roots))):'';if(!html)return toast('محرك التصدير مش شغال، مقدرتش أعمل النسخة');
+ let base=stampName('كل الأقسام'),name=base+'.html';const used=bk.names||[];let k=2;while(used.includes(name))name=base+' ('+(k++)+').html';
+ const ok=await B.saveTo(name,bkEmbed(html,allSecPayload()),bkDirOf(ALLBK));
+ if(ok===false){toast('مقدرتش أحفظ النسخة في المكان ده');return 'fail'}
+ bk.last=now();bk.hash=h;bk.names=[...(bk.names||[]),name].slice(-80);persist();return 'ok'}
+async function allSecNow(){const r=await doAllBackup(true);if(r==='ok')toast('اتعملت نسخة لكل الأقسام')}
+function restoreAllSec(){const i=document.createElement('input');i.type='file';i.accept='.json,.html,.htm';i.onchange=async()=>{if(i.files[0])await restoreAllSecText(await i.files[0].text())};i.click()}
+async function restoreAllSecText(txt){let o=bkUnembed(txt);
+ if(!o){try{o=JSON.parse(txt)}catch{o=null}}
+ if(!o)return toast('الملف ده مش نسخة لكل الأقسام');
+ if(o.format!=='raabt-backup'||!o.state)return toast('الملف ده مش نسخة لكل الأقسام');
+ const st=o.state;if(!(Array.isArray(st.vault)||Array.isArray(st.imports)||Array.isArray(st.subjects)||Array.isArray(st.secs)))return toast('الملف ده مش نسخة لكل الأقسام');
+ if(!await confirmD('الاسترجاع هيرجّع كل الأقسام (الخزنة والمواد والاستيراد والأقسام اللي انت عملتها) زي وقت النسخة. الإعدادات والصور مش هتتغير. متأكد؟','استرجاع'))return;
+ snap();
+ if(Array.isArray(st.vault)){S.vault=st.vault;prep(S.vault)}
+ if(Array.isArray(st.imports)){S.imports=st.imports;prep(S.imports)}
+ if(Array.isArray(st.subjects)){S.subjects=st.subjects;prep(S.subjects);migrateStatuses()}
+ if(Array.isArray(st.trash))S.trash=st.trash;
+ if(Array.isArray(st.secs)){S.secs=st.secs.map(sc=>({...sc,tree:Array.isArray(sc.tree)?sc.tree:[]}));for(const sc of S.secs)prep(sc.tree)}
+ ensureKhazna();resetNav();persist();render();toast('اترجعت كل الأقسام')}
+async function backupAllDue(){for(const sc of allSecs()){const bk=bkOf(sc.id);if(bk.mode!=='manual'&&bk.mode!=='launch'&&dueBk(bk))await doSecBackup(sc.id,false)}
+ const ab=bkOf(ALLBK);if(ab.mode!=='manual'&&ab.mode!=='launch'&&dueBk(ab))await doAllBackup(false,true)}
+function restoreSec(id){const i=document.createElement('input');i.type='file';i.accept='.json,.html,.htm';i.onchange=async()=>{if(i.files[0])await restoreSecText(id,await i.files[0].text())};i.click()}
+async function restoreSecText(id,txt){const em=String(txt||'').match(/<!--raabt-enc:([A-Za-z0-9+/=]+)-->/);
+ if(em){let box=null;try{box=JSON.parse(atob(em[1]))}catch{}if(!box||box.format!=='raabt-encrypted')return toast('الملف المشفر تالف');
+  const t=await decryptBackup(box);if(!t)return;txt=t}
+ let o=bkUnembed(txt);
+ if(!o){try{o=JSON.parse(txt)}catch{o=null}}
+ let preOk=false;
+ if(!o){const arr=parseBookmarks(txt);if(!arr.length)return toast('الملف مش نسخة راابط ولا ملف علامات');
+  preOk=true;
+  o={format:'raabt-backup',scope:id,state:id==='imports'?{imports:arr}:id==='subjects'?{subjects:arr}:id==='vault'?{vault:arr}:{sec:{tree:arr}}};
+  if(!await confirmD(`الملف ده ملف علامات عادي (مش نسخة راابط)، فهيترجع منه المجلدات والروابط بس من غير حالات ولا تاجات. تحب أرجعهم في <b>${esc(secTitle(id))}</b>؟`,'استرجاع'))return}
+ if(o.format==='raabt-encrypted'){const t=await decryptBackup(o);if(!t)return;try{o=JSON.parse(t)}catch{return toast('الملف تالف')}}
+ if(o.format!=='raabt-backup'||!o.state)return toast('الملف مش نسخة راابط');
+ const st=o.state;let nodes=null,isTrash=null;
+ if(Array.isArray(st.vault))nodes=st.vault;else if(Array.isArray(st.imports)&&id==='imports')nodes=st.imports;else if(Array.isArray(st.subjects)&&id==='subjects')nodes=st.subjects;else if(st.sec&&Array.isArray(st.sec.tree))nodes=st.sec.tree;
+ if(!nodes)return toast('الملف ده مش نسخة للقسم اللي انت فيه');
+ const nm=esc(secTitle(id));if(!preOk&&!await confirmD(`الاسترجاع هيستبدل محتوى <b>${nm}</b> باللي في النسخة (${nodes.length} عنصر). متأكد؟`,'استرجاع'))return;
+ snap();
+ if(id==='vault'){S.vault=nodes;prep(S.vault);if(Array.isArray(st.trash))S.trash=[...S.trash.filter(t=>(t.ctx||'vault')!=='vault'),...st.trash]}
+ else if(id==='imports'){S.imports=nodes;prep(S.imports)}
+ else if(id==='subjects'){S.subjects=nodes;prep(S.subjects);migrateStatuses()}
+ else{let sc=secOf(id);if(!sc){sc={id,title:(st.sec&&st.sec.title)||'قسم',icon:'folder',tree:[],st:DEF_STATUS.map(x=>({...x})),stDef:DEF_STATUS[0].id,bk:{mode:'month',dir:'',last:0,hash:''}};S.secs.push(sc)}
+  sc.tree=nodes;if(st.sec&&Array.isArray(st.sec.st)&&st.sec.st.length)sc.st=st.sec.st;if(st.sec&&st.sec.stDef)sc.stDef=st.sec.stDef;prep(sc.tree)}
+ resetNav();persist();render();toast('اتسترجع '+secTitle(id))}
+function fullPayload(){return JSON.stringify({format:'raabt-full',version:2,saved_at:now(),state:{vault:S.vault,subjects:S.subjects,imports:S.imports,secs:(S.secs||[]),trash:S.trash,counters:S.counters,statuses:S.statuses,bk:S.bk,seq:S.seq,st:S.st,settings:{...S.settings}}})}
+async function fullBackup(){const dir=S.settings.fullDir||(appDir()?appDir()+'\\'+BKDIRNAME:'');const name=stampName('البرنامج')+'.json';
+ const ok=await B.saveTo(name,fullPayload(),dir);if(ok===false)return toast('مقدرتش أحفظ النسخة في المكان ده');S.settings.fullLast=now();persist();render();toast('اتعملت نسخة للبرنامج كله')}
+function fullRestore(){const i=document.createElement('input');i.type='file';i.accept='.json,.html,.htm';i.onchange=async()=>{if(i.files[0])await fullRestoreText(await i.files[0].text())};i.click()}
+async function fullRestoreText(txt){let o=bkUnembed(txt);
+ if(!o){try{o=JSON.parse(txt)}catch{o=null}}
+ if(!o)return toast('الملف ده مش نسخة كاملة للبرنامج')
+ if(o.format==='raabt-encrypted'){const t=await decryptBackup(o);if(!t)return;try{o=JSON.parse(t)}catch{return toast('الملف تالف')}}
+ if(o.format!=='raabt-full'||!o.state)return toast('الملف ده مش نسخة للبرنامج كله');
+ if(!await confirmD('الاسترجاع هيرجّع البرنامج كله (كل الأقسام والإعدادات) زي وقت النسخة دي، ومكتبة الصور مش هتتغير. متأكد؟','استرجاع'))return;
+ snap();const st=o.state;S.vault=st.vault||[];S.subjects=st.subjects||[];S.imports=st.imports||[];S.secs=st.secs||[];S.trash=st.trash||[];S.counters=st.counters||{};if(st.seq)S.seq=st.seq;if(st.st)S.st=st.st;if(Array.isArray(st.statuses))S.statuses=st.statuses;if(st.bk)S.bk=st.bk;
+ if(st.settings)S.settings={...S.settings,...st.settings};
+ S.bk=S.bk||{};for(const x of S.secs){x.tree=Array.isArray(x.tree)?x.tree:[];prep(x.tree)}
+ prep(S.vault);prep(S.subjects);prep(S.imports);ensureKhazna();migrateStatuses();resetNav();applyTheme();persist();render();toast('اترجّع البرنامج كله')}
 function backupJson(scope,picked){if(scope==='subjects')return JSON.stringify({format:'raabt-backup',version:3,scope,saved_at:now(),state:{subjects:S.subjects}});
  if(scope==='subj')return JSON.stringify({format:'raabt-backup',version:3,scope,saved_at:now(),state:{subject:picked}});
  const st={};if(scope==='pick'){st.picked=picked||[]}else{if(scope!=='imports'){st.vault=S.vault;st.subjects=S.subjects;st.trash=S.trash;st.images=S.images}if(scope!=='vault')st.imports=S.imports;if(scope==='both'){st.counters=S.counters;st.settings={...S.settings,pin:''}}}return JSON.stringify({format:'raabt-backup',version:3,scope,saved_at:now(),state:st})}
@@ -841,18 +1141,20 @@ async function viewImage(id){const it=S.images.find(x=>x.id===id);if(!it)return;
 function sideOverlay(){return innerWidth<=700}
 function setSide(on){S.settings.sideOpen=on;persist();render()}
 function sideTree(a,ctx,q,depth){return a.filter(n=>n.kind==='folder').map(n=>{const kids=n.children.filter(x=>x.kind==='folder');const mt=!q||n.title.toLowerCase().includes(q);let sub='';const open=q?true:UI.sOpen.has(n.id);if(open&&kids.length)sub=sideTree(n.children,ctx,q,depth+1);if(q&&!mt&&!sub)return'';const cu=pathOf(ctx).at(-1)===n.id&&UI.tab===ctx;
-  return`<div><div class="sn ${cu?'cur':''}" data-act="sgo" data-id="${n.id}"><button class="sch ${open&&kids.length?'op':''}" data-act="stog" data-id="${n.id}" aria-label="expand">${kids.length?'<svg viewBox="0 0 10 10" width="11" height="11"><path d="M7 1L3 5l4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>':''}</button><span class="t">${esc(n.title)}</span><small>${n.children.length}</small></div>${sub?`<div class="sk">${sub}</div>`:''}</div>`}).join('')}
+  return`<div><div class="sn ${cu?'cur':''}" data-act="sgo" data-id="${n.id}" data-sec="${ctx}"><button class="sch ${open&&kids.length?'op':''}" data-act="stog" data-id="${n.id}" aria-label="expand">${kids.length?'<svg viewBox="0 0 10 10" width="11" height="11"><path d="M7 1L3 5l4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>':''}</button><span class="t">${esc(n.title)}</span><small>${n.children.length}</small></div>${sub?`<div class="sk">${sub}</div>`:''}</div>`}).join('')}
 function sideSection(k,title,body,open=true){const o=S.settings.sideSec[k];return`<details data-sec="${k}" ${(o===undefined?open:o)?'open':''}><summary>${title}</summary>${body}</details>`}
 const CHV='<svg viewBox="0 0 10 10" width="11" height="11"><path d="M7 1L3 5l4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>';
 function renderSide(){const s=$('#side'),v=$('#sidev');if(!s)return;if(!S.settings.sideOpen){s.hidden=true;v&&v.classList.remove('on');return}s.hidden=false;if(v)v.classList.toggle('on',sideOverlay());
  const q=(UI.sq||'').trim().toLowerCase();const keep=s.scrollTop;const pins=[];for(const root of[S.vault,S.imports,S.subjects])walk(root,n=>{if(n.pinned)pins.push(n)});
- const sel=UI.sel.size,one=sel===1?find([...UI.sel][0])?.n:null,c=navCtx(),h=UI.h[c];
- const nav=`<div class="sbtns"><button class="btn" data-act="back" ${h.i>0?'':'disabled'}>رجوع</button><button class="btn" data-act="up" ${pathOf(c).length?'':'disabled'}>لفوق</button><button class="btn" data-act="sexp">فتح الكل</button><button class="btn" data-act="scol">طيّ الكل</button></div><input class="sf" id="sidef" placeholder="فلتر المجلدات…" value="${esc(UI.sq||'')}"><div class="sn ${UI.tab==='vault'&&!UI.path.length?'cur':''}" data-act="sroot" data-c="vault"><button class="sch ${UI.sOpen.has('root:vault')||q?'op':''}" data-act="stog" data-id="root:vault">${CHV}</button><span class="t"><b>الخزنة</b></span></div>${UI.sOpen.has('root:vault')||q?`<div class="sk">${sideTree(S.vault,'vault',q,1)}</div>`:''}<div class="sn ${UI.tab==='imports'&&!UI.ipath.length?'cur':''}" data-act="sroot" data-c="imports"><button class="sch ${UI.sOpen.has('root:imports')||q?'op':''}" data-act="stog" data-id="root:imports">${CHV}</button><span class="t"><b>المستوردات</b></span></div>${UI.sOpen.has('root:imports')||q?`<div class="sk">${sideTree(S.imports,'imports',q,1)}</div>`:''}<div class="sn ${UI.tab==='subjects'&&!UI.spath.length?'cur':''}" data-act="sroot" data-c="subjects"><button class="sch ${UI.sOpen.has('root:subjects')||q?'op':''}" data-act="stog" data-id="root:subjects">${CHV}</button><span class="t"><b>المواد</b></span></div>${UI.sOpen.has('root:subjects')||q?`<div class="sk">${sideTree(S.subjects,'subjects',q,1)}</div>`:''}${UI.recent.length>1?`<div class="hint" style="margin-top:8px">أماكن زرتها</div>${UI.recent.slice(0,6).map((r,i)=>{const nm=r.p.length?(()=>{const l=locate(r.p.at(-1));return l?l.node.title:'؟'})():(r.ctx==='imports'?'المستوردات':'الخزنة');return`<div class="rowx"><span class="t" data-act="srecent" data-i="${i}">${esc(nm)}</span></div>`}).join('')}`:''}`;
+ const sel=UI.sel.size,one=sel===1?find([...UI.sel][0])?.n:null,c=navCtx(),h=hOf(c);
+ const nav=`<div class="sbtns"><button class="btn" data-act="back" ${h.i>0?'':'disabled'}>رجوع</button><button class="btn" data-act="up" ${pathOf(c).length?'':'disabled'}>لفوق</button><button class="btn" data-act="sexp">فتح الكل</button><button class="btn" data-act="scol">طيّ الكل</button></div><input class="sf" id="sidef" placeholder="فلتر المجلدات…" value="${esc(UI.sq||'')}">${sideOrder().map(([x,ch])=>`<div class="sn${ch?' snsub':''} ${UI.tab===x.id&&!pathOf(x.id).length?'cur':''}" data-act="sroot" data-c="${x.id}" data-id="root:${x.id}" data-sec="${x.id}"><button class="sch ${UI.sOpen.has('root:'+x.id)||q?'op':''}" data-act="stog" data-id="root:${x.id}">${CHV}</button><span class="t"><b>${x.icon?secIcon(x.icon,13):''}${esc(x.title)}</b></span></div>${UI.sOpen.has('root:'+x.id)||q?`<div class="sk">${sideTree(x.tree,x.id,q,1)}</div>`:''}`).join('')}${UI.recent.length>1?`<div class="hint" style="margin-top:8px">أماكن زرتها</div>${UI.recent.slice(0,6).map((r,i)=>{const nm=r.p.length?(()=>{const l=locate(r.p.at(-1));return l?l.node.title:'؟'})():secTitle(r.ctx);return`<div class="rowx"><span class="t" data-act="srecent" data-i="${i}">${esc(nm)}</span></div>`}).join('')}`:''}`;
  const pn=pins.length?pins.map(n=>`<div class="rowx"><span class="t" data-act="${n.kind==='folder'?'sgo':'open'}" data-id="${n.id}">${n.kind==='folder'?FSVG:''}${esc(n.title)}</span><button data-act="sunpin" data-id="${n.id}" title="إلغاء التثبيت">✕</button></div>`).join(''):'<div class="sub">مفيش مثبّت. اسحب عنصر هنا أو ثبّته من القائمة.</div>';
  const cl=UI.clip&&UI.clip.length?`<div class="hint">${UI.clip.length} عنصر منسوخ</div>${UI.clip.slice(0,6).map(x=>{try{return`<div class="rowx"><span class="t">${esc(JSON.parse(x).title)}</span></div>`}catch{return''}}).join('')}<div class="sbtns"><button class="btn pri" data-act="spaste">لصق هنا</button><button class="btn" data-act="sclip0">مسح الرف</button></div>`:'<div class="sub">الرف فاضي. انسخ عنصر (Ctrl+C أو من القائمة).</div>';
  const cp=`<div class="sbtns">${sel?`<button class="btn" data-act="scopysel">نسخ المحدد (${sel})</button>`:''}${one&&one.kind==='link'?'<button class="btn" data-act="scopyurl">نسخ رابط المحدد</button>':''}</div>`;
  const qa=`<div class="sbtns"><button class="btn" data-act="addlink">رابط +</button><button class="btn" data-act="addfolder">مجلد +</button><button class="btn" data-act="simport">استيراد</button><button class="btn" data-act="sexport">تصدير</button><button class="btn" data-act="sbackup">نسخ احتياطي</button></div>${sel?`<div class="hint">المحدد: ${sel}</div><div class="sbtns"><button class="btn" data-act="selmove">نقل</button><button class="btn" data-act="selexp">تصدير</button><button class="btn dn" data-act="seldel">حذف</button><button class="btn" data-act="selclear">إلغاء</button></div>`:''}`;
  s.innerHTML=`<div class="bar" style="margin-bottom:4px"><b>لوحة المساعدة</b><span class="sp"></span><button class="btn" data-act="sclose">إغلاق</button></div>${sideSection('nav','التنقل',nav)}${sideSection('pins',`المثبّت (${pins.length})`,pn)}${sideSection('clip','رف النسخ',cl+cp)}${sideSection('act','إجراءات سريعة',qa)}`;
+ s.querySelectorAll('.sn[data-id]').forEach(el=>{const id=el.dataset.id,c=el.dataset.sec;const root=String(id).startsWith('root:');el.ondragover=e=>{if(UI.drag){e.preventDefault();el.classList.add('dragover')}};el.ondragleave=()=>el.classList.remove('dragover');
+  el.ondrop=e=>{e.preventDefault();e.stopPropagation();el.classList.remove('dragover');const d=UI.drag;UI.drag=null;if(d&&d.id)dropInto(d.id,root?'':id,c)}});
  s.scrollTop=keep;s.ondragover=e=>{if(UI.drag)e.preventDefault()};s.ondrop=e=>{if(!UI.drag)return;e.preventDefault();const n=find(UI.drag.id)?.n;UI.drag=null;if(n&&!n.pinned){snap();n.pinned=true;persist();render();toast('اتثبّت')}};
  s.querySelectorAll('details').forEach(d=>d.ontoggle=()=>{S.settings.sideSec[d.dataset.sec]=d.open?1:0;persist()});
  const f=$('#sidef');if(f)f.oninput=()=>{UI.sq=f.value;renderSide();const g=$('#sidef');g.focus();g.setSelectionRange(g.value.length,g.value.length)}}
@@ -861,7 +1163,7 @@ function sideAct(a,t){const id=t.dataset.id;
  else if(a==='sgo'){goFolder(id);if(sideOverlay())setSide(false)}
  else if(a==='sroot'){UI.tab=t.dataset.c;UI.q='';setPath(t.dataset.c,[]);if(sideOverlay())setSide(false)}
  else if(a==='stog'){UI.sOpen.has(id)?UI.sOpen.delete(id):UI.sOpen.add(id);renderSide()}
- else if(a==='sexp'){UI.sOpen.add('root:vault');UI.sOpen.add('root:imports');UI.sOpen.add('root:subjects');for(const r of[S.vault,S.imports,S.subjects])walk(r,n=>{if(n.kind==='folder')UI.sOpen.add(n.id)});renderSide()}
+ else if(a==='sexp'){for(const sc of allSecs()){UI.sOpen.add('root:'+sc.id);walk(sc.tree,n=>{if(n.kind==='folder')UI.sOpen.add(n.id)})}renderSide()}
  else if(a==='scol'){UI.sOpen.clear();renderSide()}
  else if(a==='srecent'){const r=UI.recent[+t.dataset.i];if(r){UI.tab=r.ctx;setPath(r.ctx,r.p);if(sideOverlay())setSide(false)}}
  else if(a==='sunpin'){const n=find(id)?.n;if(n){snap();n.pinned=false;persist();render()}}
@@ -870,18 +1172,43 @@ function sideAct(a,t){const id=t.dataset.id;
  else if(a==='scopysel')copyNodes([...UI.sel]);
  else if(a==='scopyurl'){const n=find([...UI.sel][0])?.n;n&&navigator.clipboard.writeText(n.url).then(()=>toast('اتنسخ'),()=>toast('مقدرتش أنسخ'))}
  else if(a==='simport'){UI.tab='imports';render();if(sideOverlay())setSide(false);$('#file')?.click()}
- else if(a==='sexport')exportDlg(null);else if(a==='sbackup')manualBackup()}
+ else if(a==='sexport')exportDlg(null);else if(a==='sbackup')backupSectionNow(navCtx())}
 function toolsMenu(t){const p=$('#pop'),r=t.getBoundingClientRect();p.innerHTML=['<div data-pa="refetch">إعادة سحب صور الروابط في المجلد ده</div>','<div data-pa="dup">كشف المكررات</div>','<div data-pa="dead">فحص الروابط اللي مش بتفتح</div>','<div data-pa="undo">تراجع (Ctrl+Z)</div>','<div data-pa="redo">إعادة (Ctrl+Y)</div>'].join('');p.style.display='block';p.style.left=Math.max(6,Math.min(r.left,innerWidth-p.offsetWidth-6))+'px';p.style.top=r.bottom+4+'px';
  p.onclick=e=>{const a=e.target.dataset.pa;p.style.display='none';if(a==='undo')undo();if(a==='redo')redo();if(a==='dup')dups();if(a==='dead')deadCheck();if(a==='refetch')refetchHere()}}
 // ---- settings ----
+const SECICLIST=[['folder','مجلد'],['star','نجمة'],['book','كتاب'],['brief','شنطة'],['film','فيلم'],['cart','عربة'],['plane','طيارة'],['heart','قلب'],['tag','تاج']];
+async function secAdd(){const r=await dialog(`<h3>قسم جديد</h3><label>اسم القسم</label><input name="title" placeholder="مثال: الكورسات"><label>الأيقونة</label><select name="icon">${SECICLIST.map(([k,l])=>`<option value="${k}">${l}</option>`).join('')}</select><div class="hint">القسم الجديد بيشتغل زي الخزنة بالظبط: مجلدات، سحب وترتيب، بحث، سلة محذوفات، حالات خاصة بيه، ونسخة احتياطية باسمه في مجلد "النسخ الاحتياطي".</div><div class="acts"><button class="btn pri" data-ok="1">إضافة</button><button class="btn" data-x>إلغاء</button></div>`);
+ if(!r)return;const t=clip(String(r.title||'').trim(),30);if(!t)return;if(allSecs().some(x=>x.title===t))return toast('فيه قسم بنفس الاسم');
+ snap();const id='x'+uid().slice(1);S.secs.push({id,title:t,icon:r.icon||'folder',tree:[],st:DEF_STATUS.map(x=>({...x})),stDef:DEF_STATUS[0].id,bk:{mode:'month',dir:'',last:0,hash:''}});
+ UI.tab=id;UI.paths[id]=[];persist();render();toast('اتضاف القسم')}
+async function secRen(id){const sc=secOf(id);if(!sc)return;const r=await dialog(`<h3>تعديل القسم</h3><label>الاسم</label><input name="title" value="${esc(sc.title)}"><label>الأيقونة</label><select name="icon">${SECICLIST.map(([k,l])=>`<option value="${k}" ${sc.icon===k?'selected':''}>${l}</option>`).join('')}</select><div class="acts"><button class="btn pri" data-ok="1">حفظ</button><button class="btn" data-x>إلغاء</button></div>`);
+ if(!r)return;const t=clip(String(r.title||'').trim(),30);if(!t)return;if(allSecs().some(x=>x.id!==id&&x.title===t))return toast('فيه قسم بنفس الاسم');snap();sc.title=t;sc.icon=r.icon||sc.icon;persist();render();toast('اتعدّل القسم')}
+async function secDel(id){const sc=secOf(id);if(!sc)return;if(sc.builtin)return toast(`"${sc.title}" قسم أساسي ومش بيتحذف`);const cnt=sc.tree.length;if(!await confirmD(`تحذف قسم "${esc(sc.title)}"؟ محتواه (${cnt}) هيروح لسلة المحذوفات وتقدر ترجعه.`,'حذف'))return;
+ snap();for(const n of sc.tree)S.trash.push({n,at:now(),ctx:id});S.secs=S.secs.filter(x=>x.id!==id);if(UI.tab===id)UI.tab='vault';delete UI.paths[id];delete UI.h[id];persist();render();toast('اتحذف القسم ومحتواه في السلة')}
+function secMove(id,dir){const i=(S.secs||[]).findIndex(x=>x.id===id);if(i<0)return;const j=i+dir;if(j<0||j>=S.secs.length)return;snap();const a=S.secs.slice();[a[i],a[j]]=[a[j],a[i]];S.secs=a;persist();render()}
+function backupHtml(){const s=S.settings;
+ return`<div class="sec"><h3>النسخ الاحتياطي</h3><div class="hint">كل قسم ليه نسخته وجدولته ومكانه. كل نسخة ملف HTML واحد للمفضلة باسم القسم والتاريخ والساعة (مثال: الخزنة 2026-11-27 11-43 م.html): تستورده في أي متصفح كعلامات، وفي نفس الوقت ترجّع منه القسم من جوّه راابط بكل تفاصيله. الملفات القديمة مش بتتمسح. المكان الافتراضي فولدر "النسخ الاحتياطي" جنب البرنامج. النسخة بتتعمل بس لو فيه تغيير، إلا لو ضغطت "نسخ الآن" بنفسك.</div></div>
+ <div class="sec"><h3>نسخة كل قسم</h3>
+ 
+ ${allSecs().map(x=>{const b=bkOf(x.id);return `<div class="bar" style="margin-top:8px"><b style="min-width:76px">${esc(x.title)}</b><select class="btn" data-act="bkmod" data-id="${x.id}">${BKMODES.map(([k,l])=>`<option value="${k}" ${b.mode===k?'selected':''}>${l}</option>`).join('')}</select>${b.mode==='custom'?`<input class="btn" data-act="bknum" data-id="${x.id}" type="number" min="1" max="999" value="${b.n||6}" style="width:62px"><select class="btn" data-act="bkunit" data-id="${x.id}">${BKUNITS.map(([k,l])=>`<option value="${k}" ${(b.u||'h')===k?'selected':''}>كل ${l}</option>`).join('')}</select>`:''}<input class="btn" data-act="bkdir2" data-id="${x.id}" value="${esc(b.dir||'')}" placeholder="افتراضي: ${BKDIRNAME} جنب البرنامج" style="width:190px"><button class="btn" data-act="bkpick2" data-id="${x.id}">فولدر</button><button class="btn" data-act="bkclr2" data-id="${x.id}">افتراضي</button><button class="btn pri" data-act="bksecnow" data-id="${x.id}">نسخ الآن</button><button class="btn" data-act="bksecres" data-id="${x.id}">استرجاع</button><button class="btn" data-act="bkenc" data-id="${x.id}">نسخة مشفرة</button><span class="sub">${b.last?'آخر نسخة: '+new Date(b.last).toLocaleString('ar-EG'):'لسه'}</span></div>`}).join('')}
+ <div class="bar" style="margin-top:12px"><button class="btn pri" data-act="bkallnow">نسخ كل الأقسام الآن</button><button class="btn" data-act="bkopen">افتح فولدر النسخ</button></div></div>
+ <div class="sec"><h3>نسخة مشفرة بكلمة سر</h3><div class="hint">كل قسم فيه زرار "نسخة مشفرة" في صفه. بيسألك كلمة سر، والملف بيتحفظ HTML زي باقي النسخ بس محتواه مقفول (AES). من غير الكلمة مفيش حد يقراه، والكلمة نفسها مش بتتحفظ في أي مكان. ترجعه من نفس القسم بزر "استرجاع" وهيسألك الكلمة.</div></div>
+ <div class="sec"><h3>تصدير</h3><div class="bar"><button class="btn" data-act="exphtml">تصدير للمتصفح (HTML)</button><button class="btn" data-act="expxlsx">تصدير Excel</button><button class="btn" data-act="expdocx">تصدير Word</button><button class="btn" data-act="exppdf">تصدير PDF</button></div><div class="hint">تصدير القسم اللي انت واقف فيه دلوقتي. مش نسخة احتياطية، بس ملف تاخده معاك.</div></div>
+ <div class="sec"><h3>نسخة واحدة لكل الأقسام</h3><div class="hint">ملف واحد فيه كل الأقسام — الخزنة والمواد والاستيراد وأي قسم انت عملته — بكل تفاصيلها، HTML للمفضلة زي نسخة القسم الواحد. الفرق بينها وبين "نسخة البرنامج كله": دي بترجّع محتوى الأقسام بس، ومش بترجّع الإعدادات ولا الـPIN ولا مكان النسخ ولا الخطوط ولا مكتبة الصور. الملفات القديمة مش بتتمسح، والنسخة بتتعمل بس لو فيه تغيير.</div>
+ <div class="bar" style="margin-top:10px"><select class="btn" data-act="abkmod">${BKMODES.map(([k,l])=>`<option value="${k}" ${bkOf(ALLBK).mode===k?'selected':''}>${l}</option>`).join('')}</select>${bkOf(ALLBK).mode==='custom'?`<input class="btn" data-act="abknum" type="number" min="1" max="999" value="${bkOf(ALLBK).n||6}" style="width:62px"><select class="btn" data-act="abkunit">${BKUNITS.map(([k,l])=>`<option value="${k}" ${(bkOf(ALLBK).u||'h')===k?'selected':''}>كل ${l}</option>`).join('')}</select>`:''}<input class="btn" data-act="abkdir" value="${esc(bkOf(ALLBK).dir||'')}" placeholder="افتراضي: ${BKDIRNAME} جنب البرنامج" style="width:190px"><button class="btn" data-act="abkpick">فولدر</button><button class="btn" data-act="abkclr">افتراضي</button><button class="btn pri" data-act="abknow">نسخ الآن</button><button class="btn" data-act="abkres">استرجاع</button><span class="sub">${bkOf(ALLBK).last?'آخر نسخة: '+new Date(bkOf(ALLBK).last).toLocaleString('ar-EG'):'لسه'}</span></div></div>
+ <div class="sec"><h3>نسخة البرنامج كله</h3><div class="hint">نسخة واحدة فيها كل حاجة: كل الأقسام والمجلدات والروابط والإعدادات والحالات. ملف إعدادات (json) مش ملف متصفح، بيترجّع البرنامج كله زي ما كان بعد أي مسح. مكتبة الصور مش جواها. يدوي بس، وانت اللي بتختار الفولدر.</div>
+ <div class="bar" style="margin-top:10px"><label class="btn">الفولدر: <input id="fulldir" data-act="fulldir" value="${esc(s.fullDir||'')}" placeholder="افتراضي: ${BKDIRNAME} جنب البرنامج" style="width:230px;background:none;border:0"></label><button class="btn" data-act="fulldirpick">اختار فولدر</button><button class="btn" data-act="fulldirclr">افتراضي</button></div>
+ <div class="bar"><button class="btn pri" data-act="fullbk">نسخ احتياطي للبرنامج كله</button><button class="btn" data-act="fullrestore">استرجاع النسخ الاحتياطي للبرنامج كله</button><span class="sub">${s.fullLast?'آخر نسخة: '+new Date(s.fullLast).toLocaleString('ar-EG'):'لسه'}</span></div></div>
+ <div class="sec" style="text-align:center;padding-bottom:22px"><div class="sub" style="display:flex;align-items:center;justify-content:center;gap:6px"><span class="wmhw wms" role="img" aria-label="راابط"><i class="l1"></i><i class="l2"></i><i class="l3"></i><i class="l4"></i><i class="l5"></i><i class="ld"></i></span> <span>· النسخ الاحتياطي</span></div></div>`}
+
+const hexOr=(v,d)=>/^#[0-9a-f]{6}$/i.test(String(v||''))?String(v):(d||'#7c5cff');
 function settingsHtml(){const s=S.settings,sel=s.fontSel||('s'+(s.font||0));loadBundled('playfair-display');const ar=Object.entries(FB).filter(([k,v])=>v[1]),la=Object.entries(FB).filter(([k,v])=>!v[1]);
  const tc=Number(S.trash.length);
- return`<div class="sec"><h3>الثيمات (ألوان مميّزة على خلفية سودا)</h3><div class="themes">${THEMES.map((t,i)=>`<div data-act="theme" data-i="${i}" class="${s.theme===i?'on':''}" style="background:#121217;color:#f2f2f7"><span style="color:${fixC(t[1])}">●</span><span style="color:${fixC(t[2])}">●</span> ${t[0]}</div>`).join('')}</div><div class="bar" style="margin-top:10px"><label class="btn"><input type="checkbox" data-act="rm" ${s.reduceMotion?'checked':''}> تقليل الحركة</label></div></div>
+ return`<div class="sec"><h3>الثيمات (ألوان مميّزة)</h3><div class="themes">${THEMES.map((t,i)=>`<div data-act="theme" data-i="${i}" class="${s.theme===i?'on':''}" style="background:#121217;color:#f2f2f7"><span style="color:${fixC(t[1])}">●</span><span style="color:${fixC(t[2])}">●</span> ${t[0]}</div>`).join('')}</div><div class="bar" style="margin-top:10px"><label class="btn"><input type="checkbox" data-act="lightmode" ${s.light?'checked':''}> الوضع الفاتح (خلفية بيضا)</label><label class="btn"><input type="checkbox" data-act="splash" ${s.splash!==false?"checked":""}> شاشة البداية عند التشغيل</label><label class="btn"><input type="checkbox" data-act="rm" ${s.reduceMotion?'checked':''}> تقليل الحركة</label></div>
+ <div class="bar"><label class="btn" style="gap:8px">لون مخصص <input type="color" data-act="acpick" value="${hexOr(s.acCustom,fixC((THEMES[s.theme]||THEMES[0])[1]))}" style="width:38px;height:26px;padding:0;border:0;background:none;cursor:pointer"></label><label class="btn" style="gap:8px">اللون الثاني <input type="color" data-act="ac2pick" value="${hexOr(s.ac2Custom,fixC((THEMES[s.theme]||THEMES[0])[2]))}" style="width:38px;height:26px;padding:0;border:0;background:none;cursor:pointer"></label>${s.acCustom||s.ac2Custom?'<button class="btn" data-act="acclr">رجّع ألوان الثيم</button>':''}</div>
+ <div class="hint">اللون المخصص بيشتغل مع أي ثيم، ومع الوضع الفاتح والغامق، وبيتحفظ في الإعدادات.</div></div>
  <div class="sec"><h3>الخط</h3><div class="bar"><label class="btn"><input type="checkbox" data-act="wm" ${s.wordmark!==false?'checked':''}> شعار search حوالين البحث</label><select class="btn" data-act="fontsel"><optgroup label="خطوط النظام">${FONTS.map((f,i)=>`<option value="s${i}" ${sel==='s'+i?'selected':''}>${f[0]}</option>`).join('')}</optgroup><optgroup label="مضمّنة: عربي وإنجليزي">${ar.map(([k,v])=>`<option value="b:${k}" ${sel==='b:'+k?'selected':''}>${v[0]}</option>`).join('')}</optgroup><optgroup label="مضمّنة: إنجليزي بس">${la.map(([k,v])=>`<option value="b:${k}" ${sel==='b:'+k?'selected':''}>${v[0]}</option>`).join('')}</optgroup><optgroup label="خطوطك المدمجة">${Object.entries(PF).map(([k,v])=>`<option value="p:${k}" ${sel==='p:'+k?'selected':''}>${v[0]}</option>`).join('')}</optgroup>${(s.userFonts||[]).length?`<optgroup label="خطوطك">${s.userFonts.map(f=>`<option value="u:${f.id}" ${sel==='u:'+f.id?'selected':''}>${esc(f.name)}</option>`).join('')}</optgroup>`:''}</select><button class="btn" data-act="addfont">إضافة خط من جهازك</button><input type="file" id="fontfile" multiple hidden><input class="btn" id="cfont" placeholder="أو اسم خط مثبت على جهازك" value="${esc(s.customFont)}" style="width:220px"></div>${(s.userFonts||[]).length?`<div class="ufl">${s.userFonts.map(f=>`<span>${esc(f.name)}<b data-act="delfont" data-id="${f.id}" title="حذف">✕</b></span>`).join('')}</div>`:''}<div class="fsample">راابط · روابطي المفضلة 123 · Raabt links</div><div class="hint">الخطوط المضمّنة بتتحمّل واحد بس: اللي تختاره. خطوطك المدمجة هي اللي إنت بعتها، ومخصصة لنسختك إنت بس، متشاركش البرنامج مع حد وهي جواه. الخطوط اللي بتضيفها بتتنسخ جنب البرنامج في Raabt-data/fonts ومش بتتحط جوه البرنامج. لو الخط ناقص حروف بيكمّل بخط النظام حرف حرف.</div></div>
- <div class="sec"><h3>النسخ الاحتياطي</h3><div class="bar"><select class="btn" data-act="bk">${[['manual','يدوي'],['launch','كل مرة أفتح التطبيق'],['hours','كل عدد ساعات'],['day','يوم'],['week','أسبوع'],['month','شهر']].map(([k,l])=>`<option value="${k}" ${s.backup===k?'selected':''}>${l}</option>`).join('')}</select><label class="btn">النسخ التلقائي لـ: <select data-act="bkscope" style="background:none;border:0">${SCOPES.map(([k,l])=>`<option value="${k}" ${(s.bkScope||'both')===k?'selected':''}>${l}</option>`).join('')}</select></label><button class="btn pri" data-act="backupnow">نسخ احتياطي الآن</button><button class="btn" data-act="restore">استرجاع من نسخة</button><button class="btn" data-act="encbk">نسخة مشفرة بكلمة سر</button></div>
- <div class="bar" style="margin-top:8px">${s.backup==='hours'?`<label class="btn">كل <input id="bkh" data-act="bkhours" type="number" min="1" max="336" value="${s.bkHours||6}" style="width:64px;background:none;border:0"> ساعة</label>`:''}<label class="btn">مكان النسخ: <input id="bkdir" data-act="bkdir" value="${esc(s.bkDir||'')}" placeholder="افتراضي: جوه فولدر البرنامج" style="width:230px;background:none;border:0"></label><button class="btn" data-act="bkdirpick">اختار فولدر</button><button class="btn" data-act="bkdirclr">افتراضي</button></div>
- <div class="hint">آخر نسخة: ${s.lastBackup?new Date(s.lastBackup).toLocaleString('ar-EG'):'لسه'}. كل نطاق له ملف خاص (raabt-backup-vault / imports / both / pick) بيتحدّث في نفس المكان وبيطابق الحالي. الاسترجاع بيستبدل النطاق اللي في الملف بس. نسخة الخزنة بتشمل المواد والصور (فولدر backups/images)، وتقدر تعمل نسخة للمواد لوحدها: ملف واحد لكل المواد أو ملف لكل مادة. التوقيت والعدد والمكان بتتظبط من هنا. النسخ التلقائي بيشتغل وهو مفتوح، ولو الميعاد فات وهو مقفول بيتنفذ أول ما تفتحه.</div>
- <div class="bar" style="margin-top:12px"><button class="btn" data-act="exphtml">تصدير للمتصفح (HTML)</button><button class="btn" data-act="expxlsx">تصدير Excel</button><button class="btn" data-act="expdocx">تصدير Word</button><button class="btn" data-act="exppdf">تصدير PDF</button></div></div>
+ <div class="sec"><h3>الأقسام</h3><div class="hint">الخزنة والمواد والاستيراد أساسيين. تقدر تضيف أقسامك انت، وكل قسم بيشتغل زي الخزنة بالظبط وله نسخته وحالاته.</div><div class="bar" style="margin-top:10px"><button class="btn pri" data-act="secadd">قسم جديد +</button></div>${(S.secs||[]).map((x,i)=>`<div class="bar"><span class="tag" style="background:var(--ac);color:#fff">${x.icon?secIcon(x.icon,13):''}${esc(x.title)}</span><span class="sub">${x.tree.length} عنصر</span><span class="sp"></span><button class="btn" data-act="secup" data-id="${x.id}" ${i===0?'disabled':''} title="تقديم">↑</button><button class="btn" data-act="secdown" data-id="${x.id}" ${i===S.secs.length-1?'disabled':''} title="تأخير">↓</button><button class="btn" data-act="secren" data-id="${x.id}">الاسم والأيقونة</button>${x.builtin?'<button class="btn" disabled title="قسم أساسي، مش بيتحذف">أساسي</button>':`<button class="btn dn" data-act="secdel" data-id="${x.id}">حذف القسم</button>`}</div>`).join('')||'<div class="sub">مفيش أقسام زيادة لسه.</div>'}</div>
  <div class="sec"><h3>الأمان والتشغيل</h3><div class="bar"><button class="btn" data-act="setpin">${s.pin?'تغيير/إلغاء الـPIN':'تفعيل قفل PIN'}</button><label class="btn"><input type="checkbox" data-act="hotkey" ${s.hotkey?'checked':''}> اختصار عام يفتح إضافة رابط</label><button class="btn kcap" data-act="hkcap" title="اضغط وبعدين اضغط الاختصار">${esc(s.hkLabel||'Ctrl+Alt+R')}</button><button class="btn" data-act="hkreset">الافتراضي</button><label class="btn"><input type="checkbox" data-act="tray" ${s.tray?'checked':''}> أيقونة جنب الساعة (X يخفي بدل ما يقفل)</label><label class="btn"><input type="checkbox" data-act="autostart" ${s.autostart?'checked':''}> تشغيل مع الويندوز</label></div>
  <div class="hint">التشغيل مع الويندوز بيتفعل بس لما تختاره، وبيتسجل على حسابك أنت بس. الاختصار لازم Ctrl أو Alt أو Shift مع حرف أو رقم أو F1-F12.</div></div>
  <div class="sec dz"><h3>التاجات</h3><div class="bar"><button class="btn dn" data-act="cleartags">مسح كل التاجات</button></div><div class="hint">بيطلب تأكيد، وزر المسح بيتفتح بعد 10 ثواني. بيمسح التاجات بس، مش الروابط.</div></div>
@@ -889,21 +1216,21 @@ function settingsHtml(){const s=S.settings,sel=s.fontSel||('s'+(s.font||0));load
  <div class="sec" style="text-align:center;padding-bottom:22px"><a class="igrow" data-act="ig" role="link" tabindex="0" title="Instagram: ahmed_roza_" aria-label="Instagram: ahmed_roza_">${igIcon(22)}<span style="font-size:15px">Instagram</span></a><div style="display:flex;align-items:center;justify-content:center;gap:10px;direction:ltr;margin-top:2px"><img class="stick" src="${STICKER}" alt="" aria-hidden="true"><b style="font-family:'Playfair Display',Georgia,serif;font-weight:700;font-size:26px;letter-spacing:.5px;transform:translateY(-12px)">Ahmed Roza</b></div><div class="sub" style="margin-top:8px">راابط · بحث في الروابط</div></div>`}
 
 // ---------- events ----------
-document.addEventListener('click',async e=>{const t=e.target.closest('[data-act]'),pop=$('#pop');if(!e.target.closest('#pop')&&!(t&&t.dataset.act==='menu'))pop.style.display='none';if(!t)return;const a=t.dataset.act,ctx=['imports','subjects'].includes(UI.tab)?UI.tab:'vault';
+document.addEventListener('click',async e=>{const t=e.target.closest('[data-act]'),pop=$('#pop');if(!e.target.closest('#pop')&&!(t&&t.dataset.act==='menu'))pop.style.display='none';if(!t)return;const a=t.dataset.act,ctx=navCtx();
  if(a==='menu'){e.stopPropagation();const r=t.getBoundingClientRect();showMenu(t.dataset.id,t.dataset.ctx,r.left,r.bottom+4)}
  else if(a==='open')openLink(t.dataset.id);else if(a==='enter')enter(t.dataset.id,ctx);
  else if(a==='toggle'){const n=find(t.dataset.id).n;n.open=!n.open;render()}
  else if(a==='expall'||a==='colall'){walk(ctxRoot(['imports','subjects'].includes(UI.tab)?UI.tab:'vault'),n=>{if(n.kind==='folder')n.open=a==='expall'});render()}
  else if(a==='go'){const i=+t.dataset.i;setPath(ctx,pathOf(ctx).slice(0,i+1))}
  else if(a==='addlink')addLink(ctx);else if(a==='addfolder')addFolder(ctx);
- else if(a==='addsubject')addSubject();else if(a==='seltosubj')addToSubject([...UI.sel]);
+ else if(a==='addsubject')addSubject(ctx);else if(a==='seltosubj')addToSubject([...UI.sel]);
  else if(a==='clip'){let tx='';try{tx=await navigator.clipboard.readText()}catch{}addLink(ctx,/^(https?:\/\/|www\.)/i.test(tx.trim())?tx.trim():'')}
  else if(a==='view'){S.settings.view=t.dataset.v;persist();render()}
  else if(a==='tagf'){UI.tags=UI.tags===t.dataset.t?null:t.dataset.t;render()}
  else if(a==='qscope'){UI.qAll=t.dataset.v==='1';render()}
  else if(a==='subjf'){UI.subjF=t.dataset.v;render()}
- else if(a==='statuses')manageStatuses();
- else if(a==='sstat')subjectStatus(t.dataset.id);
+ else if(a==='statuses')manageStatuses(ctx);
+ else if(a==='sstat')subjectStatus(t.dataset.id,ctx);
  else if(a==='pickfile')$('#file').click();
  else if(a==='selclear'){UI.sel.clear();render()}else if(a==='seldel'){if(await confirmD(`تحذف ${UI.sel.size} عنصر؟`,'حذف')){snap();for(const id of [...UI.sel]){const f=find(id);if(f){f.arr.splice(f.arr.indexOf(f.n),1);S.trash.push({n:f.n,at:now()})}}UI.sel.clear();persist();render()}}
  else if(a==='selmove')moveNodes([...UI.sel],await folderPicker('نقل المحدد إلى'));
@@ -912,14 +1239,28 @@ document.addEventListener('click',async e=>{const t=e.target.closest('[data-act]
  else if(a==='sortm')popMenu(t,[['ترتيب يدوي','manual'],['بالاسم','name'],['الأحدث','new'],['الأكثر فتحًا','opens']].map(([l,k])=>[l,k,S.settings.sort===k,()=>{S.settings.sort=k;persist();render()}]));
  else if(a==='viewm')popMenu(t,[['grid','شبكة'],['list','قائمة'],['tree','شجرة'],['album','ألبوم'],['dense','مدمج'],['explorer','إكسبلورر (أيقونات كبيرة)'],['mac','ماك (Finder)'],['hex','خلية (كريتيف)']].map(([k,l])=>[l,k,S.settings.view===k,()=>{S.settings.view=k;persist();render()}]));
  else if(a==='theme'){S.settings.theme=+t.dataset.i;persist();render()}
- else if(a==='backupnow')manualBackup();else if(a==='encbk')encBackup();
+ else if(a==='backupnow')backupSectionNow(ctx);else if(a==='encbk')encSecBackup(ctx);else if(a==='bkenc')encSecBackup(t.dataset.id);
+ else if(a==='bksecnow')backupSectionNow(t.dataset.id);else if(a==='bksecres')restoreSec(t.dataset.id);
+ else if(a==='abknow')allSecNow();else if(a==='abkres')restoreAllSec();
+ else if(a==='abkpick'){const d=await B.pickDir();if(d){bkOf(ALLBK).dir=d;persist();render()}else toast('مقدرتش أفتح اختيار الفولدر، اكتب المسار بإيدك')}
+ else if(a==='abkclr'){bkOf(ALLBK).dir='';persist();render()}
+ else if(a==='bkpick2'){const d=await B.pickDir();if(d){bkOf(t.dataset.id).dir=d;persist();render()}else toast('مقدرتش أفتح اختيار الفولدر، اكتب المسار بإيدك')}
+ else if(a==='bkclr2'){bkOf(t.dataset.id).dir='';persist();render()}
+ else if(a==='bkopen'){const d=bkDirOf(ctx);if(window.rbOpenDir)window.rbOpenDir(d);else toast('مكان النسخ: '+(d||'فولدر البرنامج'))}
+ else if(a==='fulldirpick'){const d=await B.pickDir();if(d){S.settings.fullDir=d;persist();render()}}
+ else if(a==='fulldirclr'){S.settings.fullDir='';persist();render()}
+ else if(a==='bkallnow')backupAllNow();else if(a==='fullbk')fullBackup();else if(a==='fullrestore')fullRestore();
  else if(a==='bkdirpick'){const d=await B.pickDir();if(d){S.settings.bkDir=d;persist();render();toast('مكان النسخ اتغيّر')}else toast('مقدرتش أفتح اختيار الفولدر، اكتب المسار بإيدك')}
  else if(a==='bkdirclr'){S.settings.bkDir='';persist();render()}
  else if(a==='restore'){const i=document.createElement('input');i.type='file';i.accept='.json';i.onchange=async()=>i.files[0]&&restoreBackup(await i.files[0].text());i.click()}
  else if(a==='exphtml')exportDlg('html');else if(a==='expxlsx')exportDlg('xlsx');else if(a==='expdocx')exportDlg('docx');else if(a==='exppdf')exportDlg('pdf');
  else if(a==='setpin'){const r=await dialog(`<h3>PIN</h3><label>الكود الجديد (أرقام، فاضي = إلغاء القفل)</label><input name="p" type="password" inputmode="numeric" maxlength="8"><div class="acts"><button class="btn pri" data-ok="1">حفظ</button><button class="btn" data-x>إلغاء</button></div>`);if(r){S.settings.pin=r.p?await hashPin(r.p):'';persist();render()}}
  else if(a==='ftree')openFtree(t);
+ else if(a==='secadd')secAdd();else if(a==='secren')secRen(t.dataset.id);else if(a==='secdel')secDel(t.dataset.id);
+ else if(a==='secup')secMove(t.dataset.id,-1);else if(a==='secdown')secMove(t.dataset.id,1);
+ else if(a==='secchipmenu'){const id=t.dataset.id;popMenu(t,[['تعديل الاسم والأيقونة','ren',false,()=>secRen(id)],['نسخ احتياطي للقسم دلوقتي','bk',false,()=>backupSectionNow(id)],...(secOf(id)&&secOf(id).builtin?[]:[['حذف القسم','del',false,()=>secDel(id)]])])}
  else if(a==='back')navBack();else if(a==='fwd')navFwd();else if(a==='up')navUp();
+ else if(a==='gosec'){UI.tab=t.dataset.id;UI.q='';$('#search').value='';UI.tags=null;UI.sel.clear();setPath(UI.tab,[]);render()}
  else if(a==='side')setSide(!S.settings.sideOpen);
  else if(a==='goto'){e.stopPropagation();goFolder(t.dataset.id)}
  else if(a==='dcopy'){e.stopPropagation();const n=find(t.dataset.id)?.n;n&&navigator.clipboard.writeText(n.url).then(()=>toast('اتنسخ'),()=>toast('مقدرتش أنسخ'))}
@@ -933,7 +1274,7 @@ document.addEventListener('click',async e=>{const t=e.target.closest('[data-act]
  else if(a==='hkreset'){const st=S.settings,o=[st.hkMods,st.hkVk,st.hkLabel];st.hkMods=3;st.hkVk=82;st.hkLabel='Ctrl+Alt+R';if(st.hotkey&&window.rbHotkey&&!await applyHotkey(true)){[st.hkMods,st.hkVk,st.hkLabel]=o;toast('الاختصار الافتراضي مستخدم في برنامج تاني')}persist();render()}
  else if(a==='selexp')exportDlg(null);
  else if(/^s(close|go|root|tog|exp|col|recent|unpin|paste|clip0|copysel|copyurl|import|export|backup)$/.test(a))sideAct(a,t);
- else if(a==='untrash'){const i=S.trash.findIndex(x=>x.n.id===t.dataset.id);snap();S.vault.push(S.trash.splice(i,1)[0].n);persist();render()}
+ else if(a==='untrash'){const i=S.trash.findIndex(x=>x.n.id===t.dataset.id);if(i<0)return;snap();const it=S.trash.splice(i,1)[0];const to=(it.ctx&&isSec(it.ctx))?it.ctx:'vault';ctxRoot(to).push(it.n);persist();render();toast(`رجع لـ ${secTitle(to)}`)}
  else if(a==='emptytrash'){if(await confirmD('تفضي السلة نهائيًا؟','تفريغ')){snap();S.trash=[];persist();render()}}});
 document.addEventListener('change',async e=>{const a=e.target.dataset.act;if(!a)return;const v=e.target.value;
  if(a==='sort'){S.settings.sort=v;persist();render()}else if(a==='font'){S.settings.font=+v;persist();render()}else if(a==='bk'){S.settings.backup=v;persist();render()}
@@ -943,7 +1284,18 @@ document.addEventListener('change',async e=>{const a=e.target.dataset.act;if(!a)
  else if(a==='fontsel'){S.settings.fontSel=v;persist();render()}else if(a==='bkscope'){S.settings.bkScope=v;persist()}
  else if(a==='bkhours'){S.settings.bkHours=Math.max(1,Math.min(336,+v||6));persist()}
  else if(a==='bkdir'){S.settings.bkDir=String(v||'').trim();persist()}
- else if(a==='qsub'){UI.qSub=v;render()}else if(a==='rm'){S.settings.reduceMotion=e.target.checked;persist();applyTheme()}
+ else if(a==='bkmod'){bkOf(e.target.dataset.id).mode=v;persist();render()}
+ else if(a==='bknum'){bkOf(e.target.dataset.id).n=Math.max(1,Math.min(999,+v||1));persist()}
+ else if(a==='bkunit'){bkOf(e.target.dataset.id).u=v;persist()}
+ else if(a==='abknum'){bkOf(ALLBK).n=Math.max(1,Math.min(999,+v||1));persist()}
+ else if(a==='abkunit'){bkOf(ALLBK).u=v;persist()}
+ else if(a==='abkmod'){bkOf(ALLBK).mode=v;persist();render()}
+ else if(a==='abkdir'){bkOf(ALLBK).dir=String(v||'').trim();persist()}
+ else if(a==='bkdir2'){bkOf(e.target.dataset.id).dir=String(v||'').trim();persist()}
+ else if(a==='fulldir'){S.settings.fullDir=String(v||'').trim();persist()}
+ else if(a==='qsub'){UI.qSub=v;render()}else if(a==='rm'){S.settings.reduceMotion=e.target.checked;persist();applyTheme()}else if(a==='splash'){S.settings.splash=e.target.checked;persist()}
+ else if(a==='lightmode'){S.settings.light=!!e.target.checked;persist();applyTheme();render()}
+ else if(a==='acclr'){S.settings.acCustom='';S.settings.ac2Custom='';persist();applyTheme();render();toast('رجعت ألوان الثيم')}
  else if(a==='tray'){S.settings.tray=e.target.checked;persist();if(window.rbTray)window.rbTray(e.target.checked);else toast('مش متاح برا التطبيق')}});
 async function dups(){const m={};allLinks(S.vault).forEach(l=>{const k=l.url.replace(/\/$/,'').replace(/^https?:\/\/(www\.)?/,'').toLowerCase();(m[k]=m[k]||[]).push(l)});const g=Object.values(m).filter(x=>x.length>1);
  if(!g.length)return toast('مفيش روابط مكررة');const r=await dialog(`<h3>روابط مكررة (${g.length})</h3>${g.map((x,i)=>`<div class="sec"><b style="direction:ltr;display:block">${esc(x[0].url)}</b>${x.map((l,j)=>`<label style="color:var(--tx)"><input type="checkbox" name="d${l.id}" ${j>0?'checked':''} style="width:auto"> امسح "${esc(l.title)}"</label>`).join('')}</div>`).join('')}<div class="acts"><button class="btn pri" data-ok="1">امسح المحدد</button><button class="btn" data-x>إلغاء</button></div>`);
@@ -952,7 +1304,6 @@ async function deadCheck(){const c=navCtx(),p=pathOf(c),fol=p.length?find(p.at(-
  const sc0=await dialog(`<h3>فحص الروابط اللي مش بتفتح</h3><label>النطاق</label><select name="sc">${fol?`<option value="here">المجلد الحالي (${esc(fol.title)})</option>`:''}<option value="all">الخزنة والمواد كلها</option></select><div class="hint">الفحص بيشتغل لما تطلبه بس، ومبيحذفش أي حاجة. العدد الكبير بياخد وقت.</div><div class="acts"><button class="btn pri" data-ok="1">ابدأ الفحص</button><button class="btn" data-x>إلغاء</button></div>`);
  if(!sc0)return;const ls=sc0.sc==='here'&&fol?allLinks(fol.children):allLinks([...S.vault,...S.subjects]);if(!ls.length)return toast('مفيش روابط في النطاق ده');toast('بفحص '+ls.length+' رابط…');const bad=[];for(const l of ls){const c=await B.check(l.url);if(c===0||c>=400)bad.push([l,c])}
  await dialog(`<h3>نتيجة الفحص</h3>${bad.length?bad.map(([l,c])=>`<div class="bar"><span>${esc(l.title)}<br><span class="sub">${esc(l.url)} · ${c||'مفيش رد'}</span></span></div>`).join(''):'<div>كل الروابط ردّت.</div>'}<div class="hint">مبيتمسحش حاجة تلقائي، مجرد تقرير. الفحص غير مضمون: بعض المواقع بتمنعه.</div><div class="acts"><button class="btn" data-x>إغلاق</button></div>`)}
-document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{UI.tab=b.dataset.tab;UI.sel.clear();render()});
 $('#search').oninput=e=>{UI.q=e.target.value;if(UI.tab==='settings'||UI.tab==='images')UI.tab='vault';render();$('#search').focus()};
 document.addEventListener('keydown',e=>{if(!(e.ctrlKey||e.metaKey)||e.altKey)return;const k=(e.key||'').toLowerCase();if(k==='k'||k==='f'){const i=$('#search');if(i){e.preventDefault();i.focus();i.select()}}},true);
 document.addEventListener('keydown',e=>{if(e.target.matches('input,select,textarea'))return;if(e.ctrlKey&&e.key==='z'){e.preventDefault();undo()}if(e.ctrlKey&&e.key==='y'){e.preventDefault();redo()}});
@@ -968,25 +1319,55 @@ function openFtree(btn){let p=$('#ftree');if(p){p.remove();return}p=document.cre
  const q=$('#ftq');q.focus();q.oninput=()=>{$('#ftb').innerHTML=ftreeHtml(q.value.trim().toLowerCase())};
  p.onclick=e=>{const t=e.target.closest('[data-act=ftgo]');if(t){e.preventDefault();p.remove();goFolder(t.dataset.id)}};
  setTimeout(()=>{const off=e=>{if(!p.contains(e.target)&&!e.target.closest('[data-act=ftree]')){p.remove();document.removeEventListener('mousedown',off)}};document.addEventListener('mousedown',off);document.addEventListener('keydown',function k(e){if(e.key==='Escape'){p.remove();document.removeEventListener('keydown',k)}})},0)}
-function render(){document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('on',b.dataset.tab===UI.tab));applyTheme();
- const m=$('#main'),key=UI.tab+'|'+pathOf(navCtx()).join('/');
- m.innerHTML=UI.tab==='settings'?settingsHtml():UI.tab==='images'?imagesHtml():browser(UI.tab);
- if(UI._tab!==UI.tab&&!S.settings.reduceMotion){m.classList.remove('fx');void m.offsetWidth;m.classList.add('fx')}UI._tab=UI.tab;
- bindMain();if(UI.tab==='images')bindImages();renderSide()}
-document.addEventListener('keydown',e=>{if(e.altKey&&!e.ctrlKey&&!/INPUT|TEXTAREA|SELECT/.test(document.activeElement?.tagName||'')){if(e.key==='ArrowLeft'){e.preventDefault();navBack()}else if(e.key==='ArrowRight'){e.preventDefault();navFwd()}else if(e.key==='ArrowUp'){e.preventDefault();navUp()}}});
-window.addEventListener('mouseup',e=>{if(e.button===3){e.preventDefault();navBack()}else if(e.button===4){e.preventDefault();navFwd()}});
-document.addEventListener('paste',e=>{if(UI.tab!=='images'||/INPUT|TEXTAREA/.test(document.activeElement?.tagName||'')||$('#veil').style.display==='flex')return;const fs=[...(e.clipboardData?.files||[])].filter(f=>f.type.startsWith('image/'));if(fs.length){e.preventDefault();addImages(fs)}});
-document.addEventListener('dragover',e=>{if(e.dataTransfer&&[...e.dataTransfer.types].includes('Files')&&UI.tab!=='images')e.preventDefault()});
-document.addEventListener('drop',e=>{if(e.dataTransfer&&e.dataTransfer.files.length&&UI.tab!=='images')e.preventDefault()});
-document.addEventListener('mousemove',e=>{if(UI.drag&&e.buttons===0)UI.drag=null});
-document.querySelectorAll('nav button[data-tab]').forEach(b=>{const t=b.dataset.tab;if(t==='settings')return;let tm;
+const SECIC={folder:'M3 7a2 2 0 0 1 2-2h5l2 2h7a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z',star:'M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z',book:'M4 5a2 2 0 0 1 2-2h6v18H6a2 2 0 0 1-2-2zm8-2h6a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-6',brief:'M3 8h18v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2zM8 8V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v3',film:'M3 5h18v14H3zM8 5v14M16 5v14',cart:'M3 4h2l2.4 10.4a2 2 0 0 0 2 1.6h7.2a2 2 0 0 0 2-1.6L20 7H6',plane:'M2 13l20-8-8 20-3-9z',heart:'M12 20s-7-4.4-7-9.4A4 4 0 0 1 12 7a4 4 0 0 1 7 3.6C19 15.6 12 20 12 20z',tag:'M3 12V4h8l9 9-8 8z',gear:'M12 8.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7'};
+function secIcon(k,sz=15){const p=SECIC[k]||SECIC.folder;return `<svg viewBox="0 0 24 24" width="${sz}" height="${sz}" aria-hidden="true" style="margin-inline-end:6px;vertical-align:-2px"><path d="${p}" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>`}
+function bindTabs(){document.querySelectorAll('nav button').forEach(b=>{b.onclick=()=>{UI.tab=b.dataset.tab;UI.sel.clear();render()};const t=b.dataset.tab;if(t==='settings'||t==='backup'||t==='stats')return;let tm;
  b.ondragenter=e=>{if(!UI.drag)return;e.preventDefault();b.classList.add('dropt');clearTimeout(tm);if(UI.tab!==t)tm=setTimeout(()=>{UI.tab=t;render()},500)};
  b.ondragover=e=>{if(UI.drag)e.preventDefault()};b.ondragleave=()=>{clearTimeout(tm);b.classList.remove('dropt')};
- b.ondrop=e=>{e.preventDefault();clearTimeout(tm);b.classList.remove('dropt');const id=UI.drag&&UI.drag.id;UI.drag=null;if(id&&(t==='vault'||t==='imports'||t==='subjects'))moveNodes([id],'',t)}});
+ b.ondrop=e=>{e.preventDefault();clearTimeout(tm);b.classList.remove('dropt');const id=UI.drag&&UI.drag.id;UI.drag=null;if(id&&isSec(t))dropInto(id,'',t)}})}
+let spDone=0;
+function hideSplash(){if(spDone)return;spDone=1;const e=$('#splash');if(!e)return;e.classList.add('gone');setTimeout(()=>{e.style.display='none'},320)}
+function bindSplash(){const e=$('#splash');if(!e)return;if(S.settings&&S.settings.splash===false){spDone=1;e.style.display='none';return}
+ const lg=$('#slogo');if(lg)lg.src=LOGO;const wait=S.settings&&S.settings.reduceMotion?150:1050;setTimeout(hideSplash,wait);
+ const skip=()=>hideSplash();e.addEventListener('click',skip);document.addEventListener('keydown',skip,{once:true});setTimeout(hideSplash,2500)}
+function fitHeader(){const sw=$('#swm');if(!sw)return;document.body.classList.remove('hdrCmp');
+ const need=[...sw.children].reduce((a,c)=>a+c.getBoundingClientRect().width,0)+16;
+ if(need>sw.clientWidth+2)document.body.classList.add('hdrCmp')}
+function render(){const tb=$('#sectabs');if(tb)tb.innerHTML=allSecs().filter(x=>BUILT.includes(x.id)).map(x=>`<button data-tab="${x.id}">${x.icon?secIcon(x.icon):''}${esc(x.title)}</button>`).join('');
+ document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('on',b.dataset.tab===UI.tab));applyTheme();
+ const m=$('#main'),key=UI.tab+'|'+pathOf(navCtx()).join('/');
+ m.innerHTML=UI.tab==='stats'?statsHtml():UI.tab==='backup'?backupHtml():UI.tab==='settings'?settingsHtml():UI.tab==='images'?imagesHtml():browser(UI.tab);
+ if(UI._tab!==UI.tab&&!S.settings.reduceMotion){m.classList.remove('fx');void m.offsetWidth;m.classList.add('fx')}UI._tab=UI.tab;
+ bindMain();if(UI.tab==='images')bindImages();bindTabs();renderSide();fitHeader()}
+document.addEventListener('keydown',e=>{if(e.altKey&&!e.ctrlKey&&!/INPUT|TEXTAREA|SELECT/.test(document.activeElement?.tagName||'')){if(e.key==='ArrowLeft'){e.preventDefault();navBack()}else if(e.key==='ArrowRight'){e.preventDefault();navFwd()}else if(e.key==='ArrowUp'){e.preventDefault();navUp()}}});
+window.addEventListener('resize',()=>{clearTimeout(window.__hdrT);window.__hdrT=setTimeout(fitHeader,80)});
+window.addEventListener('mouseup',e=>{if(e.button===3){e.preventDefault();navBack()}else if(e.button===4){e.preventDefault();navFwd()}});
+document.addEventListener('paste',e=>{if(UI.tab!=='images'||/INPUT|TEXTAREA/.test(document.activeElement?.tagName||'')||$('#veil').style.display==='flex')return;const fs=[...(e.clipboardData?.files||[])].filter(f=>f.type.startsWith('image/'));if(fs.length){e.preventDefault();addImages(fs)}});
+let extHoverT=null;
+function extUri(dt){try{const u=dt.getData('text/uri-list')||dt.getData('text/plain')||'';const line=u.split(/\r?\n/).map(x=>x.trim()).find(x=>x&&!x.startsWith('#'));return line||''}catch{return ''}}
+async function extUrls(e){const dt=e.dataTransfer;if(!dt)return[];const out=[];for(const f of [...(dt.files||[])]){if(/\.url$/i.test(f.name||'')){try{const t=await f.text();const m=t.match(/^\s*URL\s*=\s*(.+)$/im);if(m)out.push(m[1].trim())}catch{}}}
+ const one=extUri(dt);if(one)out.push(one);return out.filter(Boolean)}
+document.addEventListener('dragover',e=>{if(UI.drag)return;const dt=e.dataTransfer;if(!dt)return;const ty=[...dt.types];if(UI.tab==='images')return;
+ if(ty.includes('x/ctx'))return;
+ if(!(ty.includes('Files')||ty.includes('text/uri-list')||ty.includes('text/plain')))return;
+ e.preventDefault();dt.dropEffect='copy';
+ const card=e.target.closest&&e.target.closest('.card.fol[data-id]');
+ if(card&&card.dataset.ctx===navCtx()){clearTimeout(extHoverT);const id=card.dataset.id,c=card.dataset.ctx;extHoverT=setTimeout(()=>{UI.settings.lastDest={...(UI.settings.lastDest||{}),[c]:id};enter(id)},700)}});
+document.addEventListener('dragleave',e=>{if(!e.relatedTarget)clearTimeout(extHoverT)});
+document.addEventListener('drop',async e=>{if(UI.drag)return;const dt=e.dataTransfer;if(!dt||UI.tab==='images')return;
+ const files=[...(dt.files||[])];if([...dt.types].includes('x/ctx'))return;const uri=extUri(dt);if(!files.length&&!uri)return;clearTimeout(extHoverT);
+ const onlyHtml=files.length&&files.every(f=>/\.html?$/i.test(f.name||''))&&!uri;
+ if(onlyHtml){e.preventDefault();UI.tab='imports';render();toast('ملفات المفضلة بتتضاف من قسم الاستيراد: اضغط "اختيار ملف علامات"');return}
+ e.preventDefault();const urls=await extUrls(e);if(!urls.length)return;
+ const card=e.target.closest&&e.target.closest('.card.fol[data-id]');const ctx=navCtx();
+ if(card&&card.dataset.ctx===ctx)UI.settings.lastDest={...(UI.settings.lastDest||{}),[ctx]:card.dataset.id};
+ let added=0;for(const u of urls){const nu=normUrl(u);if(!nu)continue;await addLink(ctx,nu);added++}
+ if(!added)toast('مفيش رابط في اللي رميته')});
+document.addEventListener('mousemove',e=>{if(UI.drag&&e.buttons===0)UI.drag=null});
 $('#sidev').onclick=()=>setSide(false);addEventListener('resize',()=>{if(S.settings.sideOpen)renderSide()});
 {const stg=document.createElement('style');stg.textContent=Array.from({length:24},(_,i)=>`.card:nth-child(${i+1}){animation-delay:${i*16}ms}`).join('');document.head.appendChild(stg)}
 async function checkLock(){if(!S.settings.pin)return;$('#lock').style.display='flex';$('#pin').value='';$('#pin').focus();$('#pin').oninput=async e=>{if(await hashPin(e.target.value)===S.settings.pin){$('#lock').style.display='none'}}}
 window.rbQuickAdd=()=>{UI.tab='vault';render();addLink('vault')};
-(async()=>{$('#logo').src=LOGO;$('#logo2').src=LOGO;await loadCore();try{const t=await B.load('vault.json');if(t){const o=JSON.parse(t);S={...S,...o,settings:{...S.settings,...o.settings}}}}catch{}S.subjects=Array.isArray(S.subjects)?S.subjects:[];prep(S.vault);prep(S.imports);prep(S.subjects);migrateStatuses();S.images=S.images||[];S.settings.sideSec=S.settings.sideSec||{};if(innerWidth<=700)S.settings.sideOpen=false;applyTheme();render();try{if(S.settings.tray&&window.rbTray)window.rbTray(true);if(S.settings.hotkey&&window.rbHotkey&&!(await applyHotkey(true))){S.settings.hotkey=false;persist()}}catch{}await checkLock();if(dueBackup())doBackup(false)})();
+(async()=>{$('#logo').src=LOGO;$('#logo2').src=LOGO;await loadCore();try{const t=await B.load('vault.json');if(t){const o=JSON.parse(t);S={...S,...o,settings:{...S.settings,...o.settings}}}}catch{}S.subjects=Array.isArray(S.subjects)?S.subjects:[];S.secs=Array.isArray(S.secs)?S.secs:[];S.st=S.st||{};S.bk=S.bk||{};for(const x of S.secs){x.tree=Array.isArray(x.tree)?x.tree:[];prep(x.tree)}ensureKhazna();prep(S.vault);prep(S.imports);prep(S.subjects);migrateStatuses();S.images=S.images||[];S.settings.sideSec=S.settings.sideSec||{};if(innerWidth<=700)S.settings.sideOpen=false;applyTheme();render();bindSplash();try{if(S.settings.tray&&window.rbTray)window.rbTray(true);if(S.settings.hotkey&&window.rbHotkey&&!(await applyHotkey(true))){S.settings.hotkey=false;persist()}}catch{}await checkLock();try{if(!window.__appDir&&window.rbAppDir)window.__appDir=await window.rbAppDir()}catch{}try{for(const sc of allSecs()){const bk=bkOf(sc.id);if(bk.mode==='launch'||(bk.mode!=='manual'&&dueBk(bk)))await doSecBackup(sc.id,false)}const ab=bkOf(ALLBK);if(ab.mode==='launch'||(ab.mode!=='manual'&&dueBk(ab)))await doAllBackup(false,true)}catch(e){}})();
 </script><script>(()=>{const i=document.getElementById('search');if(!i)return;const F='بحث في الاسم أو الرابط',C='بحث';i.addEventListener('focus',()=>{i.placeholder=F});i.addEventListener('blur',()=>{i.placeholder=C})})()</script>
 </body></html>
