@@ -5,11 +5,11 @@
 <div align="center">
 
 ![Windows](https://img.shields.io/badge/Windows-10%20%7C%2011-0078D6?style=for-the-badge&logo=windows11&logoColor=white)
-![Offline](https://img.shields.io/badge/أوفلاين-100%25-00e0ff?style=for-the-badge)
+![Offline](https://img.shields.io/badge/Offline-100%25-00e0ff?style=for-the-badge)
 ![Go](https://img.shields.io/badge/Go-WebView2-00ADD8?style=for-the-badge&logo=go&logoColor=white)
 ![Rust](https://img.shields.io/badge/Rust-WASM-000000?style=for-the-badge&logo=rust&logoColor=white)
-![Size](https://img.shields.io/badge/الحجم-10%20MB-7c5cff?style=for-the-badge)
-![Version](https://img.shields.io/badge/الإصدار-v1.0.0-ff4d6d?style=for-the-badge)
+![Size](https://img.shields.io/badge/Size-10%20MB-7c5cff?style=for-the-badge)
+![Version](https://img.shields.io/badge/Version-v1.0.0-ff4d6d?style=for-the-badge)
 
 </div>
 
