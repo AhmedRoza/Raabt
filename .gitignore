@@ -1,0 +1,10 @@
+/target
+/dist
+/archive
+/patch
+/shell/raabt.exe
+/shell/winres/*.syso
+*.bak
+*.tmp
+.DS_Store
+Thumbs.db
