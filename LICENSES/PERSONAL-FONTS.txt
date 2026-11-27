@@ -1,0 +1,14 @@
+Fonts supplied by Ahmed Roza and bundled at his request.
+He says they come from a free site that publishes them. This file records only what the font files themselves say. It is not legal advice and does not grant any permission.
+Files are unmodified.
+
+1. ToyorAljanah      - "Its Free To Use ... Created By ZakDesign Arabic Font Resource, www.zakdesign.net". Embedding flag: editable.
+2. HAYA              - no copyright or licence text in the file. Embedding flag: editable.
+3. UKIJ Moy Qelem    - Uyghur Computer Science Association, licence field "LGPL", URL http://www.gnu.org/licenses/lgpl.html. A copy of LGPL v3 is in LICENSES/LGPL-3.0.txt (the file does not state the version; v3 is what that URL serves now). Keep this notice with any copy.
+4. Digi Madasi Bold  - (c) 2020 DigiFonts, all rights reserved; no licence text.
+5. hala-jamil fonts  -  Author field "jamil asserhan"; no licence text; embedding flag: restricted licence.
+6. Tharwat Emara Modern - author "Thrwat Mohamed Emara"; no licence text.
+7. Molhim Bold       -  (c) Ethar Elnour 2016, all rights reserved; licence field: "Please do not sell or redistribute."
+8. Playpen Sans Arabic - SIL OFL 1.1 (see playpen-sans-arabic-LICENSE.txt). Bundled earlier, not one of the seven above.
+
+Rights are not verified. Only items 3 and 8 state terms that allow redistribution. Molhim says "Please do not sell or redistribute" and hala-jamil carries a restricted-licence flag. These fonts are in this copy because the user supplied them and asked for them. The program is for his own use and has not been published or shared.
